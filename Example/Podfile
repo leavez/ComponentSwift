@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CKWrapper_Example' do
+  pod 'CKWrapper', :path => '../'
+
+  target 'CKWrapper_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
