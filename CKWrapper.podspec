@@ -23,15 +23,18 @@ TODO: Add long description of the pod here.
 
   s.homepage         = 'https://github.com/gaojiji@gmail.com/CKWrapper'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'MIT' }
   s.author           = { 'gaojiji@gmail.com' => 'gaoji@zhihu.com' }
   s.source           = { :git => 'https://github.com/gaojiji@gmail.com/CKWrapper.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'CKWrapper/Classes/**/*'
-  
+  s.source_files = 'Sources/**/*'
+  s.private_header_files = 'Sources/private/**/*'
+  s.dependency "ComponentKit"
+  s.dependency "CKToolbox"
+
   # s.resource_bundles = {
   #   'CKWrapper' => ['CKWrapper/Assets/*.png']
   # }

@@ -1,0 +1,34 @@
+PODS:
+  - CKToolbox (0.2.1):
+    - CKToolbox/ChangesetBuilder (= 0.2.1)
+    - CKToolbox/Core (= 0.2.1)
+    - CKToolbox/TableViewDataSource (= 0.2.1)
+    - ComponentKit (~> 0.14)
+  - CKToolbox/ChangesetBuilder (0.2.1):
+    - CKToolbox/Core
+    - ComponentKit (~> 0.14)
+  - CKToolbox/Core (0.2.1):
+    - ComponentKit (~> 0.14)
+  - CKToolbox/TableViewDataSource (0.2.1):
+    - CKToolbox/Core
+    - ComponentKit (~> 0.14)
+  - CKWrapper (0.1.0):
+    - CKToolbox
+    - ComponentKit
+  - ComponentKit (0.15.1)
+
+DEPENDENCIES:
+  - CKWrapper (from `../`)
+
+EXTERNAL SOURCES:
+  CKWrapper:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  CKToolbox: 80b6e17998432189877ee2cd698ab463b443fb34
+  CKWrapper: 2534cc656d7733760e6c6c262aaff4ec20f4606f
+  ComponentKit: beef88630f344efb8344fe40fc6fc7c1732b68c8
+
+PODFILE CHECKSUM: 1d91c34b8925e966ff88687266d72b6c65eddaf1
+
+COCOAPODS: 1.2.1

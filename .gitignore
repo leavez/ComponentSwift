@@ -19,6 +19,10 @@ DerivedData
 *.hmap
 *.ipa
 
+# pod
+*.xcworkspace
+*/Pods/
+
 # Bundler
 .bundle
 
