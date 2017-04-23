@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CKWViewAttributes.h"
-
+#import "CKWSize.h"
 
 @interface CKWComponent : NSObject
 
-+ (instancetype)newWithView:(CKWViewConfiguration *)view
-                       size:(CGSize)size;
 - (instancetype)initWithView:(CKWViewConfiguration *)view
-                       size:(CGSize)size;
+                       size:(CKWSize *)size;
 
 - (id)nextResponder;
 

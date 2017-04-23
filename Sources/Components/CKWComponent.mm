@@ -19,20 +19,16 @@
 
 
 - (instancetype)initWithView:(CKWViewConfiguration *)view
-                        size:(CGSize)size
+                        size:(CKWSize *)size
 {
     self = [super init];
     if (self) {
-        self.realComponent = [CKComponent newWithView:view.convert size:CKComponentSize::fromCGSize(size)];
+        self.realComponent = [CKComponent newWithView:view.convert size:size.convert];
     }
     return self;
 }
-+ (instancetype)newWithView:(CKWViewConfiguration *)view size:(CGSize)size {
-    CKWComponent *c = [[self alloc] initWithView:view size:size];
-    return c;
-}
 
-#pragma mark - real component
+#pragma mark - inner ck component
 
 - (void)setRealComponent:(CKComponent *)realComponent {
     _realComponentStrong = realComponent;

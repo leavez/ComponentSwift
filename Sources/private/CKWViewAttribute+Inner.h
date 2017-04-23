@@ -8,6 +8,7 @@
 
 #import "CKWViewAttributes.h"
 #import "CKWGestureAttribute.h"
+#import "CKWSize.h"
 #import <ComponentKit/ComponentKit.h>
 #import "macro.h"
 
@@ -27,4 +28,13 @@ EXTENSION(CKWAccessibilityContext,
 EXTENSION(CKWViewConfiguration,
           - (CKComponentViewConfiguration)convert;
           )
+
+
+EXTENSION(CKWDimension,
+          - (CKRelativeDimension)convert;
+          )
+EXTENSION(CKWSize,
+          - (CKComponentSize)convert;
+          )
+
 

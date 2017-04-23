@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		412FD89C1EAC833300220B36 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412FD89B1EAC833300220B36 /* Component.swift */; };
+		41461F501EACD8D500324013 /* CKWrapperConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41461F4F1EACD8D500324013 /* CKWrapperConvenience.swift */; };
 		41D7C9501EABA789004B2DE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */; };
 		41D7C9521EABA789004B2DE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7C9511EABA789004B2DE7 /* ViewController.swift */; };
 		41D7C9551EABA789004B2DE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D7C9531EABA789004B2DE7 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		412FD89B1EAC833300220B36 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		41461F4F1EACD8D500324013 /* CKWrapperConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CKWrapperConvenience.swift; sourceTree = "<group>"; };
 		41D7C94C1EABA789004B2DE7 /* CKWrapperDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CKWrapperDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41D7C9511EABA789004B2DE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */,
 				41D7C9511EABA789004B2DE7 /* ViewController.swift */,
 				412FD89B1EAC833300220B36 /* Component.swift */,
+				41461F4F1EACD8D500324013 /* CKWrapperConvenience.swift */,
 				41D7C9531EABA789004B2DE7 /* Main.storyboard */,
 				41D7C9561EABA789004B2DE7 /* Assets.xcassets */,
 				41D7C9581EABA789004B2DE7 /* LaunchScreen.storyboard */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41D7C9521EABA789004B2DE7 /* ViewController.swift in Sources */,
+				41461F501EACD8D500324013 /* CKWrapperConvenience.swift in Sources */,
 				412FD89C1EAC833300220B36 /* Component.swift in Sources */,
 				41D7C9501EABA789004B2DE7 /* AppDelegate.swift in Sources */,
 			);

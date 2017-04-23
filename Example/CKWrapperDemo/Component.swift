@@ -14,10 +14,10 @@ class SwiftComponent: CKWCompositeComponent {
     init?(model:Any) {
         super.init(component:
             CKWComponent(view:
-                CKWViewConfiguration(
+                .config(
                     UIView.self,
                     [ #selector(setter: UIView.backgroundColor) : UIColor.cyan,
-                     ],
+                      ],
                     layerAttributes: [
                         #selector(setter: CALayer.cornerRadius) : 50,
                         #selector(setter: CALayer.masksToBounds): true
@@ -26,13 +26,13 @@ class SwiftComponent: CKWCompositeComponent {
                         CKWGestureAttribute(tapAction: #selector(didTap))
                     ]
 
-            ), size: CGSize(width: 100, height: 150))
+                ), size: .size(100, 100))
         )
     }
 
     @objc func didTap() {
         print("tapped")
     }
-
-
+    
+    
 }
