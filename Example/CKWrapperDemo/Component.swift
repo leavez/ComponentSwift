@@ -26,7 +26,7 @@ class SwiftComponent: CKWCompositeComponent {
                         CKWGestureAttribute(tapAction: #selector(didTap))
                     ]
 
-                ), size: .size(100, 100))
+                ), size: .height(100))
         )
     }
 

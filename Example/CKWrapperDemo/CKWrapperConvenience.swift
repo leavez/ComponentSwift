@@ -98,6 +98,16 @@ extension CKWSize {
     static func size(_ width: CGFloat, _ height: CGFloat) -> CKWSize {
         return CKWSize(cgSize: CGSize(width: width, height: height))
     }
+    static func height(_ h: CGFloat) -> CKWSize {
+        let s = self.init()
+        s.height = .p(h)
+        return s
+    }
+    static func width(_ w: CGFloat) -> CKWSize {
+        let s = self.init()
+        s.width = .p(w)
+        return s
+    }
 }
 
 
