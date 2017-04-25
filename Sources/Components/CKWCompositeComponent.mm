@@ -29,4 +29,16 @@
     return self;
 }
 
+- (instancetype)initWithCKComponent:(CKComponent *)component {
+    if (!component) {
+        return nil;
+    }
+
+    self = [super init];
+    if (self) {
+        self.realComponent = component;
+    }
+    return self;
+}
+
 @end
