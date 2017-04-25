@@ -19,11 +19,6 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "CKWrapper"
 ```
-
-## Author
-
-gaojiji@gmail.com, gaoji@zhihu.com
-
 ## License
 
 CKWrapper is available under the MIT license. See the LICENSE file for more info.
