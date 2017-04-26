@@ -72,10 +72,10 @@ struct _CKComponentViewAttribute {
     }
     return self;
 }
-- (instancetype)initWithIdentifier:(NSString *)string
-                        applicator:(void (^)(id view, id value))applicator
-                      unapplicator:(void (^)(id view, id value))unapplicator
-                           updater:(void (^)(id view, id oldValue, id newValue))updater
+- (instancetype)initWithIdentifierString:(NSString *)string
+                              applicator:(void (^)(id view, id value))applicator
+                            unapplicator:(void (^)(id view, id value))unapplicator
+                                 updater:(void (^)(id view, id oldValue, id newValue))updater
 {
     self = [super init];
     if (self) {
@@ -87,6 +87,10 @@ struct _CKComponentViewAttribute {
 
 - (CKComponentViewAttribute)convert {
     return _inner.inner;
+}
+
+- (NSUInteger)hash {
+    return std::hash<CKComponentViewAttribute>()(_inner.inner);
 }
 @end
 

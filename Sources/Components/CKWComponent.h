@@ -10,12 +10,13 @@
 #import "CKWViewAttributes.h"
 #import "CKWSize.h"
 
+NS_SWIFT_NAME(Component)
 @interface CKWComponent : NSObject
 
-- (instancetype)initWithView:(CKWViewConfiguration *)view
-                       size:(CKWSize *)size;
+- (nonnull instancetype)initWithView:(nonnull CKWViewConfiguration *)view
+                                size:(nullable CKWSize *)size;
 
-- (id)nextResponder;
+- (nullable id)nextResponder;
 
 @end
 

@@ -9,22 +9,15 @@
 import Foundation
 import CKWrapper
 
-class SwiftComponent: CKWCompositeComponent {
+class SwiftComponent: CompositeComponent {
 
     init?(model:Any) {
         super.init(component:
-            CKWComponent(view:
-                .config(
-                    UIView.self,
-                    [ #selector(setter: UIView.backgroundColor) : UIColor.cyan,
-                      ],
-                    layerAttributes: [
-                        #selector(setter: CALayer.cornerRadius) : 50,
-                        #selector(setter: CALayer.masksToBounds): true
-                    ],
-                    gestures: [
-                        CKWGestureAttribute(tapAction: #selector(didTap))
-                    ]
+            Component(view:
+                ViewConfiguration(attributes:
+                    (.set(#selector(setter: UIView.backgroundColor)), to: UIColor.cyan),
+                    (.setLayer(#selector(setter: CALayer.cornerRadius)), to: 30),
+                    (CKWGestureAttribute(tapAction: #selector(didTap)), 0)
 
                 ), size: .height(100))
         )
@@ -36,3 +29,7 @@ class SwiftComponent: CKWCompositeComponent {
     
     
 }
+
+
+
+

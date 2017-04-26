@@ -18,7 +18,7 @@ typedef void (^CKWViewReuseBlock)(UIView *);
 typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 
 - (instancetype)init;
-- (instancetype)initWithCls:(Class)viewClass;
+- (instancetype)initWithCls:(Class)viewClass NS_SWIFT_NAME(init(_:));
 - (instancetype)initWithCls:(Class)viewClass didEnterReusePoolMessage:(nullable SEL)didEnterReusePoolMessage willLeaveReusePoolMessage:(nullable SEL)willLeaveReusePoolMessage;
 - (instancetype)initWithFactory:(CKWViewFactoryType)factory didEnterReusePool:(nullable CKWViewReuseBlock)didEnterReusePool willLeaveReusePool:(nullable CKWViewReuseBlock)willLeaveReusePool;
 @end
@@ -27,19 +27,19 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 #pragma mark - --------------- ViewAttribute ----------------------
 @interface CKWViewAttribute : CKWCreatorBase
 + (instancetype)new NS_UNAVAILABLE;
-- (instancetype)initWithSetter:(SEL)setter;
+- (instancetype)initWithSetter:(SEL)setter NS_SWIFT_NAME(init(_:));
 - (instancetype)initWithLayerSetter:(SEL)setter;
-- (instancetype)initWithIdentifier:(NSString *)string
-                        applicator:(void (^ _Nonnull)(id view, id value))applicator
-                      unapplicator:(void (^ _Nullable)(id view, id value))unapplicator
-                           updater:(void (^ _Nullable)(id view, id oldValue, id newValue))updater;
+- (instancetype)initWithIdentifierString:(NSString *)string
+                              applicator:(void (^ _Nonnull)(id view, id value))applicator
+                            unapplicator:(void (^ _Nullable)(id view, id value))unapplicator
+                                 updater:(void (^ _Nullable)(id view, id oldValue, id newValue))updater;
 @end
 
 
 #pragma mark - --------------- AccessibilityTextAttribute ---------------
 @interface CKWAccessibilityTextAttribute : CKWCreatorBase
-- (instancetype)initWithText:(NSString *)text;
-- (instancetype)initWithLazyTextBlock:(NSString *(^)())textBlock;
+- (instancetype)initWithText:(NSString *)text NS_SWIFT_NAME(init(_:));
+- (instancetype)initWithLazyTextBlock:(NSString *(^)())textBlock NS_SWIFT_NAME(init(_:));
 - (BOOL)hasText;
 - (nullable NSString *)value;
 @end

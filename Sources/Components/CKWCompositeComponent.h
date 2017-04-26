@@ -10,6 +10,7 @@
 #import "CKWComponent.h"
 @class CKComponent;
 
+NS_SWIFT_NAME(CompositeComponent)
 @interface CKWCompositeComponent : CKWComponent
 
 - (nullable instancetype)initWithComponent:(nullable CKWComponent *)component;
