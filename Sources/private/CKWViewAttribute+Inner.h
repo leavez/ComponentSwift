@@ -22,6 +22,9 @@ EXTENSION(CKWGestureAttribute,
           - (CKComponentViewAttributeValue)convert;
           )
 
+EXTENSION(CKWAccessibilityTextAttribute,
+          - (CKComponentAccessibilityTextAttribute)convert;
+          )
 EXTENSION(CKWAccessibilityContext,
           - (CKComponentAccessibilityContext)convert;
           )

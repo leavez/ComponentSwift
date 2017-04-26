@@ -11,7 +11,9 @@
 #import <ComponentKit/ComponentKit.h>
 #import "macro.h"
 
-@implementation CKWViewClass
+@implementation CKWViewClass {
+    CKComponentViewClass _inner;
+}
 
 - (instancetype)init {
     return [super init];
@@ -23,9 +25,7 @@
 - (instancetype)initWithCls:(Class)viewClass didEnterReusePoolMessage:(SEL)didEnterReusePoolMessage willLeaveReusePoolMessage:(SEL)willLeaveReusePoolMessage{
     self = [super init];
     if (self) {
-        self.viewClass = viewClass;
-        self.didEnterReusePoolMessage = didEnterReusePoolMessage;
-        self.willLeaveReusePoolMessage = willLeaveReusePoolMessage;
+        _inner = CKComponentViewClass(viewClass, didEnterReusePoolMessage, willLeaveReusePoolMessage);
     }
     return self;
 }
@@ -33,64 +33,91 @@
 
     self = [super init];
     if (self) {
-        self.factory = factory;
-        self.didEnterReusePool = didEnterReusePool;
-        self.willLeaveReusePool = willLeaveReusePool;
+        _inner = CKComponentViewClass(factory, didEnterReusePool, willLeaveReusePool);
     }
     return self;
 }
 
 - (CKComponentViewClass)convert {
-    if (self.factory) {
-        return CKComponentViewClass(
-                                    self.factory,
-                                    self.didEnterReusePool,
-                                    self.willLeaveReusePool
-                                    );
-    } else {
-        return CKComponentViewClass(
-                                    self.viewClass,
-                                    self.didEnterReusePoolMessage,
-                                    self.willLeaveReusePoolMessage
-                                    );
-    }
+    return _inner;
 }
 
 @end
 
-CKComponentViewClass::CKComponentViewClass() {
-}
+
+/// CKComponentViewAttribute have no default initializer, which cannot used as property in Objc class.
+/// so we write a wrapper.
+struct _CKComponentViewAttribute {
+    _CKComponentViewAttribute(): inner(CKComponentViewAttribute(@selector(setTag:))) {};
+    _CKComponentViewAttribute(CKComponentViewAttribute real):inner(real){}
+    CKComponentViewAttribute inner;
+};
 
 
 @implementation CKWViewAttribute {
-    SEL _setter;
-    SEL _laySetter;
+    _CKComponentViewAttribute _inner;
 }
 
 - (instancetype)initWithSetter:(SEL)setter {
     self = [super init];
     if (self) {
-        _setter = setter;
+        _inner = _CKComponentViewAttribute(CKComponentViewAttribute(setter));
     }
     return self;
 }
 - (instancetype)initWithLayerSetter:(SEL)setter {
     self = [super init];
     if (self) {
-        _laySetter = setter;
+        _inner = _CKComponentViewAttribute(CKComponentViewAttribute::LayerAttribute(setter));
     }
     return self;
 }
-- (CKComponentViewAttribute)convert {
-    if (_laySetter) {
-        return  CKComponentViewAttribute::LayerAttribute(_laySetter);
-    } else {
-        return CKComponentViewAttribute(_setter);
+- (instancetype)initWithIdentifier:(NSString *)string
+                        applicator:(void (^)(id view, id value))applicator
+                      unapplicator:(void (^)(id view, id value))unapplicator
+                           updater:(void (^)(id view, id oldValue, id newValue))updater
+{
+    self = [super init];
+    if (self) {
+        std::string identifier = std::string(string.UTF8String);
+        _inner = _CKComponentViewAttribute(CKComponentViewAttribute(identifier, applicator, unapplicator, updater));
     }
+    return self;
+}
+
+- (CKComponentViewAttribute)convert {
+    return _inner.inner;
 }
 @end
 
 
+@implementation CKWAccessibilityTextAttribute {
+    CKComponentAccessibilityTextAttribute _inner;
+}
+- (instancetype)initWithText:(NSString *)text {
+    self = [super init];
+    if (self) {
+        _inner = CKComponentAccessibilityTextAttribute(text);
+    }
+    return self;
+}
+- (instancetype)initWithLazyTextBlock:(NSString *(^)())textBlock {
+    self = [super init];
+    if (self) {
+        _inner = CKComponentAccessibilityTextAttribute(textBlock);
+    }
+    return self;
+}
+- (BOOL)hasText {
+    return _inner.hasText();
+}
+- (NSString *)value {
+    return _inner.value();
+}
+- (CKComponentAccessibilityTextAttribute)convert {
+    return _inner;
+}
+@end
 
 
 @implementation CKWAccessibilityContext
@@ -98,6 +125,7 @@ CKComponentViewClass::CKComponentViewClass() {
     var c = CKComponentAccessibilityContext();
     c.isAccessibilityElement = self.isAccessibilityElement;
     c.accessibilityComponentAction = self.accessibilityComponentAction;
+    c.accessibilityLabel = self.accessibilityLabel.convert;
     return c;
 }
 @end
