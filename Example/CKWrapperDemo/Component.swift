@@ -16,22 +16,26 @@ class SwiftComponent: CompositeComponent {
             InsetComponent(
                 insets: UIEdgeInsetsMake(20, 20, 20, 20),
                 component:
-                Component(view:
-                    ViewConfiguration(
-                        attributes:
-                        .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
-                        .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
-                        .tapGesture( #selector(didTap) )
 
-                    ),size: .height(100))
+                CenterLayoutComponent(
+                    child: Component(view:
+                        ViewConfiguration(
+                            attributes:
+                            .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
+                            .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
+                            .tapGesture( #selector(didTap) )
+
+                    ), size: .size(100, 100)),
+                    size: nil)
+
         ))
     }
 
     @objc func didTap() {
         print("tapped")
     }
-    
-    
+
+
 }
 
 

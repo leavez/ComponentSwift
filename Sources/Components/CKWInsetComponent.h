@@ -7,7 +7,6 @@
 //
 
 #import "CKWComponent.h"
-#import "CKWViewAttributes.h"
 
 /**
  for CKInsetComponent.
