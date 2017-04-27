@@ -8,6 +8,7 @@
 
 #import "CKWViewAttributes.h"
 #import "CKWViewAttribute+Inner.h"
+#import "CKWGestureAttribute.h"
 #import <ComponentKit/ComponentKit.h>
 #import "macro.h"
 
@@ -53,6 +54,8 @@ struct _CKComponentViewAttribute {
     CKComponentViewAttribute inner;
 };
 
+@implementation CKWViewAttributeBase
+@end
 
 @implementation CKWViewAttribute {
     _CKComponentViewAttribute _inner;
@@ -143,11 +146,11 @@ struct _CKComponentViewAttribute {
 }
 
 - (instancetype)initWithViewClass:(CKWViewClass *)cls
-                viewAttributeMap:(NSDictionary<CKWViewAttribute *, id> *)viewAttributeMap {
+                viewAttributeMap:(NSDictionary<CKWViewAttributeBase *, id> *)viewAttributeMap {
     return [self initWithViewClass:cls viewAttributeMap:viewAttributeMap accessibilityContext:nil];
 }
 - (instancetype)initWithViewClass:(CKWViewClass *)cls
-                viewAttributeMap:(NSDictionary<CKWViewAttribute *, id> *)viewAttributeMap
+                viewAttributeMap:(NSDictionary<CKWViewAttributeBase *, id> *)viewAttributeMap
             accessibilityContext:(CKWAccessibilityContext *)context {
     self = [super init];
     if (self) {
@@ -161,12 +164,15 @@ struct _CKComponentViewAttribute {
 - (CKComponentViewConfiguration)convert {
 
     __block CKViewComponentAttributeValueMap map = CKViewComponentAttributeValueMap();
-    [self.viewAttributeMap enumerateKeysAndObjectsUsingBlock:^(CKWViewAttribute * key, id obj, BOOL *stop) {
-        if ([key isKindOfClass:[CKWGestureAttribute class]]) {
-            let k = (CKWGestureAttribute *)key;
+    [self.viewAttributeMap enumerateKeysAndObjectsUsingBlock:^(CKWViewAttributeBase *key, id obj, BOOL *stop) {
+        if ([key isKindOfClass:[CKWViewAttributeValueType class]]) {
+            let k = (CKWViewAttributeValueType *)key;
             map.insert(k.convert);
-        } else {
-            map[key.convert] = obj;
+        } else if ([key isKindOfClass:[CKWViewAttribute class]]) {
+            let k = (CKWViewAttribute *)key;
+            map[k.convert] = obj;
+        } else  {
+            NSAssert(NO, @"key must be CKWViewAttribute or CKWViewAttributeValueType");
         }
     }];
     return CKComponentViewConfiguration(self.cls.convert, std::move(map), self.context.convert);

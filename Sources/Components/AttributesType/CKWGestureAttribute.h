@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "CKWViewAttributes.h"
 
-@interface CKWGestureAttribute: CKWViewAttribute
+/// represent CKComponentViewAttributeValue of CK
+@interface CKWViewAttributeValueType: CKWViewAttributeBase
+@end
+
+@interface CKWGestureAttribute: CKWViewAttributeValueType
 @property (nonatomic, readonly, nonnull) Class gestureClass;
 @property (nonatomic, readonly, nonnull) SEL action;
 
 + (nonnull instancetype)new NS_UNAVAILABLE;
 - (nonnull instancetype)init NS_UNAVAILABLE;
-- (nonnull instancetype)initWithSetter:(nonnull SEL)setter NS_UNAVAILABLE;
-- (nonnull instancetype)initWithLayerSetter:(nonnull SEL)setter NS_UNAVAILABLE;
 
 - (nonnull instancetype)initWithTapAction:(nonnull SEL)tapAction;
 - (nonnull instancetype)initWithPanAction:(nonnull SEL)tapAction;

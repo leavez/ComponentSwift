@@ -9,6 +9,43 @@
 import Foundation
 
 public typealias ViewAttribute = CKWViewAttribute
+
+public enum ViewAttributeEnum {
+
+    case attribute(CKWViewAttribute, to: Any)
+    case attributeWithValue(CKWViewAttributeValueType)
+
+    // convenience
+    case set(Selector, to:Any)
+    case setLayer(Selector, to:Any)
+    case tapGesture(Selector)
+
+    internal func convert() -> (CKWViewAttributeBase, Any) {
+        switch self {
+        case .attribute(let a, to: let v):
+            return (a, v)
+        case .attributeWithValue(let o):
+            return (o, 0)
+        case .set(let sel, to: let v):
+            return (CKWViewAttribute(sel), v)
+        case .setLayer(let sel, to: let v):
+            return (CKWViewAttribute(layerSetter:sel), v)
+        case .tapGesture(let sel):
+            return (CKWGestureAttribute(tapAction: sel), 0)
+        }
+    }
+}
+
+extension CKWViewAttributeBase {
+
+    public static func set(_ setter: Selector) -> CKWViewAttribute {
+        return CKWViewAttribute(setter)
+    }
+    public static func setLayer(_ setter: Selector) -> CKWViewAttribute {
+        return CKWViewAttribute(layerSetter: setter)
+    }
+}
+
 extension CKWViewAttribute {
     public convenience init(identifier: String,
                             applicator: @escaping (_ view: Any, _ value: Any) -> Void,
@@ -18,12 +55,6 @@ extension CKWViewAttribute {
         self.init(identifierString:identifier, applicator:applicator, unapplicator:unapplicator, updater:updater)
     }
 
-    public static func set(_ setter: Selector) -> CKWViewAttribute {
-        return self.init(setter)
-    }
-    public static func setLayer(_ setter: Selector) -> CKWViewAttribute {
-        return self.init(layerSetter: setter)
-    }
 }
 
 public typealias ViewConfiguration = CKWViewConfiguration
@@ -32,18 +63,18 @@ extension CKWViewConfiguration {
 
     //TODO should be more convenient
 
-    public convenience init(_ cls: AnyClass, _ attributes:[CKWViewAttribute: Any]?) {
-        self.init(viewClass: CKWViewClass(cls), viewAttributeMap: attributes)
+    public convenience init(_ cls: AnyClass?, attributes:[CKWViewAttributeBase: Any]?) {
+        self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: attributes)
     }
-    public convenience init(_ cls: AnyClass = UIView.self,
+    public convenience init(_ cls: AnyClass?,
                      _ attributes:[Selector: Any]? = nil,
                      layerAttributes:[Selector: Any]? = nil,
-                     gestures:[CKWGestureAttribute]? = nil
+                     attributesWithValue:[CKWViewAttributeValueType]? = nil
         ) {
 
-        var converted: [CKWViewAttribute: Any]?
+        var converted: [CKWViewAttributeBase: Any]?
         if let attributes = attributes, attributes.count > 0 {
-            var attrs: [CKWViewAttribute: Any] = [:]
+            var attrs: [CKWViewAttributeBase: Any] = [:]
             for (key,value) in attributes {
                 attrs[CKWViewAttribute(key)] = value
             }
@@ -55,21 +86,22 @@ extension CKWViewConfiguration {
                 converted?[CKWViewAttribute(layerSetter:key)] = value
             }
         }
-        if let gestures = gestures, gestures.count > 0 {
+        if let attributeValues = attributesWithValue, attributeValues.count > 0 {
             converted = converted ?? [:]
-            for g in gestures {
+            for g in attributeValues {
                 converted?[g] = 0 // we don't use the value
             }
         }
-        self.init(viewClass: CKWViewClass(cls), viewAttributeMap: converted)
+        self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: converted)
     }
 
     public convenience init(_ cls: AnyClass = UIView.self,
-                            attributes: (CKWViewAttribute, to: Any)...
+                            attributes: ViewAttributeEnum...
         ) {
-        let converted: [CKWViewAttribute: Any] = attributes.reduce([:], {
+        let converted: [CKWViewAttributeBase: Any] = attributes.reduce([:], {
             var dict = $0
-            dict[$1.0] = $1.1
+            let keyValue = $1.convert()
+            dict[keyValue.0] = keyValue.1
             return dict
         })
         self.init(viewClass: CKWViewClass(cls), viewAttributeMap: converted)
@@ -78,8 +110,8 @@ extension CKWViewConfiguration {
     public static func config(_ cls: AnyClass,
                        _ attributes:[Selector: Any]? = nil,
                        layerAttributes:[Selector: Any]? = nil,
-                       gestures:[CKWGestureAttribute]? = nil) -> CKWViewConfiguration {
-        return CKWViewConfiguration(cls, attributes, layerAttributes: layerAttributes, gestures: gestures)
+                       attributeValues:[CKWGestureAttribute]? = nil) -> CKWViewConfiguration {
+        return CKWViewConfiguration(cls, attributes, layerAttributes: layerAttributes, attributesWithValue: attributeValues)
     }
 }
 

@@ -10,6 +10,14 @@
 #import "CKWViewAttribute+Inner.h"
 #import "macro.h"
 
+@implementation CKWViewAttributeValueType
+- (CKComponentViewAttributeValue)convert {
+    NSAssert(NO, @"subclass must override this method");
+    return {@selector(setTag:), @0};
+}
+@end
+
+
 @interface CKWGestureAttribute ()
 @property (nonatomic, readwrite) Class gestureClass;
 @property (nonatomic, readwrite) SEL action;

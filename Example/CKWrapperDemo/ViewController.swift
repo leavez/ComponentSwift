@@ -25,7 +25,6 @@ class ViewController: UIViewController, UITableViewDelegate, FakeCKComponentProv
         self.tableView.delegate = self
         self.tableView.reloadData()
         self.tableView.tableFooterView = UIView()
-
     }
 
     override func viewDidAppear(_ animated: Bool) {

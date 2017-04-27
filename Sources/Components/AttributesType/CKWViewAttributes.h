@@ -25,7 +25,9 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 
 
 #pragma mark - --------------- ViewAttribute ----------------------
-@interface CKWViewAttribute : CKWCreatorBase
+@interface CKWViewAttributeBase: CKWCreatorBase
+@end
+@interface CKWViewAttribute: CKWViewAttributeBase
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)initWithSetter:(SEL)setter NS_SWIFT_NAME(init(_:));
 - (instancetype)initWithLayerSetter:(SEL)setter;
@@ -55,14 +57,14 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 #pragma mark - --------------- ViewConfiguration ---------------
 @interface CKWViewConfiguration : CKWCreatorBase
 @property (nonatomic, nullable) CKWViewClass *cls;
-@property (nonatomic, nullable) NSDictionary<CKWViewAttribute *, id> *viewAttributeMap;
+@property (nonatomic, nullable) NSDictionary<CKWViewAttributeBase *, id> *viewAttributeMap;
 @property (nonatomic, nullable) CKWAccessibilityContext *context;
 
 - (instancetype)init;
-- (instancetype)initWithViewClass:(CKWViewClass *)cls
-                viewAttributeMap:(nullable NSDictionary<CKWViewAttribute *, id> *)viewAttributeMap;
-- (instancetype)initWithViewClass:(CKWViewClass *)cls
-                viewAttributeMap:(nullable NSDictionary<CKWViewAttribute *, id> *)viewAttributeMap
+- (instancetype)initWithViewClass:(nullable CKWViewClass *)cls
+                viewAttributeMap:(nullable NSDictionary<CKWViewAttributeBase *, id> *)viewAttributeMap;
+- (instancetype)initWithViewClass:(nullable CKWViewClass *)cls
+                viewAttributeMap:(nullable NSDictionary<CKWViewAttributeBase *, id> *)viewAttributeMap
             accessibilityContext:(nullable CKWAccessibilityContext *)context;
 
 @end

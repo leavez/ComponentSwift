@@ -18,7 +18,7 @@ EXTENSION(CKWViewClass,
 EXTENSION(CKWViewAttribute,
           - (CKComponentViewAttribute)convert;
           )
-EXTENSION(CKWGestureAttribute,
+EXTENSION(CKWViewAttributeValueType,
           - (CKComponentViewAttributeValue)convert;
           )
 

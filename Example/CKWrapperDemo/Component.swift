@@ -15,10 +15,11 @@ class SwiftComponent: CompositeComponent {
         super.init(component:
             Component(view:
                 ViewConfiguration(attributes:
-                    (.set(#selector(setter: UIView.backgroundColor)), to: UIColor.cyan),
-                    (.setLayer(#selector(setter: CALayer.cornerRadius)), to: 30),
-                    (CKWGestureAttribute(tapAction: #selector(didTap)), 0)
 
+                    .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
+                    .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
+                    .tapGesture( #selector(didTap) )
+                    
                 ), size: .height(100))
         )
     }
