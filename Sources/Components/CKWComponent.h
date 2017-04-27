@@ -13,7 +13,7 @@
 NS_SWIFT_NAME(Component)
 @interface CKWComponent : NSObject
 
-- (nonnull instancetype)initWithView:(nonnull CKWViewConfiguration *)view
+- (nonnull instancetype)initWithView:(nullable CKWViewConfiguration *)view
                                 size:(nullable CKWSize *)size;
 
 - (nullable id)nextResponder;

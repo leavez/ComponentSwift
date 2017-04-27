@@ -13,15 +13,18 @@ class SwiftComponent: CompositeComponent {
 
     init?(model:Any) {
         super.init(component:
-            Component(view:
-                ViewConfiguration(attributes:
+            InsetComponent(
+                insets: UIEdgeInsetsMake(20, 20, 20, 20),
+                component:
+                Component(view:
+                    ViewConfiguration(
+                        attributes:
+                        .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
+                        .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
+                        .tapGesture( #selector(didTap) )
 
-                    .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
-                    .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
-                    .tapGesture( #selector(didTap) )
-                    
-                ), size: .height(100))
-        )
+                    ),size: .height(100))
+        ))
     }
 
     @objc func didTap() {

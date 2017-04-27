@@ -8,9 +8,8 @@
 
 #import "CKWComponent.h"
 #import <ComponentKit/ComponentKit.h>
-#import "CKWComponentInner.h"
+#import "CppHeaders.h"
 #import "CKComponent+Injected.h"
-#import "CKWViewAttribute+Inner.h"
 
 @implementation CKWComponent {
     CKComponent *_realComponentStrong;
@@ -23,7 +22,8 @@
 {
     self = [super init];
     if (self) {
-        self.realComponent = [CKComponent newWithView:view.convert size:size.convert];
+        CKComponentViewConfiguration viewConfig = view ? view.convert : CKComponentViewConfiguration();
+        self.realComponent = [CKComponent newWithView:viewConfig size:size.convert];
     }
     return self;
 }

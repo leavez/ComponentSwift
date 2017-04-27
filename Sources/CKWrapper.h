@@ -6,8 +6,6 @@
 //
 //
 
-#ifndef CKWrapper_h
-#define CKWrapper_h
-
-
-#endif /* CKWrapper_h */
+#import "CKWComponent.h"
+#import "CKWCompositeComponent.h"
+#import "CKWInsetComponent.h"
