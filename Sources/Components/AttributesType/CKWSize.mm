@@ -43,6 +43,19 @@
     return _inner;
 }
 
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CKWDimension.class]){
+        return _inner == ((CKWDimension *)other).convert;
+    }
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return std::hash<CKRelativeDimension>()(_inner);
+}
+
 @end
 
 @implementation CKWSize
@@ -55,6 +68,20 @@
     }
     return self;
 }
+
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CKWSize.class]){
+        return self.convert == ((CKWSize *)other).convert;
+    }
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return std::hash<CKComponentSize>()(self.convert);
+}
+
 
 - (CKComponentSize)convert {
     return (CKComponentSize) {

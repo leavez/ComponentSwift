@@ -26,4 +26,13 @@
     };
 }
 
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CKWTextAttributes.class]){
+        return self.convert == ((CKWTextAttributes *)other).convert;
+    }
+    return NO;
+}
+
 @end

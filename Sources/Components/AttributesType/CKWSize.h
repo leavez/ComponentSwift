@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// for CKRelativeDimension.
 @interface CKWDimension : NSObject
 - (instancetype)init; //Auto
 - (instancetype)initWithPoint:(CGFloat)p;

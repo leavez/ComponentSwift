@@ -43,6 +43,15 @@
     return _inner;
 }
 
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CKWViewClass.class]){
+        return _inner == ((CKWViewClass *)other).convert;
+    }
+    return NO;
+}
+
 @end
 
 
@@ -90,6 +99,15 @@ struct _CKComponentViewAttribute {
 
 - (CKComponentViewAttribute)convert {
     return _inner.inner;
+}
+
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CKWViewAttribute.class]){
+        return _inner.inner == ((CKWViewAttribute *)other).convert;
+    }
+    return NO;
 }
 
 - (NSUInteger)hash {
@@ -180,6 +198,15 @@ CKViewComponentAttributeValueMap convertViewAttributesMap(CKWViewAttributeMap *a
 - (CKComponentViewConfiguration)convert {
     CKViewComponentAttributeValueMap map = convertViewAttributesMap(self.viewAttributeMap);
     return CKComponentViewConfiguration(self.cls.convert, std::move(map), self.context.convert);
+}
+
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CKWViewConfiguration.class]){
+        return self.convert == ((CKWViewConfiguration *)other).convert;
+    }
+    return NO;
 }
 
 @end

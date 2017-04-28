@@ -54,6 +54,19 @@
     return CKComponentGestureAttribute(self.gestureClass, nullptr, self.action);
 }
 
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CKWGestureAttribute.class]){
+        CKWGestureAttribute *g = (CKWGestureAttribute *)other;
+        return self.class == g.class && self.action == g.action;
+    }
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return std::hash<CKViewComponentAttributeValueMap>()({self.convert});
+}
 
 @end
 
