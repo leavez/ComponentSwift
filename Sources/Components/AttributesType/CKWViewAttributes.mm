@@ -138,6 +138,22 @@ struct _CKComponentViewAttribute {
 @end
 
 
+CKViewComponentAttributeValueMap convertViewAttributesMap(CKWViewAttributeMap *attrs) {
+    __block CKViewComponentAttributeValueMap map = CKViewComponentAttributeValueMap();
+    [attrs enumerateKeysAndObjectsUsingBlock:^(CKWViewAttributeBase *key, id obj, BOOL *stop) {
+        if ([key isKindOfClass:[CKWViewAttributeValueType class]]) {
+            let k = (CKWViewAttributeValueType *)key;
+            map.insert(k.convert);
+        } else if ([key isKindOfClass:[CKWViewAttribute class]]) {
+            let k = (CKWViewAttribute *)key;
+            map[k.convert] = obj;
+        } else  {
+            assert(@"key must be CKWViewAttribute or CKWViewAttributeValueType");
+        }
+    }];
+    return map;
+}
+
 
 @implementation CKWViewConfiguration
 
@@ -162,19 +178,7 @@ struct _CKComponentViewAttribute {
 }
 
 - (CKComponentViewConfiguration)convert {
-
-    __block CKViewComponentAttributeValueMap map = CKViewComponentAttributeValueMap();
-    [self.viewAttributeMap enumerateKeysAndObjectsUsingBlock:^(CKWViewAttributeBase *key, id obj, BOOL *stop) {
-        if ([key isKindOfClass:[CKWViewAttributeValueType class]]) {
-            let k = (CKWViewAttributeValueType *)key;
-            map.insert(k.convert);
-        } else if ([key isKindOfClass:[CKWViewAttribute class]]) {
-            let k = (CKWViewAttribute *)key;
-            map[k.convert] = obj;
-        } else  {
-            NSAssert(NO, @"key must be CKWViewAttribute or CKWViewAttributeValueType");
-        }
-    }];
+    CKViewComponentAttributeValueMap map = convertViewAttributesMap(self.viewAttributeMap);
     return CKComponentViewConfiguration(self.cls.convert, std::move(map), self.context.convert);
 }
 

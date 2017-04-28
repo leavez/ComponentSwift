@@ -6,11 +6,13 @@
 //
 //
 
+#import <ComponentKit/ComponentKit.h>
+#import "macro.h"
 #import "CKWViewAttributes.h"
 #import "CKWGestureAttribute.h"
 #import "CKWSize.h"
-#import <ComponentKit/ComponentKit.h>
-#import "macro.h"
+#import "CKWTextAttributes.h"
+
 
 EXTENSION(CKWViewClass,
           - (CKComponentViewClass)convert;
@@ -39,5 +41,13 @@ EXTENSION(CKWDimension,
 EXTENSION(CKWSize,
           - (CKComponentSize)convert;
           )
+
+EXTENSION(CKWTextAttributes ,
+          - (CKTextKitAttributes)convert;
+          )
+
+
+CKViewComponentAttributeValueMap convertViewAttributesMap(CKWViewAttributeMap *map);
+
 
 

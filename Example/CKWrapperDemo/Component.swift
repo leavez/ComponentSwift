@@ -18,14 +18,21 @@ class SwiftComponent: CompositeComponent {
                 component:
 
                 CenterLayoutComponent(
-                    child: Component(view:
-                        ViewConfiguration(
-                            attributes:
-                            .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
-                            .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
-                            .tapGesture( #selector(didTap) )
+                    child:
+                    TextComponent(
+                        CKWTextAttributes().build ({
+                            $0.attributedString = NSAttributedString(string: "Hello world")
+                        })
+                    ),
 
-                    ), size: .size(100, 100)),
+//                    Component(view:
+//                        ViewConfiguration(
+//                            attributes:
+//                            .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
+//                            .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
+//                            .tapGesture( #selector(didTap) )
+//
+//                    ), size: .size(100, 100)),
                     size: nil)
 
         ))
@@ -37,6 +44,7 @@ class SwiftComponent: CompositeComponent {
 
 
 }
+
 
 
 
