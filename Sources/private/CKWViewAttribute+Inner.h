@@ -23,6 +23,9 @@ EXTENSION(CKWViewAttribute,
 EXTENSION(CKWViewAttributeValueType,
           - (CKComponentViewAttributeValue)convert;
           )
+EXTENSION(CKWViewAttributeMap,
+          - (CKViewComponentAttributeValueMap)convert;
+          )
 
 EXTENSION(CKWAccessibilityTextAttribute,
           - (CKComponentAccessibilityTextAttribute)convert;
@@ -45,9 +48,6 @@ EXTENSION(CKWSize,
 EXTENSION(CKWTextAttributes ,
           - (CKTextKitAttributes)convert;
           )
-
-
-CKViewComponentAttributeValueMap convertViewAttributesMap(CKWViewAttributeMap *map);
 
 
 

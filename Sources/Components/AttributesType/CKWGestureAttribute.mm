@@ -68,5 +68,12 @@
     return std::hash<CKViewComponentAttributeValueMap>()({self.convert});
 }
 
+- (id)copyWithZone:(NSZone *)zone {
+    CKWGestureAttribute *c = [[self.class alloc] init];
+    c.action = self.action;
+    c.gestureClass = self.gestureClass;
+    return c;
+}
+
 @end
 

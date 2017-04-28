@@ -25,7 +25,7 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 
 
 #pragma mark - --------------- ViewAttribute ----------------------
-@interface CKWViewAttributeBase: CKWCreatorBase
+@interface CKWViewAttributeBase: CKWCreatorBase <NSCopying>
 @end
 @interface CKWViewAttribute: CKWViewAttributeBase
 + (instancetype)new NS_UNAVAILABLE;
@@ -54,8 +54,14 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 @end
 
 
+#pragma mark - --------------- ViewAttributesMap ---------------
+@interface CKWViewAttributeMap : CKWCreatorBase
+@property (nonatomic, readonly) NSDictionary<CKWViewAttributeBase *, id> *content;
+- (instancetype)initWithDictionary:(NSDictionary<CKWViewAttributeBase *, id> *)dict NS_SWIFT_NAME(init(_:));
+@end
+
+
 #pragma mark - --------------- ViewConfiguration ---------------
-typedef NSDictionary<CKWViewAttributeBase *, id> CKWViewAttributeMap;
 @interface CKWViewConfiguration : CKWCreatorBase
 @property (nonatomic, nullable) CKWViewClass *cls;;
 @property (nonatomic, nullable) CKWViewAttributeMap *viewAttributeMap;

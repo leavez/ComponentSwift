@@ -35,7 +35,7 @@
     if (self) {
         self.realComponent =
         [CKTextComponent newWithTextAttributes:attributes.convert
-                                viewAttributes:convertViewAttributesMap(viewAttributes)
+                                viewAttributes:viewAttributes.convert
                                        options:options.convert
                                           size:size.convert];
     }

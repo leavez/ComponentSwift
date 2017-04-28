@@ -20,7 +20,7 @@ extension CenterLayoutComponent {
 extension TextComponent {
 
     public convenience init(_ textAttributes: CKWTextAttributes,
-                            viewAttributes: [CKWViewAttributeBase : Any]? = nil,
+                            viewAttributes: CKWViewAttributeMap? = nil,
                             options: CKWTextComponentOptions? = nil,
                             size: CKWSize? = nil) {
         self.init(textAttributes: textAttributes, viewAttributes: viewAttributes, options: options, size: size)

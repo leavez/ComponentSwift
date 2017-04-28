@@ -57,61 +57,52 @@ extension CKWViewAttribute {
 
 }
 
-public typealias ViewConfiguration = CKWViewConfiguration
+extension CKWViewAttributeMap {
+
+    public convenience init(enums: ViewAttributeEnum...) {
+        self.init(enums);
+    }
+    public convenience init(_ attributes: [ViewAttributeEnum] ) {
+        var dict: [CKWViewAttributeBase: Any] = [:]
+        attributes.forEach {
+            let keyValue = $0.convert()
+            dict[keyValue.0] = keyValue.1
+        }
+        self.init(dict)
+    }
+
+//    public init(dictionaryLiteral elements: (Self.Key, Self.Value)...)
+
+}
+
 
 extension CKWViewConfiguration {
 
-    //TODO should be more convenient
-
-    public convenience init(_ cls: AnyClass?, attributes:[CKWViewAttributeBase: Any]?) {
+    public convenience init(_ cls: AnyClass?, attributes:CKWViewAttributeMap? = nil) {
         self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: attributes)
     }
-    public convenience init(_ cls: AnyClass?,
-                     _ attributes:[Selector: Any]? = nil,
-                     layerAttributes:[Selector: Any]? = nil,
-                     attributesWithValue:[CKWViewAttributeValueType]? = nil
-        ) {
 
-        var converted: [CKWViewAttributeBase: Any]?
-        if let attributes = attributes, attributes.count > 0 {
-            var attrs: [CKWViewAttributeBase: Any] = [:]
-            for (key,value) in attributes {
-                attrs[CKWViewAttribute(key)] = value
-            }
-            converted = attrs
-        }
-        if let layerAttributes = layerAttributes, layerAttributes.count > 0 {
-            converted = converted ?? [:]
-            for (key,value) in layerAttributes {
-                converted?[CKWViewAttribute(layerSetter:key)] = value
-            }
-        }
-        if let attributeValues = attributesWithValue, attributeValues.count > 0 {
-            converted = converted ?? [:]
-            for g in attributeValues {
-                converted?[g] = 0 // we don't use the value
-            }
-        }
-        self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: converted)
+    public convenience init(_ cls: AnyClass?, _ attributes:[CKWViewAttributeBase: Any]) {
+        let map = CKWViewAttributeMap(attributes)
+        self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: map)
     }
 
-    public convenience init(_ cls: AnyClass = UIView.self,
-                            attributes: ViewAttributeEnum...
-        ) {
-        let converted: [CKWViewAttributeBase: Any] = attributes.reduce([:], {
-            var dict = $0
-            let keyValue = $1.convert()
+
+    public convenience init(_ cls: AnyClass = UIView.self, attributes: ViewAttributeEnum... ) {
+        self.init(attributes: attributes)
+    }
+
+    public convenience init(_ cls: AnyClass = UIView.self, attributes: [ViewAttributeEnum] ) {
+        var dict: [CKWViewAttributeBase: Any] = [:]
+        attributes.forEach {
+            let keyValue = $0.convert()
             dict[keyValue.0] = keyValue.1
-            return dict
-        })
-        self.init(viewClass: CKWViewClass(cls), viewAttributeMap: converted)
+        }
+        self.init(viewClass: CKWViewClass(cls), viewAttributeMap: CKWViewAttributeMap(dict))
     }
 
-    public static func config(_ cls: AnyClass,
-                       _ attributes:[Selector: Any]? = nil,
-                       layerAttributes:[Selector: Any]? = nil,
-                       attributeValues:[CKWGestureAttribute]? = nil) -> CKWViewConfiguration {
-        return CKWViewConfiguration(cls, attributes, layerAttributes: layerAttributes, attributesWithValue: attributeValues)
+    public static func config(_ cls: AnyClass = UIView.self, attributes: ViewAttributeEnum...) -> CKWViewConfiguration {
+        return CKWViewConfiguration(cls, attributes: attributes)
     }
 }
 

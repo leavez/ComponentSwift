@@ -64,6 +64,10 @@ struct _CKComponentViewAttribute {
 };
 
 @implementation CKWViewAttributeBase
+- (id)copyWithZone:(NSZone *)zone {
+    NSAssert(NO, @"sub class haven't implement this method!");
+    return nil;
+}
 @end
 
 @implementation CKWViewAttribute {
@@ -113,6 +117,13 @@ struct _CKComponentViewAttribute {
 - (NSUInteger)hash {
     return std::hash<CKComponentViewAttribute>()(_inner.inner);
 }
+
+- (id)copyWithZone:(NSZone *)zone {
+    CKWViewAttribute *c = [[CKWViewAttribute alloc] init];
+    c->_inner = _inner;
+    return c;
+}
+
 @end
 
 
@@ -156,9 +167,30 @@ struct _CKComponentViewAttribute {
 @end
 
 
-CKViewComponentAttributeValueMap convertViewAttributesMap(CKWViewAttributeMap *attrs) {
+
+@implementation CKWViewAttributeMap {
+    NSDictionary<CKWViewAttributeBase *, id> *_dict;
+}
+- (instancetype)initWithDictionary:(NSDictionary<CKWViewAttributeBase *, id> *)dict {
+    self = [super init];
+    if (self) {
+        _dict = dict; // the dict bridged from swift dict will not copy keys, which is efficient.
+    }
+    return self;
+}
+- (NSDictionary<CKWViewAttributeBase *,id> *)content {
+    if (!_dict) {
+        _dict = @{};
+    }
+    return _dict;
+}
+
+- (CKViewComponentAttributeValueMap)convert {
+    if (_dict.count == 0) {
+        return {};
+    }
     __block CKViewComponentAttributeValueMap map = CKViewComponentAttributeValueMap();
-    [attrs enumerateKeysAndObjectsUsingBlock:^(CKWViewAttributeBase *key, id obj, BOOL *stop) {
+    [_dict enumerateKeysAndObjectsUsingBlock:^(CKWViewAttributeBase *key, id obj, BOOL *stop) {
         if ([key isKindOfClass:[CKWViewAttributeValueType class]]) {
             let k = (CKWViewAttributeValueType *)key;
             map.insert(k.convert);
@@ -172,6 +204,18 @@ CKViewComponentAttributeValueMap convertViewAttributesMap(CKWViewAttributeMap *a
     return map;
 }
 
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CKWViewAttributeMap.class]){
+        return self.convert == ((CKWViewAttributeMap *)other).convert;
+    }
+    return NO;
+}
+
+
+@end
+
 
 @implementation CKWViewConfiguration
 
@@ -180,11 +224,11 @@ CKViewComponentAttributeValueMap convertViewAttributesMap(CKWViewAttributeMap *a
 }
 
 - (instancetype)initWithViewClass:(CKWViewClass *)cls
-                viewAttributeMap:(NSDictionary<CKWViewAttributeBase *, id> *)viewAttributeMap {
+                viewAttributeMap:(CKWViewAttributeMap *)viewAttributeMap {
     return [self initWithViewClass:cls viewAttributeMap:viewAttributeMap accessibilityContext:nil];
 }
 - (instancetype)initWithViewClass:(CKWViewClass *)cls
-                viewAttributeMap:(NSDictionary<CKWViewAttributeBase *, id> *)viewAttributeMap
+                viewAttributeMap:(CKWViewAttributeMap *)viewAttributeMap
             accessibilityContext:(CKWAccessibilityContext *)context {
     self = [super init];
     if (self) {
@@ -196,8 +240,7 @@ CKViewComponentAttributeValueMap convertViewAttributesMap(CKWViewAttributeMap *a
 }
 
 - (CKComponentViewConfiguration)convert {
-    CKViewComponentAttributeValueMap map = convertViewAttributesMap(self.viewAttributeMap);
-    return CKComponentViewConfiguration(self.cls.convert, std::move(map), self.context.convert);
+    return CKComponentViewConfiguration(self.cls.convert, self.viewAttributeMap.convert, self.context.convert);
 }
 
 - (BOOL)isEqual:(id)other {

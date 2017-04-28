@@ -19,20 +19,20 @@ class SwiftComponent: CompositeComponent {
 
                 CenterLayoutComponent(
                     child:
-                    TextComponent(
-                        CKWTextAttributes().build ({
-                            $0.attributedString = NSAttributedString(string: "Hello world")
-                        })
-                    ),
+//                    TextComponent(
+//                        CKWTextAttributes().build ({
+//                            $0.attributedString = NSAttributedString(string: "Hello world")
+//                        })
+//                    ),
 
-//                    Component(view:
-//                        ViewConfiguration(
-//                            attributes:
-//                            .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
-//                            .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
-//                            .tapGesture( #selector(didTap) )
-//
-//                    ), size: .size(100, 100)),
+                    Component(view:
+                        ViewConfiguration(
+                            attributes:
+                            .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
+                            .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
+                            .tapGesture( #selector(didTap) )
+
+                    ), size: .size(100, 100)),
                     size: nil)
 
         ))
