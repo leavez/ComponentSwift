@@ -14,6 +14,7 @@ NS_SWIFT_NAME(CompositeComponent)
 @interface CKWCompositeComponent : CKWComponent
 
 - (nullable instancetype)initWithComponent:(nullable CKWComponent *)component;
+- (nullable instancetype)initWithView:(nullable CKWViewConfiguration *)view component:(nullable CKWComponent *)component;
 
 - (nullable instancetype)initWithCKComponent:(nullable CKComponent *)component;
 
