@@ -33,9 +33,15 @@
                                   size:(CKWSize *)size {
     self = [super init];
     if (self) {
+        
+        CKViewComponentAttributeValueMap attrs = {};
+        if (viewAttributes) {
+            attrs = viewAttributes.convert;
+        }
+
         self.realComponent =
         [CKTextComponent newWithTextAttributes:attributes.convert
-                                viewAttributes:viewAttributes.convert
+                                viewAttributes:attrs
                                        options:options.convert
                                           size:size.convert];
     }

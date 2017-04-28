@@ -32,19 +32,19 @@ class ViewController: UIViewController, UITableViewDelegate, FakeCKComponentProv
         let changeset = CKChangeSetWrapper()
         changeset.insertedSections = [0]
         var insetItem: [IndexPath: NSObjectProtocol] = [:]
-        for i in (0..<1) {
+        for i in (0..<100) {
             insetItem[[0, i]] = NSObject()
         }
         changeset.insertedItems = insetItem
         self.datasource.applyChangeset(changeset, asynchronized: false)
 
-        let changeset2 = CKChangeSetWrapper()
-        var insetItem2: [IndexPath: NSObjectProtocol] = [:]
-        for i in (0..<1) {
-            insetItem2[[0, i]] = NSObject()
-        }
-        changeset2.updatedItems  = insetItem2
-        self.datasource.applyChangeset(changeset2, asynchronized: false)
+//        let changeset2 = CKChangeSetWrapper()
+//        var insetItem2: [IndexPath: NSObjectProtocol] = [:]
+//        for i in (0..<1) {
+//            insetItem2[[0, i]] = NSObject()
+//        }
+//        changeset2.updatedItems  = insetItem2
+//        self.datasource.applyChangeset(changeset2, asynchronized: false)
     }
 
 
