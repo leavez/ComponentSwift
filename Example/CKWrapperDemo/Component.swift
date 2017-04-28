@@ -18,21 +18,23 @@ class SwiftComponent: CompositeComponent {
                 component:
 
                 CenterLayoutComponent(
-                    child:
-//                    TextComponent(
-//                        CKWTextAttributes().build ({
-//                            $0.attributedString = NSAttributedString(string: "Hello world")
-//                        })
-//                    ),
-
-                    Component(view:
-                        ViewConfiguration(
-                            attributes:
+                    sizing: .minimumX,
+                    child: CompositeComponent(
+                        view:
+                        CKWViewConfiguration(
+                            attributeEnums:
                             .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
                             .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
+                            .setLayer( #selector(setter: CALayer.masksToBounds), to: true),
                             .tapGesture( #selector(didTap) )
+                        ),
+                        component:
+                        CenterLayoutComponent(child: TextComponent(
+                            CKWTextAttributes("Hello World!", font:.systemFont(ofSize: 40))
+                        ))
 
-                    ), size: .size(100, 100)),
+                    )
+                    ,
                     size: nil)
 
         ))
@@ -41,8 +43,8 @@ class SwiftComponent: CompositeComponent {
     @objc func didTap() {
         print("tapped")
     }
-
-
+    
+    
 }
 
 

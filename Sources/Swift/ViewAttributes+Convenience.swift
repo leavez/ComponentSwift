@@ -88,8 +88,8 @@ extension CKWViewConfiguration {
     }
 
 
-    public convenience init(_ cls: AnyClass = UIView.self, attributes: ViewAttributeEnum... ) {
-        self.init(attributes: attributes)
+    public convenience init(_ cls: AnyClass = UIView.self, attributeEnums: ViewAttributeEnum... ) {
+        self.init(attributes: attributeEnums)
     }
 
     public convenience init(_ cls: AnyClass = UIView.self, attributes: [ViewAttributeEnum] ) {
