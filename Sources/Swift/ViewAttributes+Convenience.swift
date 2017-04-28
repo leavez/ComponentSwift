@@ -116,7 +116,7 @@ extension CKWViewConfiguration {
 }
 
 
-extension CKWDimension {
+extension CKWDimension: ExpressibleByFloatLiteral {
 
     public convenience init(_ value: CGFloat) {
         self.init(point: value)
@@ -130,38 +130,39 @@ extension CKWDimension {
 }
 
 
+
 extension CKWSize {
 
     public convenience init(size: CGSize) {
         self.init(cgSize: size)
     }
-    public convenience init(width: CGFloat? = nil,
-                     height:CGFloat? = nil,
-                     minWidth: CGFloat? = nil,
-                     maxWidth: CGFloat? = nil,
-                     minHeight: CGFloat? = nil,
-                     maxHeight: CGFloat? = nil) {
+    public convenience init(width: CKWDimension? = nil,
+                     height:CKWDimension? = nil,
+                     minWidth: CKWDimension? = nil,
+                     maxWidth: CKWDimension? = nil,
+                     minHeight: CKWDimension? = nil,
+                     maxHeight: CKWDimension? = nil) {
         self.init()
-        self.width = width.map{ CKWDimension(point: $0) }
-        self.height = height.map{ CKWDimension(point: $0) }
-        self.minWidth = minWidth.map{ CKWDimension(point: $0) }
-        self.maxWidth = maxWidth.map{ CKWDimension(point: $0) }
-        self.minHeight = minHeight.map{ CKWDimension(point: $0) }
-        self.maxHeight = maxHeight.map{ CKWDimension(point: $0) }
+        self.width = width
+        self.height = height
+        self.minWidth = minWidth 
+        self.maxWidth = maxWidth 
+        self.minHeight = minHeight 
+        self.maxHeight = maxHeight 
     }
 
     public convenience init(size: CGSize,
-                     minWidth: CGFloat? = nil,
-                     maxWidth: CGFloat? = nil,
-                     minHeight: CGFloat? = nil,
-                     maxHeight: CGFloat? = nil) {
+                     minWidth: CKWDimension? = nil,
+                     maxWidth: CKWDimension? = nil,
+                     minHeight: CKWDimension? = nil,
+                     maxHeight: CKWDimension? = nil) {
         self.init()
         self.width = .p(size.width)
         self.height = .p(size.height)
-        self.minWidth = minWidth.map{ CKWDimension(point: $0) }
-        self.maxWidth = maxWidth.map{ CKWDimension(point: $0) }
-        self.minHeight = minHeight.map{ CKWDimension(point: $0) }
-        self.maxHeight = maxHeight.map{ CKWDimension(point: $0) }
+        self.minWidth = minWidth
+        self.maxWidth = maxWidth
+        self.minHeight = minHeight
+        self.maxHeight = maxHeight
     }
 
     public static func size(_ size: CGSize) -> CKWSize {

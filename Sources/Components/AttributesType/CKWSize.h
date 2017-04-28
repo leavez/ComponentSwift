@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init; //Auto
 - (instancetype)initWithPoint:(CGFloat)p;
 - (instancetype)initWithPercent:(CGFloat)p;
+- (instancetype)initWithFloatLiteral:(double)value; // for adopt ExpressibleByFloatLiteral in swift
+
 @end
 
 

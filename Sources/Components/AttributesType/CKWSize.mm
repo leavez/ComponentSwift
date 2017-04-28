@@ -35,6 +35,10 @@
     return self;
 }
 
+- (instancetype)initWithFloatLiteral:(double)value {
+    return [self initWithPoint:value];
+}
+
 - (CKRelativeDimension)convert {
     return _inner;
 }
