@@ -41,7 +41,7 @@ NS_SWIFT_NAME(TextComponent)
 - (nonnull instancetype)initWithTextAttributes:(nonnull CKWTextAttributes *)attributes
                                 viewAttributes:(nullable CKWViewAttributeMap *)viewAttributes
                                        options:(nullable CKWTextComponentOptions *)options
-                                          size:(nullable CKWSize *)size;
+                                          size:(nullable CKWSize *)size NS_REFINED_FOR_SWIFT;
 
 @end
 

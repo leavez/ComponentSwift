@@ -8,12 +8,15 @@
 
 import UIKit
 
+extension InsetComponent {
+}
+
 extension CenterLayoutComponent {
 
     public convenience init?(centering: CKWCenterLayoutComponentCenteringOptions = .XY,
                              sizing: CKWCenterLayoutComponentSizingOptions = .minimumXY,
                              child: Component?, size: CKWSize? = nil) {
-        self.init(centeringOptions: centering, sizingOptions: sizing, childComponent: child, size: size)
+      self.init(__centeringOptions: centering, sizingOptions: sizing, child: child, size: size)
     }
 }
 
@@ -23,12 +26,12 @@ extension TextComponent {
                             viewAttributes: CKWViewAttributeMap? = nil,
                             options: CKWTextComponentOptions? = nil,
                             size: CKWSize? = nil) {
-        self.init(textAttributes: textAttributes, viewAttributes: viewAttributes, options: options, size: size)
+        self.init(__textAttributes: textAttributes, viewAttributes: viewAttributes, options: options, size: size)
     }
 }
 
 extension CKWTextAttributes {
-    
+
     public convenience init(_ attributedString: NSAttributedString?) {
         self.init()
         self.attributedString = attributedString

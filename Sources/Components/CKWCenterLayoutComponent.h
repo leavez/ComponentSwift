@@ -37,7 +37,6 @@ NS_SWIFT_NAME(CenterLayoutComponent)
 - (nullable instancetype)initWithCenteringOptions:(CKWCenterLayoutComponentCenteringOptions)centeringOptions
                                     sizingOptions:(CKWCenterLayoutComponentSizingOptions)sizingOptions
                                             child:(nullable CKWComponent *)child
-                                             size:(nullable CKWSize *)size
-NS_SWIFT_NAME(init(centeringOptions:sizingOptions:childComponent:size:));
+                                             size:(nullable CKWSize *)size NS_REFINED_FOR_SWIFT;
 
 @end
