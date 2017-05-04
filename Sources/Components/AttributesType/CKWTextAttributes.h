@@ -38,7 +38,7 @@
 /**
  The maximum number of lines to draw in the drawable region.  Leave blank or set to 0 to define no maximum.
  */
-@property (nonatomic) NSUInteger maximumNumberOfLines;
+@property (nonatomic) NSInteger maximumNumberOfLines;
 /**
  The shadow offset for any shadows applied to the text.  The coordinate space for this is the same as UIKit, so a
  positive width means towards the right, and a positive height means towards the bottom.

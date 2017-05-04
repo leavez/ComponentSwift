@@ -34,9 +34,11 @@
     self = [super init];
     if (self) {
         
-        CKViewComponentAttributeValueMap attrs = {};
+        CKViewComponentAttributeValueMap attrs;
         if (viewAttributes) {
             attrs = viewAttributes.convert;
+        } else {
+            attrs = {};
         }
 
         self.realComponent =

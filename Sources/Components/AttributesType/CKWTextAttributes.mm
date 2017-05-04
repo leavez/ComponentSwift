@@ -17,7 +17,7 @@
         .truncationAttributedString = self.truncationAttributedString,
         .avoidTailTruncationSet = self.avoidTailTruncationSet,
         .lineBreakMode = self.lineBreakMode,
-        .maximumNumberOfLines = self.maximumNumberOfLines,
+        .maximumNumberOfLines = (NSUInteger)MAX(self.maximumNumberOfLines, 0),
         .shadowOffset = self.shadowOffset,
         .shadowColor = self.shadowColor,
         .shadowOpacity = self.shadowOpacity,
