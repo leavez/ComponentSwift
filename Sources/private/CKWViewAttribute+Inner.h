@@ -12,6 +12,7 @@
 #import "CKWGestureAttribute.h"
 #import "CKWSize.h"
 #import "CKWTextAttributes.h"
+#import "CKWStackLayoutComponent.h"
 
 
 EXTENSION(CKWViewClass,
@@ -48,6 +49,13 @@ EXTENSION(CKWSize,
 EXTENSION(CKWTextAttributes ,
           - (CKTextKitAttributes)convert;
           )
+EXTENSION(CKWStackLayoutStyle ,
+          - (CKStackLayoutComponentStyle)convert;
+          )
+EXTENSION(CKWStackLayoutChild ,
+          - (CKStackLayoutComponentChild)convert;
+          )
+
 
 
 

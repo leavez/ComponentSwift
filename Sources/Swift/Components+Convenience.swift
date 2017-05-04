@@ -45,3 +45,52 @@ extension CKWTextAttributes {
         self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSFontAttributeName: font]) }
     }
 }
+
+
+
+extension StackLayoutComponent {
+
+    public convenience init(view: CKWViewConfiguration? = nil,
+                            size: CKWSize? = nil,
+                            style: CKWStackLayoutStyle? = nil,
+                            children: [CKWStackLayoutChild?] )
+    {
+        self.init(__view:view, size:size, style:style, children:children.flatMap{ $0 })
+    }
+    public convenience init(view: CKWViewConfiguration? = nil,
+                            size: CKWSize? = nil,
+                            style: CKWStackLayoutStyle? = nil,
+                            childrenComponents: [Component?] )
+    {
+        self.init(__view:view, size:size, style:style, children:childrenComponents.flatMap{ CKWStackLayoutChild($0) })
+    }
+}
+
+public typealias StackLayoutChild = CKWStackLayoutChild
+
+extension CKWStackLayoutChild {
+
+    public convenience init?(_ component: Component?,
+                            spacingAfter: CGFloat = 0,
+                            spacingBefore: CGFloat = 0,
+                            flexGrow: Bool = false,
+                            flexShrink: Bool = false,
+                            flexBasis: CKWDimension? = nil,
+                            alignSelf: CKWStackLayoutAlignSelf = .auto) {
+        guard let component = component else {
+            return nil
+        }
+        self.init()
+        self.component = component
+        self.spacingAfter = spacingAfter
+        self.spacingBefore = spacingBefore
+        self.flexGrow = flexGrow
+        self.flexShrink = flexShrink
+        self.flexBasis = flexBasis
+        self.alignSelf = alignSelf
+    }
+}
+
+
+
+

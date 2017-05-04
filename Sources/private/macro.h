@@ -32,6 +32,8 @@ __content__ \
 __content__ \
 @end
 
+#define ConvertWithDefault(__obj__, __defalut__) (__obj__ == nil ? (__defalut__) : (__obj__.convert))
+
 
 
 #endif /* macro_h */
