@@ -12,8 +12,7 @@
 
 @implementation CKWViewAttributeValueType
 - (CKComponentViewAttributeValue)convert {
-    NSAssert(NO, @"subclass must override this method");
-    return {@selector(setTag:), @0};
+    return {self.attribute.convert, self.value};
 }
 @end
 
@@ -24,6 +23,15 @@
 @end
 
 @implementation CKWGestureAttribute
+
+- (CKWViewAttribute *)attribute {
+    NSAssert(NO, @"attribute is not available in this class");
+    return [[CKWViewAttribute alloc] init];
+}
+- (id)value {
+    NSAssert(NO, @"value is not available in this class");
+    return @0;
+}
 
 - (instancetype)initWithTapAction:(SEL)tapAction {
     self = [super init];

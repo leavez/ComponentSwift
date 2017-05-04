@@ -11,6 +11,8 @@
 
 /// represent CKComponentViewAttributeValue of CK
 @interface CKWViewAttributeValueType: CKWViewAttributeBase
+@property (nonatomic, nonnull) CKWViewAttribute *attribute;
+@property (nonatomic, nonnull) id value;
 @end
 
 @interface CKWGestureAttribute: CKWViewAttributeValueType
