@@ -12,39 +12,52 @@ import CKWrapper
 class SwiftComponent: CompositeComponent {
 
     init?(model:Any) {
+
+        let text = "Even though each migration experience is different depending on your existing codebase, there are some general steps and tools to help you troubleshoot your code migration"
+
         super.init(component:
-            InsetComponent(
-                insets: UIEdgeInsetsMake(20, 20, 20, 20),
-                component:
 
-                CenterLayoutComponent(
-                    sizing: .minimumX,
-                    child: CompositeComponent(
-                        view:
-                        CKWViewConfiguration(
-                            attributeEnums:
-                            .set( #selector(setter: UIView.backgroundColor), to:UIColor.cyan ),
-                            .setLayer( #selector(setter: CALayer.cornerRadius), to: 30 ),
-                            .setLayer( #selector(setter: CALayer.masksToBounds), to: true),
-                            .tapGesture( #selector(didTap) )
+            InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
+                           component:
+
+                StackLayoutComponent(
+                    style: CKWStackLayoutStyle().build({
+                        $0.spacing = 20
+                        $0.direction = .horizontal
+                    }), children:[
+
+                        StackLayoutChild(
+                            Component(
+                                view:
+                                CKWViewConfiguration(
+                                    UIView.self,
+                                    attributeEnums:
+                                    .set(#selector(setter:UIView.backgroundColor), to: UIColor.brown),
+                                    .roundCorner(raidus: 30),
+                                    .masksToBounds(),
+                                    .tapGesture(#selector(didTap))
+                                ),
+                                size:.size(60, 60)
+                            )
                         ),
-                        component:
-                        CenterLayoutComponent(child: TextComponent(
-                            CKWTextAttributes("Hello World!", font:.systemFont(ofSize: 40))
-                        ))
 
-                    )
-                    ,
-                    size: nil)
-
-        ))
+                        StackLayoutChild(
+                            TextComponent(
+                                CKWTextAttributes(text, font:.systemFont(ofSize: 14))
+                            ),
+                            flexGrow: true,
+                            flexShrink: true
+                        )
+                    ])
+            )
+        )
     }
 
-    @objc func didTap() {
+    @objc func didTap(sender: Any) {
         print("tapped")
     }
-    
-    
+
+
 }
 
 
