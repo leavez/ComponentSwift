@@ -92,6 +92,54 @@ extension CKWStackLayoutChild {
     }
 }
 
+extension UIControlState :Hashable {
+    public var hashValue: Int {
+        return Int(self.rawValue)
+    }
+}
+
+extension ButtonComponnet {
+
+
+    public convenience init(titles:[UIControlState: String?]? = nil,
+                            titleColors:[UIControlState: UIColor?]? = nil,
+                            images:[UIControlState: UIImage?]? = nil,
+                            backgroundImages:[UIControlState: UIImage?]? = nil,
+                            titleFont: UIFont,
+                            selected: Bool = false,
+                            enabled: Bool = false,
+                            action: Selector?,
+                            size: CKWSize? = nil,
+                            attributes: CKWViewAttributeMap? = nil,
+                            accessibilityLabel: String? = nil) {
+
+        let list: [[UIControlState: Any?]?] = [titles, titleColors, images, backgroundImages]
+        let states: [UIControlState] = list.flatMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
+        let buttonAttrs = Set(states).map{ (state) -> CKWButtonAttributes in
+            let a = CKWButtonAttributes()
+            a.state = state
+            return a
+        }
+
+        for attr in buttonAttrs {
+            if let t = titles?[attr.state] {
+                attr.title = t
+            }
+            if let color = titleColors?[attr.state] {
+                attr.titleColor = color
+            }
+            if let image = images?[attr.state] {
+                attr.image = image
+            }
+            if let image = backgroundImages?[attr.state] {
+                attr.backgroundImage = image
+            }
+        }
+
+        self.init(__buttonAttribute: buttonAttrs, titleFont: titleFont, selected: selected, enabled: enabled, action: action, size: size, attributes: attributes, accessibilityLabel: accessibilityLabel)
+
+    }
+}
 
 
 
