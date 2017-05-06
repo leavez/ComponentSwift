@@ -8,18 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "CKWChangeSet.h"
+#import "CKWComponentProvider.h"
 
 typedef void(*CKTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  NSIndexPath * _Nonnull indexPath, __nullable id<NSObject> model);
 
-/// a copy of CKComponentProvider
-@protocol FakeCKComponentProvider <NSObject>
-/// 应该返回一个 CKComponent 类型，但是正是 objc++ 的类，所以不能在这里引用
-+ (nullable id)componentWrapperForModel:(nonnull id<NSObject>)model context:(nullable id<NSObject>)context;
-@end
+
 @protocol FakeCKTableViewSupplementaryDataSource;
 
 
-@interface CKDatasourceWrapper : NSObject <FakeCKComponentProvider>
+@interface CKDatasourceWrapper : NSObject
 
 
 /*
@@ -27,7 +24,7 @@ typedef void(*CKTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  
  */
 - (nonnull instancetype)initWithTableView:(nonnull UITableView *)tableView
                                     width:(CGFloat)width
-                        componentProvider:(nullable Class<FakeCKComponentProvider>)componentProvider
+                        componentProvider:(nullable Class<CKWComponentProviderProtocol, NSObject>)componentProvider
                                cellConfig:(nullable CKTableViewCellConfigFunction)cellConfig
                                   context:(nullable id<NSObject>)context
                   supplementaryDataSource:(nullable NSObject<FakeCKTableViewSupplementaryDataSource> *)supplementaryDataSource;

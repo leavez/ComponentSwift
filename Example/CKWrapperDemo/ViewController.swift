@@ -9,7 +9,9 @@
 import UIKit
 import CKWrapper
 
-class ViewController: UIViewController, UITableViewDelegate, FakeCKComponentProvider {
+class ViewController: UIViewController, UITableViewDelegate, ComponentProvider {
+
+
 
     let tableView = UITableView()
     var datasource :CKDatasourceWrapper!
@@ -52,9 +54,7 @@ class ViewController: UIViewController, UITableViewDelegate, FakeCKComponentProv
         return self.datasource.sizeForItem(at: indexPath).height
     }
 
-
-    public static func componentWrapper(forModel model: NSObjectProtocol, context: NSObjectProtocol?) -> Any? {
-
+    static func ckwComponent(forModel model: NSObjectProtocol, context: NSObjectProtocol?) -> Component? {
         return SwiftComponent(model: 1)
     }
 }

@@ -21,24 +21,7 @@
 #import "CKComponent+Injected.h"
 #import "CKWChangeSet+Build.h"
 
-@interface NSObject (CKDatasource)<CKComponentProvider>
-@end
-@implementation NSObject (CKDatasource)
 
-+ (CKComponent *)componentForModel:(nonnull id<NSObject>)model context:(nullable id<NSObject>)context {
-    if ([self conformsToProtocol:@protocol(FakeCKComponentProvider)]) {
-        Class<FakeCKComponentProvider> c = (Class<FakeCKComponentProvider>)self;
-        CKWComponent *wrapped = [c componentWrapperForModel:model context:context];
-        // handle a
-        CKComponent *real = wrapped.realComponent;
-        return real;
-    } else {
-        NSAssert(NO, @"not confirm to protocol");
-        return nil;
-    }
-}
-
-@end
 
 
 
@@ -67,7 +50,7 @@
 
 - (instancetype)initWithTableView:(UITableView *)tableView
                             width:(CGFloat)width
-                componentProvider:(Class<FakeCKComponentProvider>)componentProvider
+                componentProvider:(Class<CKWComponentProviderProtocol>)componentProvider
                        cellConfig:(CKTableViewCellConfigFunction)cellConfig
                           context:(id<NSObject>)context
           supplementaryDataSource:(NSObject<FakeCKTableViewSupplementaryDataSource> *)supplementaryDataSource
