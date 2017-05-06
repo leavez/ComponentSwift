@@ -26,6 +26,7 @@
 #import "CKWStackLayoutComponent.h"
 #import "CKWButtonComponent.h"
 #import "CKWImageComponent.h"
+#import "CKWNetworkImageComponnet.h"
 #import "CKWTextComponent.h"
 #import "CKChangeSetWrapper.h"
 #import "CKDatasourceWrapper.h"

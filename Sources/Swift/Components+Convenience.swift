@@ -142,4 +142,28 @@ extension ButtonComponnet {
 }
 
 
+extension ImageComponnet {
+}
+
+extension NetworkImageComponnet {
+    
+    public convenience init(url: URL?,
+                            imageDownloader: CKWNetworkImageDownloading,
+                            scenePath: Any?,
+                            size: CKWSize?,
+                            placeholderImage: UIImage?,
+                            cropRect: CGRect?,
+                            attributes: CKWViewAttributeMap?) {
+        self.init(__url: url, imageDownloader: imageDownloader, scenePath: scenePath, size: size, placeholderImage: placeholderImage, cropRect: cropRect ?? .zero, attributes: attributes)
+    }
+
+    public convenience init(url: URL?,
+                            imageDownloader: CKWNetworkImageDownloading,
+                            size: CKWSize? = nil,
+                            placeholderImage: UIImage? = nil,
+                            attributes: CKWViewAttributeMap? = nil) {
+        self.init(__url: url, imageDownloader: imageDownloader, scenePath: nil, size: size, placeholderImage: placeholderImage, cropRect: .zero, attributes: attributes)
+    }
+}
+
 
