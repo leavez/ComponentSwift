@@ -27,6 +27,8 @@ layout:
 
 view:
 - CKTextComponent
+- CKImageComponent
+- CKButtonComponent
 
 #### datasource
 
@@ -36,6 +38,12 @@ view:
 ### Not Supported
 - ComponentController
 - animation
+
+## How to use an existed CKComponnet class 
+
+ComponentSwift also provide classes and methods to wrap your custom CKComponet subclass conveniently. Every attributes in ComponentKit have an equivalent Objc type in ComponentSwift. 
+
+You could subclass `CKWCompositeComponent` and use `initWithCKComponent` in its implementation. Import `CKWrapperSubclass.h` to use this stuff. Reference more from `WrapExisted` in the demo project.
 
 
 ## Installation
