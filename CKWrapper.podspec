@@ -32,14 +32,9 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'Sources/**/*'
   s.private_header_files = 'Sources/private/**/*'
+  s.module_map = 'Sources/SupportFiles/CKWrapper.modulemap'
+
   s.dependency "ComponentKit"
   s.dependency "CKToolbox"
 
-  # s.resource_bundles = {
-  #   'CKWrapper' => ['CKWrapper/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

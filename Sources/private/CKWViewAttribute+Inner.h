@@ -14,6 +14,11 @@
 #import "CKWTextAttributes.h"
 #import "CKWStackLayoutComponent.h"
 
+#define EXTENSION(__class__, __content__) \
+@interface __class__ () \
+__content__ \
+@end
+
 
 EXTENSION(CKWViewClass,
           - (CKComponentViewClass)convert;

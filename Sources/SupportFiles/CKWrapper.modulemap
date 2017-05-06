@@ -1,0 +1,7 @@
+framework module CKWrapper {
+  umbrella header "CKWrapper-umbrella.h"
+  exclude header "CKWrapperSubclass.h"
+
+  export *
+  module * { export * }
+}
