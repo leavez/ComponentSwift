@@ -19,6 +19,7 @@
 
 #import "CKWComponentInner.h"
 #import "CKComponent+Injected.h"
+#import "CKWChangeSet+Build.h"
 
 @interface NSObject (CKDatasource)<CKComponentProvider>
 @end
@@ -45,14 +46,7 @@
 
 
 
-@interface CKChangeSetWrapper (build)
-- (CKTransactionalComponentDataSourceChangeset *)build;
-@end
-@implementation CKChangeSetWrapper(build)
-- (CKTransactionalComponentDataSourceChangeset *)build {
-    return [[CKTransactionalComponentDataSourceChangeset alloc] initWithUpdatedItems:self.updatedItems removedItems:self.removedItems removedSections:self.removedSections movedItems:self.movedItems insertedSections:self.insertedSections insertedItems:self.insertedItems];
-}
-@end
+
 
 
 
@@ -179,14 +173,14 @@
 #pragma mark - reload methods
 
 - (void)prepareChangeset {
-    self.stagedChangeset = [CKChangeSetWrapper new];
+    self.stagedChangeset = [CKWChangeSet new];
 }
 - (void)commitChangeset:(BOOL)asynchronized {
     [self applyChangeset:self.stagedChangeset asynchronized:asynchronized];
     self.stagedChangeset = nil;
 }
 
-- (void)applyChangeset:(CKChangeSetWrapper *)changeset asynchronized:(BOOL)asynchronized {
+- (void)applyChangeset:(CKWChangeSet *)changeset asynchronized:(BOOL)asynchronized {
     if (!changeset) {
         return;
     }
@@ -194,13 +188,13 @@
 }
 
 - (void)insertFirstSection {
-    CKChangeSetWrapper *changeSet = [CKChangeSetWrapper new];
+    CKWChangeSet *changeSet = [CKWChangeSet new];
     changeSet.insertedSections = [NSIndexSet indexSetWithIndex:0];
     [self applyChangeset:changeSet asynchronized:NO];
 }
 
 - (void)reloadToObjects:(nonnull NSArray *)objects oldObjects:(nullable NSArray *)oldObjects asynchronized:(BOOL)asynchronized {
-    CKChangeSetWrapper *changeSet = [CKChangeSetWrapper new];
+    CKWChangeSet *changeSet = [CKWChangeSet new];
     NSMutableDictionary *inserts = [NSMutableDictionary dictionaryWithCapacity:objects.count];
     for (NSInteger i = 0; i < objects.count; i++) {
         NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
@@ -217,7 +211,7 @@
     [self applyChangeset:changeSet asynchronized:asynchronized];
 }
 
-- (void)reloadDataToSet:(CKChangeSetWrapper *)set asynchronized:(BOOL)asynchronized {
+- (void)reloadDataToSet:(CKWChangeSet *)set asynchronized:(BOOL)asynchronized {
     CKTransactionalComponentDataSourceChangeset *removeAllSet = self.innerDatasource.removeAllChangeset;
     set.removedSections = removeAllSet.removedSections;
     set.removedItems = removeAllSet.removedItems;
@@ -229,7 +223,7 @@
 
 
 - (void)reloadToObjects:(NSArray *)objects asynchronized:(BOOL)asynchronized {
-    CKChangeSetWrapper *changeSet = [CKChangeSetWrapper new];
+    CKWChangeSet *changeSet = [CKWChangeSet new];
     NSMutableDictionary *inserts = [NSMutableDictionary dictionaryWithCapacity:objects.count];
     for (NSInteger i = 0; i < objects.count; i++) {
         NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];

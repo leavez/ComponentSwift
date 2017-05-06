@@ -28,7 +28,7 @@
 #import "CKWImageComponent.h"
 #import "CKWNetworkImageComponnet.h"
 #import "CKWTextComponent.h"
-#import "CKChangeSetWrapper.h"
+#import "CKWChangeSet.h"
 #import "CKDatasourceWrapper.h"
 
 FOUNDATION_EXPORT double CKWrapperVersionNumber;

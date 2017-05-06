@@ -1,16 +1,16 @@
 //
-//  CKChangeSetWrapper.m
+//  CKWChangeSet.m
 //  Pods
 //
 //  Created by Gao on 10/13/16.
 //
 //
 
-#import "CKChangeSetWrapper.h"
+#import "CKWChangeSet.h"
 
-@implementation CKChangeSetWrapper
+@implementation CKWChangeSet
 - (instancetype)copyWithZone:(NSZone *)zone {
-    CKChangeSetWrapper *new = [CKChangeSetWrapper new];
+    CKWChangeSet *new = [CKWChangeSet new];
     new.updatedItems = self.updatedItems;
     new.removedItems = self.removedItems;
     new.removedSections = self.removedSections;

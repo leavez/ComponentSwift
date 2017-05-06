@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDelegate, FakeCKComponentProv
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let changeset = CKChangeSetWrapper()
+        let changeset = ChangeSet<AnyObject>()
         changeset.insertedSections = [0]
         var insetItem: [IndexPath: NSObjectProtocol] = [:]
         for i in (0..<100) {
@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITableViewDelegate, FakeCKComponentProv
         changeset.insertedItems = insetItem
         self.datasource.applyChangeset(changeset, asynchronized: false)
 
-//        let changeset2 = CKChangeSetWrapper()
+//        let changeset2 = CKWChangeSet()
 //        var insetItem2: [IndexPath: NSObjectProtocol] = [:]
 //        for i in (0..<1) {
 //            insetItem2[[0, i]] = NSObject()

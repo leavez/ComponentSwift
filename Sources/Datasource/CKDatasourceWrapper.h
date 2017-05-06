@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CKChangeSetWrapper.h"
+#import "CKWChangeSet.h"
 
 typedef void(*CKTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  NSIndexPath * _Nonnull indexPath, __nullable id<NSObject> model);
 
@@ -57,7 +57,7 @@ typedef void(*CKTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  
 #pragma mark - reload methods
 
 /// 可以用来临时存放一个 changeset，然后更改 changeset，最后使用 commitChange 来应用它
-@property (nonatomic, copy, nullable) CKChangeSetWrapper *stagedChangeset;
+@property (nonatomic, copy, nullable) CKWChangeSet *stagedChangeset;
 /// call before using stagedChangeset. This simplely new a stagedChangeset instance.
 - (void)prepareChangeset;
 /// apply stagedChangeset, and set it to nil.
@@ -65,7 +65,7 @@ typedef void(*CKTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  
 
 
 /// 更改 tableView datasource 内容的方法
-- (void)applyChangeset:(nonnull CKChangeSetWrapper *)changeset asynchronized:(BOOL)asynchronized;
+- (void)applyChangeset:(nonnull CKWChangeSet *)changeset asynchronized:(BOOL)asynchronized;
 
 /// insert section of 0
 - (void)insertFirstSection;
@@ -76,7 +76,7 @@ typedef void(*CKTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  
 
 /// remove all data, and load updates in `Set`
 /// NOTE： 这个方法在 async apply changeset 的时候，会出现数据不一致的问题。 只能在全部都是 sync 的时候使用
-- (void)reloadDataToSet:(nonnull CKChangeSetWrapper *)set asynchronized:(BOOL)asynchronized;
+- (void)reloadDataToSet:(nonnull CKWChangeSet *)set asynchronized:(BOOL)asynchronized;
 /// NOTE： 这个方法在 async apply changeset 的时候，会出现数据不一致的问题。 只能在全部都是 sync 的时候使用
 - (void)reloadToObjects:(nonnull NSArray *)objects asynchronized:(BOOL)asynchronized;
 
