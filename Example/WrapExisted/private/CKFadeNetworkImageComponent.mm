@@ -1,5 +1,5 @@
 //
-//  ZHCKNetworkImageComponent.m
+//  CKFadeNetworkImageComponent.m
 //  Pods
 //
 //  Created by Gao on 11/3/16.
@@ -7,7 +7,7 @@
 //
 
 
-#import "ZHCKNetworkImageComponent.h"
+#import "CKFadeNetworkImageComponent.h"
 
 CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
 {
@@ -19,7 +19,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
 }
 
 
-@interface ZHCKNetworkImageSpecifier : NSObject
+@interface CKFadeNetworkImageSpecifier : NSObject
 - (instancetype)initWithURL:(NSURL *)url
                defaultImage:(UIImage *)defaultImage
             imageDownloader:(id<CKNetworkImageDownloading>)imageDownloader
@@ -32,8 +32,8 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
 @property (nonatomic, assign, readonly) CGRect cropRect;
 @end
 
-@interface ZHCKNetworkImageComponentView : UIImageView
-@property (nonatomic, strong) ZHCKNetworkImageSpecifier *specifier;
+@interface CKFadeNetworkImageComponentView : UIImageView
+@property (nonatomic, strong) CKFadeNetworkImageSpecifier *specifier;
 @property (nonatomic) NSTimeInterval transitionDuration;
 @property (nonatomic) NSTimeInterval endurance;
 - (void)didEnterReusePool;
@@ -42,7 +42,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
 
 
 
-@implementation ZHCKNetworkImageComponent
+@implementation CKFadeNetworkImageComponent
 
 + (instancetype)newWithURL:(NSURL *)url
            imageDownloader:(id<CKNetworkImageDownloading>)imageDownloader
@@ -59,7 +59,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
     }
     CKViewComponentAttributeValueMap attributes(passedAttributes);
     attributes.insert({
-        {@selector(setSpecifier:), [[ZHCKNetworkImageSpecifier alloc] initWithURL:url
+        {@selector(setSpecifier:), [[CKFadeNetworkImageSpecifier alloc] initWithURL:url
                                                                    defaultImage:placeholderImage
                                                                 imageDownloader:imageDownloader
                                                                       scenePath:scenePath
@@ -69,7 +69,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
         {@selector(setEndurance:), @(endurance)},
     });
     return [super newWithView:{
-        {[ZHCKNetworkImageComponentView class], @selector(didEnterReusePool), @selector(willLeaveReusePool)},
+        {[CKFadeNetworkImageComponentView class], @selector(didEnterReusePool), @selector(willLeaveReusePool)},
         std::move(attributes)
     } size:size];
 }
@@ -124,7 +124,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
 
 @end
 
-@implementation ZHCKNetworkImageSpecifier
+@implementation CKFadeNetworkImageSpecifier
 
 - (instancetype)initWithURL:(NSURL *)url
                defaultImage:(UIImage *)defaultImage
@@ -152,7 +152,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
     if (self == object) {
         return YES;
     } else if ([object isKindOfClass:[self class]]) {
-        ZHCKNetworkImageSpecifier *other = object;
+        CKFadeNetworkImageSpecifier *other = object;
         return CKObjectIsEqual(_url, other->_url)
         && CKObjectIsEqual(_defaultImage, other->_defaultImage)
         && CKObjectIsEqual(_imageDownloader, other->_imageDownloader)
@@ -164,7 +164,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
 
 @end
 
-@implementation ZHCKNetworkImageComponentView
+@implementation CKFadeNetworkImageComponentView
 {
     BOOL _inReusePool;
     id _download;
@@ -190,7 +190,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
     }
 }
 
-- (void)setSpecifier:(ZHCKNetworkImageSpecifier *)specifier
+- (void)setSpecifier:(CKFadeNetworkImageSpecifier *)specifier
 {
     if (CKObjectIsEqual(specifier, _specifier)) {
         return;
@@ -246,7 +246,7 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
     }
 
     auto start = CACurrentMediaTime();
-    __weak ZHCKNetworkImageComponentView *weakSelf = self;
+    __weak CKFadeNetworkImageComponentView *weakSelf = self;
     _download = [_specifier.imageDownloader downloadImageWithURL:_specifier.url
                                                        scenePath:_specifier.scenePath
                                                           caller:self

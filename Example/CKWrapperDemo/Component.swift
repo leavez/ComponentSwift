@@ -8,6 +8,8 @@
 
 import Foundation
 import CKWrapper
+import WrapExisted
+
 
 class SwiftComponent: CompositeComponent {
 

@@ -16,20 +16,26 @@ PODS:
     - CKToolbox
     - ComponentKit
   - ComponentKit (0.15.1)
+  - WrapExisted (0.0.1):
+    - CKWrapper
 
 DEPENDENCIES:
   - CKWrapper (from `../`)
   - ComponentKit
+  - WrapExisted (from `./WrapExisted`)
 
 EXTERNAL SOURCES:
   CKWrapper:
     :path: "../"
+  WrapExisted:
+    :path: "./WrapExisted"
 
 SPEC CHECKSUMS:
   CKToolbox: 80b6e17998432189877ee2cd698ab463b443fb34
-  CKWrapper: 2534cc656d7733760e6c6c262aaff4ec20f4606f
+  CKWrapper: e83873697a66732c15ac692ab6059b3f22388654
   ComponentKit: beef88630f344efb8344fe40fc6fc7c1732b68c8
+  WrapExisted: c4618076a7ae0401341886755e3e690b5848d2d6
 
-PODFILE CHECKSUM: b8068411e685c2542642d987894eb21d1e8016c2
+PODFILE CHECKSUM: c77411cb3ec2215692b36c6a58aa17d67d1e2498
 
 COCOAPODS: 1.2.1
