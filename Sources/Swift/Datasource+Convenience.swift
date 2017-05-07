@@ -35,6 +35,9 @@ public enum CKWSizeFlexibility {
 
 extension CKWCollectionViewDataSource {
 
+    /// - Note:
+    ///    componentProvider must be subclass of NSObject
+    ///
     public convenience init(collectionView: UICollectionView,
                 supplementaryViewDataSource: CKWSupplementaryViewDataSource?,
                 componentProvider: ComponentProvider.Type,
