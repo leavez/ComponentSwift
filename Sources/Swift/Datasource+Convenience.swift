@@ -41,7 +41,7 @@ extension CKWCollectionViewDataSource {
     public convenience init(collectionView: UICollectionView,
                 supplementaryViewDataSource: CKWSupplementaryViewDataSource?,
                 componentProvider: ComponentProvider.Type,
-                context: NSObjectProtocol?,
+                context: Any?,
                 sizeFlexibility: CKWSizeFlexibility ) {
 
         let sizes = sizeFlexibility.sizeRange()
@@ -49,8 +49,7 @@ extension CKWCollectionViewDataSource {
     }
 
     public convenience init(collectionView: UICollectionView, componentProvider: ComponentProvider.Type,
-                            context: NSObjectProtocol?) {
-
+                            context: Any?) {
 
         let width = UIApplication.shared.delegate?.window??.bounds.width ?? collectionView.bounds.width
         self.init(collectionView: collectionView, supplementaryViewDataSource: nil, componentProvider: componentProvider, context: context, sizeFlexibility: .flexibleHeight(width))

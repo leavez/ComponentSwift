@@ -12,7 +12,7 @@
 NS_SWIFT_NAME(ComponentProvider)
 @protocol CKWComponentProviderProtocol <NSObject>
 
-+ (nullable CKWComponent *)ckwComponentForModel:(nonnull id<NSObject>)model context:(nullable id<NSObject>)context;
++ (nullable CKWComponent *)ckwComponentForModel:(nonnull id)model context:(nullable id)context;
 
 @end
 

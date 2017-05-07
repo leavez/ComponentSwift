@@ -9,6 +9,11 @@
 import UIKit
 import CKWrapper
 
+struct Context {
+
+}
+
+
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ComponentProvider {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -21,7 +26,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .orange
 
-        self.datasource = CKWCollectionViewDataSource(collectionView: collectionView, componentProvider: type(of:self), context: nil)
+        self.datasource = CKWCollectionViewDataSource(collectionView: collectionView, componentProvider: type(of:self), context: Context())
         self.collectionView.delegate = self
         self.collectionView.reloadData()
 
@@ -32,9 +37,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidAppear(animated)
         let changeset = ChangeSet<AnyObject>()
         changeset.insertedSections = [0]
-        var insetItem: [IndexPath: NSObjectProtocol] = [:]
+        var insetItem: [IndexPath: AnyObject] = [:]
         for i in (0..<100) {
-            insetItem[[0, i]] = NSObject()
+            insetItem[[0, i]] = 1 as AnyObject
         }
         changeset.insertedItems = insetItem
 
@@ -55,8 +60,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 
 
-    static func ckwComponent(forModel model: NSObjectProtocol, context: NSObjectProtocol?) -> Component? {
-
+    static func ckwComponent(forModel model: Any, context: Any?) -> Component? {
+        
         return CompositeComponent(
             view:
             CKWViewConfiguration(

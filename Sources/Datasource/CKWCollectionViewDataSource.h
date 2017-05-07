@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
            supplementaryViewDataSource:(nullable id<CKWSupplementaryViewDataSource>)supplementaryViewDataSource
                      componentProvider:(Class<CKWComponentProviderProtocol>)componentProvider
-                               context:(nullable id<NSObject>)context
+                               context:(nullable id)context
                                minSize:(CGSize)minSize
                                maxSize:(CGSize)maxSize NS_REFINED_FOR_SWIFT;
 
