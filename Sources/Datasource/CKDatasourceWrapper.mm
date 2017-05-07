@@ -50,10 +50,10 @@
 
 - (instancetype)initWithTableView:(UITableView *)tableView
                             width:(CGFloat)width
-                componentProvider:(Class<CKWComponentProviderProtocol>)componentProvider
-                       cellConfig:(CKTableViewCellConfigFunction)cellConfig
+                componentProvider:(Class<CKWComponentProviderProtocol, NSObject>)componentProvider
+                       cellConfig:(CKWTableViewCellConfigFunction)cellConfig
                           context:(id<NSObject>)context
-          supplementaryDataSource:(NSObject<FakeCKTableViewSupplementaryDataSource> *)supplementaryDataSource
+          supplementaryDataSource:(NSObject<CKWTableViewSupplementaryDataSource> *)supplementaryDataSource
 {
     self = [super init];
     if (self) {
@@ -92,7 +92,7 @@
             sizeRange:sizeRange];
 }
 
-- (CKTableViewTransactionalDataSourceCellConfiguration *)cellConfiguration:(CKTableViewCellConfigFunction)configFunction rowAnimation:(UITableViewRowAnimation)rowAnimation {
+- (CKTableViewTransactionalDataSourceCellConfiguration *)cellConfiguration:(CKWTableViewCellConfigFunction)configFunction rowAnimation:(UITableViewRowAnimation)rowAnimation {
 
     CKTableViewTransactionalDataSourceCellConfiguration *ckCellConfig = [CKTableViewTransactionalDataSourceCellConfiguration new];
     ckCellConfig.cellConfigurationFunction = configFunction;

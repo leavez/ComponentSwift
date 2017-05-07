@@ -9,25 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "CKWChangeSet.h"
 #import "CKWComponentProvider.h"
+@protocol CKWTableViewSupplementaryDataSource;
 
-typedef void(*CKTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  NSIndexPath * _Nonnull indexPath, __nullable id<NSObject> model);
-
-
-@protocol FakeCKTableViewSupplementaryDataSource;
+typedef void(*CKWTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  NSIndexPath * _Nonnull indexPath, __nullable id<NSObject> model);
 
 
 @interface CKDatasourceWrapper : NSObject
 
 
-/*
- componentProvider 如果为 nil，则把 self 设为 ComponentProvider。可以重写 componentForModel 方法。
- */
 - (nonnull instancetype)initWithTableView:(nonnull UITableView *)tableView
                                     width:(CGFloat)width
-                        componentProvider:(nullable Class<CKWComponentProviderProtocol, NSObject>)componentProvider
-                               cellConfig:(nullable CKTableViewCellConfigFunction)cellConfig
+                        componentProvider:(nonnull Class<CKWComponentProviderProtocol, NSObject>)componentProvider
+                               cellConfig:(nullable CKWTableViewCellConfigFunction)cellConfig
                                   context:(nullable id<NSObject>)context
-                  supplementaryDataSource:(nullable NSObject<FakeCKTableViewSupplementaryDataSource> *)supplementaryDataSource;
+                  supplementaryDataSource:(nullable NSObject<CKWTableViewSupplementaryDataSource> *)supplementaryDataSource;
 
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
@@ -93,7 +88,7 @@ typedef void(*CKTableViewCellConfigFunction)( UITableViewCell * _Nonnull cell,  
 
 NS_ASSUME_NONNULL_BEGIN
 /// a copy of CKTableViewSupplementaryDataSource
-@protocol FakeCKTableViewSupplementaryDataSource <NSObject>
+@protocol CKWTableViewSupplementaryDataSource <NSObject>
 @optional
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
 - (nullable NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section;
