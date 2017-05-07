@@ -9,24 +9,23 @@
 import UIKit
 import CKWrapper
 
-class ViewController: UIViewController, UITableViewDelegate, ComponentProvider {
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ComponentProvider {
 
-
-
-    let tableView = UITableView()
-    var datasource :CKDatasourceWrapper!
+    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var datasource :CKWCollectionViewDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(self.tableView);
-        self.tableView.frame = self.view.bounds
-        self.tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.tableView.backgroundColor = .orange
+        self.view.addSubview(self.collectionView);
+        self.collectionView.frame = self.view.bounds
+        self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.collectionView.backgroundColor = .orange
 
-        self.datasource = CKDatasourceWrapper(tableView: self.tableView, width: UIScreen.main.bounds.width, componentProvider: type(of:self), cellConfig: nil, context: nil, supplementaryDataSource: nil)
-        self.tableView.delegate = self
-        self.tableView.reloadData()
-        self.tableView.tableFooterView = UIView()
+        self.datasource = CKWCollectionViewDataSource(collectionView: collectionView, componentProvider: type(of:self), context: nil)
+        self.collectionView.delegate = self
+        self.collectionView.reloadData()
+
+        print(UIScreen.main.bounds.size)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -38,7 +37,9 @@ class ViewController: UIViewController, UITableViewDelegate, ComponentProvider {
             insetItem[[0, i]] = NSObject()
         }
         changeset.insertedItems = insetItem
-        self.datasource.applyChangeset(changeset, asynchronized: false)
+
+        self.datasource.apply(changeset: changeset, asynchronously: true)
+
 
 //        let changeset2 = CKWChangeSet()
 //        var insetItem2: [IndexPath: NSObjectProtocol] = [:]
@@ -49,12 +50,21 @@ class ViewController: UIViewController, UITableViewDelegate, ComponentProvider {
 //        self.datasource.applyChangeset(changeset2, asynchronized: false)
     }
 
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.datasource.sizeForItem(at: indexPath).height
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return self.datasource.sizeForItem(at: indexPath)
     }
 
+
     static func ckwComponent(forModel model: NSObjectProtocol, context: NSObjectProtocol?) -> Component? {
-        return SwiftComponent(model: 1)
+
+        return CompositeComponent(
+            view:
+            CKWViewConfiguration(
+                attributeEnums:
+                ViewAttributeEnum.backgroundColor(.white)
+            ),
+            component:
+            SwiftComponent(model: 1)
+        )
     }
 }
