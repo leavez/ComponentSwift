@@ -25,6 +25,9 @@
 {
     self = [super init];
     if (self) {
+        Class provider = componentProvider;
+        NSAssert([provider isSubclassOfClass:[NSObject class]], @"%@ should be sublcass of NSObject", NSStringFromClass(provider));
+
         let castedComponentProviderClass = (Class<CKComponentProvider>)componentProvider;
         let castedSupplementary = (id<CKSupplementaryViewDataSource>)supplementaryViewDataSource; // force cast
 
