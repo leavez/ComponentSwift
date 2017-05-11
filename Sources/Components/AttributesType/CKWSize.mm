@@ -8,7 +8,7 @@
 
 #import "CKWSize.h"
 #import <ComponentKit/ComponentKit.h>
-#import "CKWViewAttribute+Inner.h"
+#import "CKWObject+Convert.h"
 
 @implementation CKWDimension {
     CKRelativeDimension _inner;

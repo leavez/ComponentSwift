@@ -13,6 +13,8 @@
 #import "CKWSize.h"
 #import "CKWTextAttributes.h"
 #import "CKWStackLayoutComponent.h"
+#import "CKWScope.h"
+#import "CKComponentScopeSubclass.h"
 
 #define EXTENSION(__class__, __content__) \
 @interface __class__ () \
@@ -61,6 +63,12 @@ EXTENSION(CKWStackLayoutChild ,
           - (CKStackLayoutComponentChild)convert;
           )
 
+
+EXTENSION(CKWScope ,
+          - (Class)cls;
+          - (NSString *)identifier;
+          - (id (^)())initialStateCreator;
+          )
 
 
 

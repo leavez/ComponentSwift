@@ -7,7 +7,7 @@
 //
 
 #import "CKWGestureAttribute.h"
-#import "CKWViewAttribute+Inner.h"
+#import "CKWObject+Convert.h"
 #import "macro.h"
 
 @implementation CKWViewAttributeValueType

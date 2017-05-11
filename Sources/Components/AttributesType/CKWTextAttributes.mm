@@ -7,7 +7,7 @@
 //
 
 #import "CKWTextAttributes.h"
-#import "CKWViewAttribute+Inner.h"
+#import "CKWObject+Convert.h"
 
 @implementation CKWTextAttributes
 

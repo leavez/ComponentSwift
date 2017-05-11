@@ -9,7 +9,7 @@
 #ifndef CppHeaders_h
 #define CppHeaders_h
 
-#import "CKWViewAttribute+Inner.h"
+#import "CKWObject+Convert.h"
 #import "CKWComponentInner.h"
 
 

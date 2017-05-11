@@ -7,7 +7,7 @@
 //
 
 #import "CKWViewAttributes.h"
-#import "CKWViewAttribute+Inner.h"
+#import "CKWObject+Convert.h"
 #import "CKWGestureAttribute.h"
 #import <ComponentKit/ComponentKit.h>
 #import "macro.h"
