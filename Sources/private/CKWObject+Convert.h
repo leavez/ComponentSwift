@@ -14,7 +14,6 @@
 #import "CKWTextAttributes.h"
 #import "CKWStackLayoutComponent.h"
 #import "CKWScope.h"
-#import "CKComponentScopeSubclass.h"
 
 #define EXTENSION(__class__, __content__) \
 @interface __class__ () \

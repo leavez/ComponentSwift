@@ -48,6 +48,13 @@
     return _realComponentWeak;
 }
 
+- (CKComponent *)realComponentWeak {
+    return _realComponentWeak;
+}
+- (CKComponent *)realComponentStrong {
+    return _realComponentStrong;
+}
+
 #pragma mark - injected reponder chain
 
 - (id)nextResponder {

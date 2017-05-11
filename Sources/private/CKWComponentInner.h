@@ -30,4 +30,8 @@
 @property (nonatomic) CKComponent *realComponent;
 
 
+/// do not use it if you don't konw about it
+- (CKComponent *)realComponentStrong;
+- (CKComponent *)realComponentWeak;
+
 @end
