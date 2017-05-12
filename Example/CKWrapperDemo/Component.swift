@@ -11,13 +11,15 @@ import CKWrapper
 import WrapExisted
 
 
-class SwiftComponent: CompositeComponent {
+class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
 
-    init?(model:Any) {
+    typealias StateType = Bool
 
-        let text = "Even though each migration experience is different depending on your existing codebase, there are some general steps and tools to help you troubleshoot your code migration"
+    convenience init?(model:Any) {
 
-        super.init(component:
+        let scope = StateScope(with: type(of: self))
+
+        self.init(scope: scope) { (state) -> Component? in
 
             InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
                            component:
@@ -45,24 +47,53 @@ class SwiftComponent: CompositeComponent {
 
                         StackLayoutChild(
                             TextComponent(
-                                CKWTextAttributes(text, font:.systemFont(ofSize: 14))
+                                CKWTextAttributes().build({
+                                    $0.attributedString = getText()
+                                    $0.maximumNumberOfLines = state ? 0 : 4
+                                    $0.truncationAttributedString = NSAttributedString(string:"...")
+                                }),
+                                viewAttributes:
+                                CKWViewAttributeMap(
+                                    enums:
+                                    .tapGesture(#selector(didTap))
+                                )
+
                             ),
                             flexGrow: true,
                             flexShrink: true
                         )
                     ])
             )
-        )
+
+        }
+
+    }
+
+    static func initialState() -> Bool {
+        return false
     }
 
     @objc func didTap(sender: Any) {
         print("tapped")
+
+        self.updateState({ (state) -> Bool in
+            !state
+        }, asynchronously: true)
+
     }
 
 
 }
 
 
+
+
+func getText() -> NSAttributedString {
+    let text = "I/O Extended events include a variety of options for developers—from live streaming sessions to local demos, hackathons, codelabs, and more. These events are hosted in your neighborhood by local developer communities."
+    let paragraphStyle = NSMutableParagraphStyle()
+    let attributeString = NSAttributedString(string: text, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSParagraphStyleAttributeName: paragraphStyle])
+    return attributeString
+}
 
 
 
