@@ -29,17 +29,45 @@ view:
 - CKTextComponent
 - CKImageComponent
 - CKButtonComponent
+- ~~CKStatefulViewComponent~~ ( not yet )
+#### Datasource
 
-#### datasource
+- CollectionViewTransitionalDatasource
 
 #### Respone Chain
+
+#### Scope and State
+
+Scope and state are supported. Furthermore, generic has been added to them, so we got type-safety here.
+
+The API is slightly different. `CKWComponentStateProtocol` should be adopted by component firstly. Methods about state are all provided by this protocol.
+
+```Swift
+class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
+
+    typealias StateType = Bool
+
+    convenience init?(model:Any) {
+        let scope = StateScope(with: type(of: self))
+        self.init(scope: scope) { (state) -> Component? in
+            state ? ComponentA() : ComponentB()
+        )
+    }
+    
+    static func initialState() -> Bool {
+        return false
+    }
+```
+
+
+
 
 
 ### Not Supported
 - ComponentController
 - animation
 
-## How to use an existed CKComponnet class 
+### How to use an existed CKComponnet class 
 
 ComponentSwift also provide classes and methods to wrap your custom CKComponet subclass conveniently. Every attributes in ComponentKit have an equivalent Objc type in ComponentSwift. 
 
