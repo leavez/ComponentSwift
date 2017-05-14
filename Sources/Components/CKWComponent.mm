@@ -48,11 +48,9 @@
     return _realComponentWeak;
 }
 
-- (CKComponent *)realComponentWeak {
-    return _realComponentWeak;
-}
-- (CKComponent *)realComponentStrong {
-    return _realComponentStrong;
+
+- (CKComponent *)realComponentWithoutChangingOwnership {
+    return _realComponentStrong ?: _realComponentWeak;
 }
 
 #pragma mark - injected reponder chain

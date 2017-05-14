@@ -19,7 +19,7 @@
  
      wrapper --> inner component
  
- Once `realComponent` is accessed, it will pass the ownship to inner component -- inner
+ Once `realComponent` is accessed, it will pass the ownership to inner component -- inner
  componnet retain the wrapper, wrapper weak reference the inner component
  
      wrapper <-- inner component
@@ -31,7 +31,6 @@
 
 
 /// do not use it if you don't konw about it
-- (CKComponent *)realComponentStrong;
-- (CKComponent *)realComponentWeak;
+@property (nonatomic, readonly) CKComponent *realComponentWithoutChangingOwnership;
 
 @end

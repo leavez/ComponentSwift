@@ -13,7 +13,7 @@
 @implementation CKWCompositeComponent (State)
 
 - (void)updateState:(id (^)(id))updateBlock asynchronously:(BOOL)asynchronously {
-    [(self.realComponentStrong ?: self.realComponentWeak) updateState:updateBlock mode:asynchronously ? CKUpdateModeAsynchronous : CKUpdateModeSynchronous];
+    [self.realComponentWithoutChangingOwnership updateState:updateBlock mode:asynchronously ? CKUpdateModeAsynchronous : CKUpdateModeSynchronous];
 }
 
 @end
