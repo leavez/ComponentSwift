@@ -51,4 +51,5 @@ if __name__ == '__main__':
     umbrellaPath = "/SupportFiles/CKWrapper-umbrella.h"
     f = open(targetDir + umbrellaPath, "w+")
     f.write(headerFile)
+    print("Umbrella header generated!")
     f.close()

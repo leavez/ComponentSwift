@@ -12,3 +12,9 @@ target 'CKWrapperDemo' do
 
 
 end
+
+pre_install do |installer|
+  # genereate header file.
+  # This is a convenience for developing. Just ignore this. 
+  system 'python ../Script/generate_umbrella_header.py'
+end
