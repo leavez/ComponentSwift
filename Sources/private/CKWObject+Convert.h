@@ -14,6 +14,7 @@
 #import "CKWTextAttributes.h"
 #import "CKWStackLayoutComponent.h"
 #import "CKWScope.h"
+#import "CKWComponentAnimation.h"
 
 #define EXTENSION(__class__, __content__) \
 @interface __class__ () \
@@ -67,6 +68,10 @@ EXTENSION(CKWScope ,
           - (Class)cls;
           - (NSString *)identifier;
           - (id (^)())initialStateCreator;
+          )
+
+EXTENSION(CKWComponentAnimation ,
+          - (CKComponentAnimation)convert;
           )
 
 

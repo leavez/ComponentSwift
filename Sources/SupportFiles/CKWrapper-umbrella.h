@@ -12,6 +12,7 @@
 #endif
 
 #import "CKWrapper.h"
+#import "CKWComponentAnimation.h"
 #import "CKWCompositeComponent+State.h"
 #import "CKWScope.h"
 #import "CKWComponent.h"
