@@ -11,7 +11,7 @@ import CKWrapper
 import WrapExisted
 
 
-class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
+class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol, CKWComponentAnimationProtocol {
 
     typealias StateType = Bool
 
@@ -82,6 +82,14 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
 
     }
 
+
+    func animationsOnInitialMount() -> [CKWComponentAnimation]? {
+        return nil
+    }
+
+    func animations(fromPreviousComponent previousComponent: Component?) -> [CKWComponentAnimation]? {
+        return nil
+    }
 
 }
 
