@@ -39,7 +39,7 @@ extension CKWCollectionViewDataSource {
     ///    componentProvider must be subclass of NSObject
     ///
     public convenience init(collectionView: UICollectionView,
-                supplementaryViewDataSource: CKWSupplementaryViewDataSource?,
+                supplementaryViewDataSource: CKWSupplementaryViewDataSource? = nil,
                 componentProvider: ComponentProvider.Type,
                 context: Any?,
                 sizeFlexibility: CKWSizeFlexibility ) {
@@ -59,4 +59,37 @@ extension CKWCollectionViewDataSource {
         self.__applyChangeset(changeset, asynchronously: asynchronously, userInfo: userInfo)
     }
 
+}
+
+
+extension CKWTableViewDatasource {
+
+    /// - Note:
+    ///    componentProvider must be subclass of NSObject
+    ///
+    public convenience init(tableView: UITableView,
+                supplementaryViewDataSource: CKWTableViewSupplementaryDataSource? = nil,
+                componentProvider: ComponentProvider.Type,
+                context: Any?,
+                cellConfiguration: CKWTableViewCellConfiguration = CKWTableViewCellConfiguration.noAnimationConfig(),
+                sizeFlexibility: CKWSizeFlexibility) {
+
+
+        let sizes = sizeFlexibility.sizeRange()
+        self.init(__tableView: tableView, supplementaryViewDataSource: supplementaryViewDataSource, componentProvider: componentProvider, context: context, cellConfiguration:cellConfiguration, minSize:sizes.min , maxSize:sizes.max)
+    }
+
+    public convenience init(tableView: UITableView, componentProvider: ComponentProvider.Type,
+                            context: Any?) {
+
+        let width = UIApplication.shared.delegate?.window??.bounds.width ?? tableView.bounds.width
+        self.init(tableView: tableView, supplementaryViewDataSource: nil, componentProvider: componentProvider, context: context, sizeFlexibility: .flexibleHeight(width))
+    }
+
+    public func apply(changeset: ChangeSet<AnyObject>,
+                      asynchronously: Bool,
+                      cellConfiguration:CKWTableViewCellConfiguration? = nil) {
+        self.__applyChangeset(changeset, asynchronously: asynchronously, cellConfiguration: cellConfiguration)
+    }
+    
 }

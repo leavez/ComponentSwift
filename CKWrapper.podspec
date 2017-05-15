@@ -35,6 +35,6 @@ TODO: Add long description of the pod here.
   s.module_map = 'Sources/SupportFiles/CKWrapper.modulemap'
 
   s.dependency "ComponentKit"
-  s.dependency "CKToolbox"
+  s.dependency "CKTableViewTransactionalDataSource"
 
 end
