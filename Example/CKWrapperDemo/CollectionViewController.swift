@@ -14,10 +14,10 @@ struct Context {
 }
 
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ComponentProvider {
+class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    var datasource :CKWCollectionViewDataSource!
+    var datasource: CKWCollectionViewDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .orange
 
-        self.datasource = CKWCollectionViewDataSource(collectionView: collectionView, componentProvider: type(of:self), context: Context())
+        self.datasource = CKWCollectionViewDataSource(collectionView: collectionView, componentProvider: Provider.self, context: Context())
         self.collectionView.delegate = self
         self.collectionView.reloadData()
 
@@ -46,30 +46,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.datasource.apply(changeset: changeset, asynchronously: true)
 
 
-//        let changeset2 = CKWChangeSet()
-//        var insetItem2: [IndexPath: NSObjectProtocol] = [:]
-//        for i in (0..<1) {
-//            insetItem2[[0, i]] = NSObject()
-//        }
-//        changeset2.updatedItems  = insetItem2
-//        self.datasource.applyChangeset(changeset2, asynchronized: false)
+        //        let changeset2 = CKWChangeSet()
+        //        var insetItem2: [IndexPath: NSObjectProtocol] = [:]
+        //        for i in (0..<1) {
+        //            insetItem2[[0, i]] = NSObject()
+        //        }
+        //        changeset2.updatedItems  = insetItem2
+        //        self.datasource.applyChangeset(changeset2, asynchronized: false)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return self.datasource.sizeForItem(at: indexPath)
-    }
-
-
-    static func ckwComponent(forModel model: Any, context: Any?) -> Component? {
-        
-        return CompositeComponent(
-            view:
-            CKWViewConfiguration(
-                attributeEnums:
-                ViewAttributeEnum.backgroundColor(.white)
-            ),
-            component:
-            SwiftComponent(model: 1)
-        )
     }
 }
