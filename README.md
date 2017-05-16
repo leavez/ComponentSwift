@@ -1,13 +1,19 @@
 # ComponentSwift
 
-[![CI Status](http://img.shields.io/travis/gaojiji@gmail.com/CKWrapper.svg?style=flat)](https://travis-ci.org/gaojiji@gmail.com/CKWrapper)
-[![Version](https://img.shields.io/cocoapods/v/CKWrapper.svg?style=flat)](http://cocoapods.org/pods/CKWrapper)
-[![License](https://img.shields.io/cocoapods/l/CKWrapper.svg?style=flat)](http://cocoapods.org/pods/CKWrapper)
-[![Platform](https://img.shields.io/cocoapods/p/CKWrapper.svg?style=flat)](http://cocoapods.org/pods/CKWrapper)
+[![Version](https://img.shields.io/cocoapods/v/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
+[![License](https://img.shields.io/cocoapods/l/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
+[![Platform](https://img.shields.io/cocoapods/p/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
 
-**ComponentSwift is now working in progress.**
+ComponentSwift brings ComponentKit to Swift.
 
-ComponentSwift is an Objective-C wrapper of ComponentKit for Swift. 
+[ComponentKit](http://componentkit.org) is a react-inspired native view framework for iOS developed by Facebook. It intruduce a new abstract layer (component) to automatically handle view reuse, meanwhile provide the ability to build smooth list view easily. 
+
+ComponentSwift is an ObjC wrapper of ComponentKit and refined for Swift. ComponentSwift is designed to be a subset of ComponentKit, implementing the most commonly used features.
+
+
+## TLDR
+ComponentKit is implemented and used with ObjC++, which is pretty cool, but it incompiable with swift, since swift doesn't support ObjC++.
+It doesn't touch the code of ComponentKit. ...
 
 ## Supported Features
 #### Components
@@ -33,6 +39,7 @@ view:
 #### Datasource
 
 - CollectionViewTransitionalDatasource
+- TableViewTransitionalDatasource (unofficial)
 
 #### Respone Chain
 
@@ -58,14 +65,12 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
         return false
     }
 ```
-
-
-
+#### animation
 
 
 ### Not Supported
+- hosting view (not yet)
 - ComponentController
-- animation
 
 ### How to use an existed CKComponnet class 
 
