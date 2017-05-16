@@ -13,14 +13,14 @@
 
 @implementation CKWNetworkImageComponnet
 
-- (instancetype)initWithURL:(NSURL *)url imageDownloader:(id<CKWNetworkImageDownloading>)imageDownloader scenePath:(id)scenePath size:(CKWSize *)size placeholderImage:(UIImage *)placeholderImage cropRect:(CGRect)cropRect attributes:(CKWViewAttributeMap *)attributes
+- (instancetype)initWithURL:(NSURL *)url imageDownloader:(id<CKWNetworkImageDownloading>)imageDownloader size:(CKWSize *)size placeholderImage:(UIImage *)placeholderImage cropRect:(CGRect)cropRect attributes:(CKWViewAttributeMap *)attributes
 {
     self = [super init];
     if (self) {
+
         self.realComponent = [CKNetworkImageComponent
                               newWithURL:url
                               imageDownloader:(id<CKNetworkImageDownloading>)imageDownloader
-                              scenePath:scenePath
                               size:ConvertWithDefault(size, CKComponentSize())
                               options:{
                                   .defaultImage = placeholderImage,

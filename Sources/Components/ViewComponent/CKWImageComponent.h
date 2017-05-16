@@ -20,7 +20,7 @@ NS_SWIFT_NAME(ImageComponnet)
 /**
  Uses a static layout with the given image size.
  */
-- (nonnull instancetype)initWithImage:(nullable UIImage *)image
-                                 size:(nullable CKWSize *)size;
+- (nonnull instancetype)initWithImage:(nullable UIImage *)image attributes:(nullable CKWViewAttributeMap *)attributes size:(nullable CKWSize *)size;
+
 
 @end

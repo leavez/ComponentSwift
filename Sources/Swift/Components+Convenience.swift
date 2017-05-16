@@ -74,8 +74,8 @@ extension CKWStackLayoutChild {
     public convenience init?(_ component: Component?,
                             spacingAfter: CGFloat = 0,
                             spacingBefore: CGFloat = 0,
-                            flexGrow: Bool = false,
-                            flexShrink: Bool = false,
+                            flexGrow: CGFloat? = nil,
+                            flexShrink: CGFloat? = nil,
                             flexBasis: CKWDimension? = nil,
                             alignSelf: CKWStackLayoutAlignSelf = .auto) {
         guard let component = component else {
@@ -85,8 +85,8 @@ extension CKWStackLayoutChild {
         self.component = component
         self.spacingAfter = spacingAfter
         self.spacingBefore = spacingBefore
-        self.flexGrow = flexGrow
-        self.flexShrink = flexShrink
+        self.flexGrow = flexGrow ?? 0
+        self.flexShrink = flexShrink ?? 0
         self.flexBasis = flexBasis
         self.alignSelf = alignSelf
     }
@@ -149,12 +149,11 @@ extension NetworkImageComponnet {
     
     public convenience init(url: URL?,
                             imageDownloader: CKWNetworkImageDownloading,
-                            scenePath: Any?,
                             size: CKWSize?,
                             placeholderImage: UIImage?,
                             cropRect: CGRect?,
                             attributes: CKWViewAttributeMap?) {
-        self.init(__url: url, imageDownloader: imageDownloader, scenePath: scenePath, size: size, placeholderImage: placeholderImage, cropRect: cropRect ?? .zero, attributes: attributes)
+        self.init(__url: url, imageDownloader: imageDownloader, size: size, placeholderImage: placeholderImage, cropRect: cropRect ?? .zero, attributes: attributes)
     }
 
     public convenience init(url: URL?,
@@ -162,7 +161,7 @@ extension NetworkImageComponnet {
                             size: CKWSize? = nil,
                             placeholderImage: UIImage? = nil,
                             attributes: CKWViewAttributeMap? = nil) {
-        self.init(__url: url, imageDownloader: imageDownloader, scenePath: nil, size: size, placeholderImage: placeholderImage, cropRect: .zero, attributes: attributes)
+        self.init(__url: url, imageDownloader: imageDownloader, size: size, placeholderImage: placeholderImage, cropRect: .zero, attributes: attributes)
     }
 }
 

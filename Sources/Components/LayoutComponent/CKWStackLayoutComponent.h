@@ -80,10 +80,14 @@ typedef NS_ENUM(NSUInteger, CKWStackLayoutAlignSelf) {
 @property (nonatomic) CGFloat spacingBefore;
 /** Additional space to place after the component in the stacking direction. */
 @property (nonatomic) CGFloat spacingAfter;
-/** If the sum of childrens' stack dimensions is less than the minimum size, should this component grow? */
-@property (nonatomic) BOOL flexGrow;
+/**
+ If the sum of childrens' stack dimensions is less than the minimum size, how much should this component grow?
+ This value represents the "flex grow factor" and determines how much this component should grow in relation to any
+ other flexible children.
+ */
+@property (nonatomic) CGFloat flexGrow;
 /** If the sum of childrens' stack dimensions is greater than the maximum size, should this component shrink? */
-@property (nonatomic) BOOL flexShrink;
+@property (nonatomic) CGFloat flexShrink;
 /** Specifies the initial size in the stack dimension for the child. */
 @property (nonatomic, nullable) CKWDimension *flexBasis;
 /** Orientation of the child along cross axis, overriding alignItems */

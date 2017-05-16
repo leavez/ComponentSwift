@@ -248,7 +248,6 @@ CATransition* CKComponentGenerateTransition(NSTimeInterval duration)
     auto start = CACurrentMediaTime();
     __weak CKFadeNetworkImageComponentView *weakSelf = self;
     _download = [_specifier.imageDownloader downloadImageWithURL:_specifier.url
-                                                       scenePath:_specifier.scenePath
                                                           caller:self
                                                    callbackQueue:dispatch_get_main_queue()
                                            downloadProgressBlock:nil

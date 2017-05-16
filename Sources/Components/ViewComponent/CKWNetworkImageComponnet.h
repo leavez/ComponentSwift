@@ -17,7 +17,6 @@ NS_SWIFT_NAME(NetworkImageComponnet)
 // @param cropRect Optional rectangle (in the unit coordinate space) that specifies the portion of contents that the receiver should draw.
 - (nonnull instancetype)initWithURL:(nullable NSURL *)url
                     imageDownloader:(nonnull id<CKWNetworkImageDownloading>)imageDownloader
-                          scenePath:(nullable id)scenePath
                                size:(nullable CKWSize *)size
                    placeholderImage:(nullable UIImage *)placeholderImage
                            cropRect:(CGRect)cropRect
@@ -43,7 +42,6 @@ NS_SWIFT_NAME(NetworkImageComponnet)
  @result An opaque identifier to be used in canceling the download, via `cancelImageDownload:`. You must retain the identifier if you wish to use it later.
  */
 - (nonnull id)downloadImageWithURL:(nullable NSURL *)URL
-                         scenePath:(_Nullable id)scenePath
                             caller:(_Nullable id)caller
                      callbackQueue:(nonnull dispatch_queue_t)callbackQueue
              downloadProgressBlock:(void (^_Nonnull)(CGFloat progress))downloadProgressBlock

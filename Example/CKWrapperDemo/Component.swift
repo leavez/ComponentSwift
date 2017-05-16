@@ -60,8 +60,8 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
                                 )
 
                             ),
-                            flexGrow: true,
-                            flexShrink: true
+                            flexGrow: 1,
+                            flexShrink: 1
                         )
                     ])
             )

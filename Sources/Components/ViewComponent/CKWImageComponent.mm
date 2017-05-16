@@ -14,14 +14,14 @@
 @implementation CKWImageComponent
 
 - (instancetype)initWithImage:(UIImage *)image {
-    return [self initWithImage:image size:[[CKWSize alloc] initWithCGSize:image.size]];
+    return [self initWithImage:image attributes:nil size:[[CKWSize alloc] initWithCGSize:image.size]];
 }
 
-- (instancetype)initWithImage:(UIImage *)image size:(CKWSize *)size {
+- (instancetype)initWithImage:(UIImage *)image attributes:(CKWViewAttributeMap *)attributes size:(CKWSize *)size {
 
     self = [super init];
     if (self) {
-        self.realComponent = [CKImageComponent newWithImage:image size:ConvertWithDefault(size, CKComponentSize())];
+        self.realComponent = [CKImageComponent newWithImage:image attributes:ConvertWithDefault(attributes, CKViewComponentAttributeValueMap()) size:ConvertWithDefault(size, CKComponentSize())];
     }
     return self;
 }
