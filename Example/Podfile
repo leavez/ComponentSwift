@@ -8,8 +8,8 @@ target 'ComponentSwiftDemo' do
   # Pods for CKWrapperDemo
   pod 'ComponentSwift', :path => '../'
   pod 'WrapExisted', :path => './WrapExisted'
-  pod 'ComponentKit', :inhibit_warnings => true
-
+  pod "ComponentKit", :git=> "https://github.com/leavez/componentkit", :branch => "pod", :inhibit_warnings => true
+  pod "CKTableViewTransactionalDataSource", :git=> "https://github.com/leavez/CKTableViewTransactionalDataSource.git", :tag => "0.2"
 
 end
 

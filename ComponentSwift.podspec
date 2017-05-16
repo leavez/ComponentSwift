@@ -34,7 +34,7 @@ TODO: Add long description of the pod here.
   s.private_header_files = 'Sources/private/**/*'
   s.module_map = 'Sources/SupportFiles/CKWrapper.modulemap'
 
-  s.dependency "ComponentKit"
-  s.dependency "CKTableViewTransactionalDataSource"
+  s.dependency "ComponentKit", " ~> 0.20"
+  s.dependency "CKTableViewTransactionalDataSource", " ~> 0.2"
 
 end
