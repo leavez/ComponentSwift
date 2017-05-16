@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'CKWrapper'
+  s.name             = 'ComponentSwift'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of CKWrapper.'
+  s.summary          = 'A short description of ComponentSwift.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/gaojiji@gmail.com/CKWrapper'
+  s.homepage         = 'https://github.com/leavez/ComponentSwift'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT' }
-  s.author           = { 'gaojiji@gmail.com' => 'gaoji@zhihu.com' }
-  s.source           = { :git => 'https://github.com/gaojiji@gmail.com/CKWrapper.git', :tag => s.version.to_s }
+  s.author           = { 'leavez' => 'gaoji@zhihu.com' }
+  s.source           = { :git => 'https://github.com/leavez/ComponentSwift.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'

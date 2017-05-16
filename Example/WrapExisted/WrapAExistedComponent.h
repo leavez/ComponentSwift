@@ -6,7 +6,7 @@
 //
 //
 
-#import <CKWrapper/CKWrapper.h>
+#import <ComponentSwift/ComponentSwift.h>
 
 @interface FadeNetworkImageComponent : CKWCompositeComponent
 

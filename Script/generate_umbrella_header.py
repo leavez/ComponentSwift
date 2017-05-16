@@ -48,7 +48,7 @@ if __name__ == '__main__':
     headerFile = generate_umbrella_header(headers)
 
     # write
-    umbrellaPath = "/SupportFiles/CKWrapper-umbrella.h"
+    umbrellaPath = "/SupportFiles/ComponentSwift-umbrella.h"
     f = open(targetDir + umbrellaPath, "w+")
     f.write(headerFile)
     print("Umbrella header generated!")

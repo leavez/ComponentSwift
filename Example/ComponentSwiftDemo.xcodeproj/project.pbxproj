@@ -15,23 +15,26 @@
 		41D7C9551EABA789004B2DE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D7C9531EABA789004B2DE7 /* Main.storyboard */; };
 		41D7C9571EABA789004B2DE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41D7C9561EABA789004B2DE7 /* Assets.xcassets */; };
 		41D7C95A1EABA789004B2DE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D7C9581EABA789004B2DE7 /* LaunchScreen.storyboard */; };
-		4AF8D20A201D6F044CCD65AF /* Pods_CKWrapperDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AC35486D614045BC417090 /* Pods_CKWrapperDemo.framework */; };
+		DB9B44640DDB3ECBF8DC6DEA /* Pods_ComponentSwiftDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A62A0AC6F6ACBB5BE7BF980 /* Pods_ComponentSwiftDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A62A0AC6F6ACBB5BE7BF980 /* Pods_ComponentSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComponentSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		412FD89B1EAC833300220B36 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		41A051ED1ECA2CCF005E3866 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentProvider.swift; sourceTree = "<group>"; };
-		41D7C94C1EABA789004B2DE7 /* CKWrapperDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CKWrapperDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		41D7C94C1EABA789004B2DE7 /* ComponentSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComponentSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41D7C9511EABA789004B2DE7 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		41D7C9541EABA789004B2DE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41D7C9561EABA789004B2DE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41D7C9591EABA789004B2DE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41D7C95B1EABA789004B2DE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C7C1EE925DC94F63CF1783C /* Pods-ComponentSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComponentSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComponentSwiftDemo/Pods-ComponentSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		7D5928FFF48CDE2EA6014E0F /* Pods-CKWrapperDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CKWrapperDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CKWrapperDemo/Pods-CKWrapperDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		90AC35486D614045BC417090 /* Pods_CKWrapperDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CKWrapperDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E0205C3B11212933F5E4663 /* Pods-CKWrapperDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CKWrapperDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CKWrapperDemo/Pods-CKWrapperDemo.release.xcconfig"; sourceTree = "<group>"; };
+		DC04FA39BEF98E456C9448B7 /* Pods-ComponentSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComponentSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ComponentSwiftDemo/Pods-ComponentSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AF8D20A201D6F044CCD65AF /* Pods_CKWrapperDemo.framework in Frameworks */,
+				DB9B44640DDB3ECBF8DC6DEA /* Pods_ComponentSwiftDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,7 +52,7 @@
 		41D7C9431EABA789004B2DE7 = {
 			isa = PBXGroup;
 			children = (
-				41D7C94E1EABA789004B2DE7 /* CKWrapperDemo */,
+				41D7C94E1EABA789004B2DE7 /* demo */,
 				41D7C94D1EABA789004B2DE7 /* Products */,
 				78536C810D0D7F678146796E /* Pods */,
 				FF27600C7F1DCAB9C27EF878 /* Frameworks */,
@@ -59,12 +62,12 @@
 		41D7C94D1EABA789004B2DE7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				41D7C94C1EABA789004B2DE7 /* CKWrapperDemo.app */,
+				41D7C94C1EABA789004B2DE7 /* ComponentSwiftDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		41D7C94E1EABA789004B2DE7 /* CKWrapperDemo */ = {
+		41D7C94E1EABA789004B2DE7 /* demo */ = {
 			isa = PBXGroup;
 			children = (
 				41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */,
@@ -77,6 +80,7 @@
 				41D7C9581EABA789004B2DE7 /* LaunchScreen.storyboard */,
 				41D7C95B1EABA789004B2DE7 /* Info.plist */,
 			);
+			name = demo;
 			path = CKWrapperDemo;
 			sourceTree = "<group>";
 		};
@@ -85,6 +89,8 @@
 			children = (
 				7D5928FFF48CDE2EA6014E0F /* Pods-CKWrapperDemo.debug.xcconfig */,
 				9E0205C3B11212933F5E4663 /* Pods-CKWrapperDemo.release.xcconfig */,
+				DC04FA39BEF98E456C9448B7 /* Pods-ComponentSwiftDemo.debug.xcconfig */,
+				4C7C1EE925DC94F63CF1783C /* Pods-ComponentSwiftDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -93,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				90AC35486D614045BC417090 /* Pods_CKWrapperDemo.framework */,
+				1A62A0AC6F6ACBB5BE7BF980 /* Pods_ComponentSwiftDemo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -100,9 +107,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		41D7C94B1EABA789004B2DE7 /* CKWrapperDemo */ = {
+		41D7C94B1EABA789004B2DE7 /* ComponentSwiftDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 41D7C95E1EABA789004B2DE7 /* Build configuration list for PBXNativeTarget "CKWrapperDemo" */;
+			buildConfigurationList = 41D7C95E1EABA789004B2DE7 /* Build configuration list for PBXNativeTarget "ComponentSwiftDemo" */;
 			buildPhases = (
 				2142CFEDD4E0BD2943D3AF4D /* [CP] Check Pods Manifest.lock */,
 				41D7C9481EABA789004B2DE7 /* Sources */,
@@ -115,9 +122,9 @@
 			);
 			dependencies = (
 			);
-			name = CKWrapperDemo;
+			name = ComponentSwiftDemo;
 			productName = CKWrapperDemo;
-			productReference = 41D7C94C1EABA789004B2DE7 /* CKWrapperDemo.app */;
+			productReference = 41D7C94C1EABA789004B2DE7 /* ComponentSwiftDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -137,7 +144,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 41D7C9471EABA789004B2DE7 /* Build configuration list for PBXProject "CKWrapperDemo" */;
+			buildConfigurationList = 41D7C9471EABA789004B2DE7 /* Build configuration list for PBXProject "ComponentSwiftDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -150,7 +157,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				41D7C94B1EABA789004B2DE7 /* CKWrapperDemo */,
+				41D7C94B1EABA789004B2DE7 /* ComponentSwiftDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -196,7 +203,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CKWrapperDemo/Pods-CKWrapperDemo-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComponentSwiftDemo/Pods-ComponentSwiftDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5EF6991BA070A0F1FF298175 /* [CP] Embed Pods Frameworks */ = {
@@ -211,7 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CKWrapperDemo/Pods-CKWrapperDemo-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComponentSwiftDemo/Pods-ComponentSwiftDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -346,7 +353,7 @@
 		};
 		41D7C95F1EABA789004B2DE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D5928FFF48CDE2EA6014E0F /* Pods-CKWrapperDemo.debug.xcconfig */;
+			baseConfigurationReference = DC04FA39BEF98E456C9448B7 /* Pods-ComponentSwiftDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = HMURGHE8W3;
@@ -361,7 +368,7 @@
 		};
 		41D7C9601EABA789004B2DE7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9E0205C3B11212933F5E4663 /* Pods-CKWrapperDemo.release.xcconfig */;
+			baseConfigurationReference = 4C7C1EE925DC94F63CF1783C /* Pods-ComponentSwiftDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = HMURGHE8W3;
@@ -377,7 +384,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		41D7C9471EABA789004B2DE7 /* Build configuration list for PBXProject "CKWrapperDemo" */ = {
+		41D7C9471EABA789004B2DE7 /* Build configuration list for PBXProject "ComponentSwiftDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				41D7C95C1EABA789004B2DE7 /* Debug */,
@@ -386,7 +393,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		41D7C95E1EABA789004B2DE7 /* Build configuration list for PBXNativeTarget "CKWrapperDemo" */ = {
+		41D7C95E1EABA789004B2DE7 /* Build configuration list for PBXNativeTarget "ComponentSwiftDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				41D7C95F1EABA789004B2DE7 /* Debug */,

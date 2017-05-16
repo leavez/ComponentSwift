@@ -7,7 +7,7 @@
 //
 
 #import "WrapAExistedComponent.h"
-#import <CKWrapper/CKWrapperSubclass.h>
+#import <ComponentSwift/ComponentSubclass.h>
 #import "CKFadeNetworkImageComponent.h"
 
 @implementation FadeNetworkImageComponent

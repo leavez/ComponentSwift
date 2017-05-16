@@ -1,6 +1,6 @@
-framework module CKWrapper {
-  umbrella header "CKWrapper-umbrella.h"
-  exclude header "CKWrapperSubclass.h"
+framework module ComponentSwift {
+  umbrella header "ComponentSwift-umbrella.h"
+  exclude header "ComponentSubclass.h"
 
   export *
   module * { export * }

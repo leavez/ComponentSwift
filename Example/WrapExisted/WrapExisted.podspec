@@ -15,6 +15,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "http://xxxx/WrapExsitance.git", :tag => "#{s.version}" }
   s.source_files  = "**/*.{h,mm,m}"
   s.private_header_files = 'private/**/*'
-  s.dependency "CKWrapper"
+  s.dependency "ComponentSwift"
 
 end

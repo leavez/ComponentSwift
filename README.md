@@ -81,4 +81,4 @@ pod "ComponentSwift"
 ```
 ## License
 
-CKWrapper is available under the MIT license. 
+ComponentSwift is available under the MIT license. 

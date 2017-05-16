@@ -6,7 +6,7 @@
 //
 //
 
-#import <CKWrapper/CKWrapper.h>
+#import "CKWCompositeComponent.h"
 
 @interface CKWCompositeComponent (State)
 

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CKWrapper
+import ComponentSwift
 import WrapExisted
 
 

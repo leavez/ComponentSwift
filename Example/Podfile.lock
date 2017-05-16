@@ -1,30 +1,30 @@
 PODS:
   - CKTableViewTransactionalDataSource (0.1):
     - ComponentKit (~> 0.2)
-  - CKWrapper (0.1.0):
+  - ComponentKit (0.15.1)
+  - ComponentSwift (0.1.0):
     - CKTableViewTransactionalDataSource
     - ComponentKit
-  - ComponentKit (0.15.1)
   - WrapExisted (0.0.1):
-    - CKWrapper
+    - ComponentSwift
 
 DEPENDENCIES:
-  - CKWrapper (from `../`)
   - ComponentKit
+  - ComponentSwift (from `../`)
   - WrapExisted (from `./WrapExisted`)
 
 EXTERNAL SOURCES:
-  CKWrapper:
+  ComponentSwift:
     :path: "../"
   WrapExisted:
     :path: "./WrapExisted"
 
 SPEC CHECKSUMS:
   CKTableViewTransactionalDataSource: 9f3da988ea8a9d00c68757f95a960e0dee6cf44d
-  CKWrapper: 9b74b783b4975545f22ae1c041d15720a2d5897e
   ComponentKit: beef88630f344efb8344fe40fc6fc7c1732b68c8
-  WrapExisted: c4618076a7ae0401341886755e3e690b5848d2d6
+  ComponentSwift: 44a93a5e17f8f719d909d35d095e18b9b2780fad
+  WrapExisted: 4d1757604e8dae1060d5e4ebe7ccca31f7123c5c
 
-PODFILE CHECKSUM: b5a11d65d0b1b74ef431176439a8970673960f8e
+PODFILE CHECKSUM: 9a2a12293137df326b309932c37066bce4492a71
 
 COCOAPODS: 1.2.1

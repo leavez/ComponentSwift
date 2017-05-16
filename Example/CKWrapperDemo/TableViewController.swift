@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CKWrapper
+import ComponentSwift
 
 class TableViewController: UIViewController, UITableViewDelegate, ComponentProvider {
 

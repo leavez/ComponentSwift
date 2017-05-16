@@ -6,7 +6,7 @@
 //
 //
 
-#import "CKWrapper.h"
+#import "CKWComponent.h"
 @protocol CKWNetworkImageDownloading;
 
 

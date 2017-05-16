@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CKWrapper
+import ComponentSwift
 
 struct Context {
 
