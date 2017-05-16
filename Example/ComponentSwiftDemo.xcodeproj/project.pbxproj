@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EACD3B91ECB1C930086F6DD /* AnimatedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EACD3B81ECB1C930086F6DD /* AnimatedComponent.swift */; };
 		412FD89C1EAC833300220B36 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412FD89B1EAC833300220B36 /* Component.swift */; };
 		41A051EE1ECA2CCF005E3866 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A051ED1ECA2CCF005E3866 /* TableViewController.swift */; };
 		41A051F01ECA2D1D005E3866 /* ComponentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		1A62A0AC6F6ACBB5BE7BF980 /* Pods_ComponentSwiftDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComponentSwiftDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EACD3B81ECB1C930086F6DD /* AnimatedComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedComponent.swift; sourceTree = "<group>"; };
 		412FD89B1EAC833300220B36 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		41A051ED1ECA2CCF005E3866 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentProvider.swift; sourceTree = "<group>"; };
@@ -72,9 +74,10 @@
 			children = (
 				41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */,
 				41D7C9511EABA789004B2DE7 /* CollectionViewController.swift */,
-				41A051ED1ECA2CCF005E3866 /* TableViewController.swift */,
 				41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */,
 				412FD89B1EAC833300220B36 /* Component.swift */,
+				41A051ED1ECA2CCF005E3866 /* TableViewController.swift */,
+				3EACD3B81ECB1C930086F6DD /* AnimatedComponent.swift */,
 				41D7C9531EABA789004B2DE7 /* Main.storyboard */,
 				41D7C9561EABA789004B2DE7 /* Assets.xcassets */,
 				41D7C9581EABA789004B2DE7 /* LaunchScreen.storyboard */,
@@ -228,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EACD3B91ECB1C930086F6DD /* AnimatedComponent.swift in Sources */,
 				41D7C9521EABA789004B2DE7 /* CollectionViewController.swift in Sources */,
 				41A051F01ECA2D1D005E3866 /* ComponentProvider.swift in Sources */,
 				412FD89C1EAC833300220B36 /* Component.swift in Sources */,

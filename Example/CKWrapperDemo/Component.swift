@@ -11,9 +11,10 @@ import ComponentSwift
 import WrapExisted
 
 
-class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol, CKWComponentAnimationProtocol {
+class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
 
     typealias StateType = Bool
+
 
     convenience init?(model:Any) {
 
@@ -64,7 +65,6 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol, CKWC
                         )
                     ])
             )
-
         }
 
     }
@@ -80,15 +80,6 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol, CKWC
             !state
         }, asynchronously: true)
 
-    }
-
-
-    func animationsOnInitialMount() -> [CKWComponentAnimation]? {
-        return nil
-    }
-
-    func animations(fromPreviousComponent previousComponent: Component?) -> [CKWComponentAnimation]? {
-        return nil
     }
 
 }

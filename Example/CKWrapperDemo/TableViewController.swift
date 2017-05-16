@@ -22,7 +22,7 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
         self.tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.tableView.backgroundColor = .orange
 
-        self.datasource = CKWTableViewDatasource(tableView: tableView, componentProvider: Provider.self, context: Context())
+        self.datasource = CKWTableViewDatasource(tableView: tableView, componentProvider: type(of:self), context: Context())
         self.tableView.delegate = self
 
         // add a header
@@ -64,7 +64,7 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
                 ViewAttributeEnum.backgroundColor(.white)
             ),
             component:
-            SwiftComponent(model: 1)
+            AnimatedComponent(model: 0)
         )
     }
 }
