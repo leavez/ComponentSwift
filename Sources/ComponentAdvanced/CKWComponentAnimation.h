@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nonnull instancetype)initWithComponent:(nonnull CKWComponent *)component
                         animation:(nullable CAAnimation *)animation
-                        layerPath:(nullable NSString *)layerPath;
+                        layerPath:(nullable NSString *)layerPath NS_REFINED_FOR_SWIFT;
 
 
 /// `context` in didRemount: The context returned by the willRemount block.

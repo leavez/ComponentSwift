@@ -9,10 +9,11 @@
 #import "CKWComponentAnimation.h"
 #import "CppHeaders.h"
 
+
 /// _CKComponentAnimation have no default initializer, which cannot used as property in Objc class.
 /// so we write a wrapper.
 struct _CKComponentAnimation {
-    _CKComponentAnimation(): inner(CKComponentAnimation(nil, nil)) {};
+    _CKComponentAnimation(): inner(CKComponentAnimation({.willRemount = nil, .didRemount = nil, .cleanup = nil })) {};
     _CKComponentAnimation(CKComponentAnimation real):inner(real){}
     CKComponentAnimation inner;
 };
