@@ -30,9 +30,9 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'Sources/**/*'
-  s.private_header_files = 'Sources/private/**/*'
-  s.module_map = 'Sources/SupportFiles/CKWrapper.modulemap'
+  s.source_files = 'Sources/**/*.{swift,h,m,mm}'
+  s.private_header_files = 'Sources/private/**/*.{swift,h,m,mm}'
+  s.module_map = 'Sources/SupportFiles/ComponentSwift.modulemap'
 
   s.dependency "ComponentKit", " ~> 0.20"
   s.dependency "CKTableViewTransactionalDataSource", " ~> 0.2"

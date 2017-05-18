@@ -16,8 +16,8 @@ class Provider: NSObject, ComponentProvider {
         return CompositeComponent(
             view:
             CKWViewConfiguration(
-                attributeEnums:
-                ViewAttributeEnum.backgroundColor(.white)
+                attributes:
+                A.backgroundColor(.white)
             ),
             component:
             SwiftComponent(model: 1)

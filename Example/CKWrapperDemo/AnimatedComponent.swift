@@ -32,7 +32,6 @@ class AnimatedComponent: CompositeComponent, CKWComponentInitialStateProtocol, C
                 }),
                 viewAttributes:
                 CKWViewAttributeMap(
-                    enums:
                     .tapGesture(#selector(didTap))
                 )
             )
