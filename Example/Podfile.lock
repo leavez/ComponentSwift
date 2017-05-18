@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CKTableViewTransactionalDataSource: 9f3da988ea8a9d00c68757f95a960e0dee6cf44d
   ComponentKit: beef88630f344efb8344fe40fc6fc7c1732b68c8
-  ComponentSwift: 44a93a5e17f8f719d909d35d095e18b9b2780fad
+  ComponentSwift: 365cf8972770cf1b97e8f90e41f906bef229de44
   WrapExisted: 4d1757604e8dae1060d5e4ebe7ccca31f7123c5c
 
 PODFILE CHECKSUM: 9a2a12293137df326b309932c37066bce4492a71

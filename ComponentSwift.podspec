@@ -32,7 +32,7 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'Sources/**/*'
   s.private_header_files = 'Sources/private/**/*'
-  s.module_map = 'Sources/SupportFiles/CKWrapper.modulemap'
+  s.module_map = 'Sources/SupportFiles/ComponentSwift.modulemap'
 
   s.dependency "ComponentKit"
   s.dependency "CKTableViewTransactionalDataSource"
