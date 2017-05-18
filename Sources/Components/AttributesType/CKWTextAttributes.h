@@ -59,7 +59,6 @@
 /**
  A pointer to a function that that returns a custom layout manager subclass. If nil, defaults to NSLayoutManager.
  */
-@property (nonatomic, nullable) NSLayoutManager *(*layoutManagerFactory)(void);
-
+@property (nonatomic, nullable) NSLayoutManager *_Nonnull (*layoutManagerFactory)(void);
 @end
 

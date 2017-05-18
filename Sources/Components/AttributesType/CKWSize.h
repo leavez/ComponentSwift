@@ -32,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, nullable) CKWDimension *maxWidth;
 @property (nonatomic, nullable) CKWDimension *maxHeight;
 
-- (instancetype)init;
 - (instancetype)initWithCGSize:(CGSize)size;
 
 @end
