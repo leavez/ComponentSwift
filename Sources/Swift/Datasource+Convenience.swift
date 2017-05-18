@@ -42,20 +42,13 @@ extension CKWCollectionViewDataSource {
                 supplementaryViewDataSource: CKWSupplementaryViewDataSource? = nil,
                 componentProvider: ComponentProvider.Type,
                 context: Any?,
-                sizeFlexibility: CKWSizeFlexibility ) {
+                sizeFlexibility: CKWSizeFlexibility? = nil ) {
 
-        let sizes = sizeFlexibility.sizeRange()
+        let sizes = (sizeFlexibility ?? CKWSizeFlexibility.flexibleHeight(screenWidth(collectionView)) ).sizeRange()
         self.init(__collectionView: collectionView, supplementaryViewDataSource: supplementaryViewDataSource, componentProvider: componentProvider, context: context, minSize:sizes.min , maxSize:sizes.max)
     }
 
-    public convenience init(collectionView: UICollectionView, componentProvider: ComponentProvider.Type,
-                            context: Any?) {
-
-        let width = UIApplication.shared.delegate?.window??.bounds.width ?? collectionView.bounds.width
-        self.init(collectionView: collectionView, supplementaryViewDataSource: nil, componentProvider: componentProvider, context: context, sizeFlexibility: .flexibleHeight(width))
-    }
-
-    public func apply(changeset: ChangeSet<AnyObject>, asynchronously: Bool, userInfo:[AnyHashable:Any]? = nil) {
+    public func apply(_ changeset: ChangeSet<AnyObject>, asynchronously: Bool, userInfo:[AnyHashable:Any]? = nil) {
         self.__applyChangeset(changeset, asynchronously: asynchronously, userInfo: userInfo)
     }
 
@@ -72,24 +65,24 @@ extension CKWTableViewDatasource {
                 componentProvider: ComponentProvider.Type,
                 context: Any?,
                 cellConfiguration: CKWTableViewCellConfiguration = CKWTableViewCellConfiguration.noAnimationConfig(),
-                sizeFlexibility: CKWSizeFlexibility) {
+                sizeFlexibility: CKWSizeFlexibility? = nil) {
 
 
-        let sizes = sizeFlexibility.sizeRange()
+        let sizes = (sizeFlexibility ?? CKWSizeFlexibility.flexibleHeight(screenWidth(tableView)) ).sizeRange()
         self.init(__tableView: tableView, supplementaryViewDataSource: supplementaryViewDataSource, componentProvider: componentProvider, context: context, cellConfiguration:cellConfiguration, minSize:sizes.min , maxSize:sizes.max)
     }
 
-    public convenience init(tableView: UITableView, componentProvider: ComponentProvider.Type,
-                            context: Any?) {
 
-        let width = UIApplication.shared.delegate?.window??.bounds.width ?? tableView.bounds.width
-        self.init(tableView: tableView, supplementaryViewDataSource: nil, componentProvider: componentProvider, context: context, sizeFlexibility: .flexibleHeight(width))
-    }
-
-    public func apply(changeset: ChangeSet<AnyObject>,
+    public func apply(_ changeset: ChangeSet<AnyObject>,
                       asynchronously: Bool,
                       cellConfiguration:CKWTableViewCellConfiguration? = nil) {
         self.__applyChangeset(changeset, asynchronously: asynchronously, cellConfiguration: cellConfiguration)
     }
+
+
     
+}
+
+private func screenWidth(_ view: UIView) -> CGFloat {
+    return UIApplication.shared.delegate?.window??.bounds.width ?? view.bounds.width
 }

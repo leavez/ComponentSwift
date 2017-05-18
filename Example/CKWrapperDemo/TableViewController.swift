@@ -47,7 +47,7 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
         }
         changeset.insertedItems = insetItem
 
-        self.datasource.apply(changeset: changeset, asynchronously: true)
+        self.datasource.apply(changeset, asynchronously: true)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

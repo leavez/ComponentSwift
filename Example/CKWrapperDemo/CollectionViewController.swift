@@ -43,7 +43,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         changeset.insertedItems = insetItem
 
-        self.datasource.apply(changeset: changeset, asynchronously: true)
+        self.datasource.apply(changeset, asynchronously: true)
 
 
         //        let changeset2 = CKWChangeSet()
