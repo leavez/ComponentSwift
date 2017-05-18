@@ -8,33 +8,6 @@
 
 import Foundation
 
-public typealias ViewAttribute = CKWViewAttribute
-
-public enum ViewAttributeEnum {
-
-    case attribute(CKWViewAttribute, to: Any)
-    case attributeWithValue(CKWViewAttributeValueType)
-
-    // convenience
-    case set(Selector, to:Any)
-    case setLayer(Selector, to:Any)
-    case tapGesture(Selector)
-
-    internal func convert() -> (CKWViewAttributeBase, Any) {
-        switch self {
-        case .attribute(let a, to: let v):
-            return (a, v)
-        case .attributeWithValue(let o):
-            return (o, 0)
-        case .set(let sel, to: let v):
-            return (CKWViewAttribute(sel), v)
-        case .setLayer(let sel, to: let v):
-            return (CKWViewAttribute(layerSetter:sel), v)
-        case .tapGesture(let sel):
-            return (CKWGestureAttribute(tapAction: sel), 0)
-        }
-    }
-}
 
 extension CKWViewAttributeBase {
 
@@ -59,10 +32,10 @@ extension CKWViewAttribute {
 
 extension CKWViewAttributeMap {
 
-    public convenience init(enums: ViewAttributeEnum...) {
-        self.init(enums);
+    public convenience init(_ attributes: Attribute...) {
+        self.init(attributes:attributes);
     }
-    public convenience init(_ attributes: [ViewAttributeEnum] ) {
+    public convenience init(attributes: [Attribute] ) {
         var dict: [CKWViewAttributeBase: Any] = [:]
         attributes.forEach {
             let keyValue = $0.convert()
@@ -78,31 +51,26 @@ extension CKWViewAttributeMap {
 
 extension CKWViewConfiguration {
 
-    public convenience init(_ cls: AnyClass?, attributes:CKWViewAttributeMap? = nil) {
-        self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: attributes)
+    public convenience init(_ cls: AnyClass?, attributeMap: CKWViewAttributeMap? = nil) {
+        self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: attributeMap)
     }
 
-    public convenience init(_ cls: AnyClass?, _ attributes:[CKWViewAttributeBase: Any]) {
-        let map = CKWViewAttributeMap(attributes)
+    public convenience init(_ cls: AnyClass?, attributeDictionay: [CKWViewAttributeBase: Any]) {
+        let map = CKWViewAttributeMap(attributeDictionay)
         self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: map)
     }
 
-
-    public convenience init(_ cls: AnyClass = UIView.self, attributeEnums: ViewAttributeEnum... ) {
-        self.init(attributes: attributeEnums)
+    public convenience init(_ cls: AnyClass = UIView.self, attributes: Attribute... ) {
+        self.init(attributes: attributes)
     }
 
-    public convenience init(_ cls: AnyClass = UIView.self, attributes: [ViewAttributeEnum] ) {
+    public convenience init(_ cls: AnyClass = UIView.self, attributes: [Attribute] ) {
         var dict: [CKWViewAttributeBase: Any] = [:]
         attributes.forEach {
             let keyValue = $0.convert()
             dict[keyValue.0] = keyValue.1
         }
         self.init(viewClass: CKWViewClass(cls), viewAttributeMap: CKWViewAttributeMap(dict))
-    }
-
-    public static func config(_ cls: AnyClass = UIView.self, attributes: ViewAttributeEnum...) -> CKWViewConfiguration {
-        return CKWViewConfiguration(cls, attributes: attributes)
     }
 }
 

@@ -35,11 +35,10 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
                             Component(
                                 view:
                                 CKWViewConfiguration(
-                                    UIView.self,
-                                    attributeEnums:
+                                    attributes:
                                     .set(#selector(setter:UIView.backgroundColor), to: UIColor.brown),
                                     .roundCorner(raidus: 30),
-                                    .masksToBounds(),
+                                    .clipsToBounds(true),
                                     .tapGesture(#selector(didTap))
                                 ),
                                 size:.size(60, 60)
@@ -55,7 +54,6 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
                                 }),
                                 viewAttributes:
                                 CKWViewAttributeMap(
-                                    enums:
                                     .tapGesture(#selector(didTap))
                                 )
 

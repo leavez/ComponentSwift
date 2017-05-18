@@ -60,8 +60,8 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
         return CompositeComponent(
             view:
             CKWViewConfiguration(
-                attributeEnums:
-                ViewAttributeEnum.backgroundColor(.white)
+                attributes:
+                A.backgroundColor(.white)
             ),
             component:
             AnimatedComponent(model: 0)
