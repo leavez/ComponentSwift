@@ -13,4 +13,5 @@
 #import <ComponentKit/ComponentKit.h>
 #import "CKWCompositeComponent.h"
 #import "CKWObject+Convert.h"
+#import "CKWComponentInner.h"
 #import "macro.h"
