@@ -44,11 +44,11 @@ if __name__ == '__main__':
             headers.append(file_name)
         
     traverse_dir(targetDir, find_header_file)
-    headers = filter(lambda h: "umbrella" not in h and "Subclass" not in h , headers)
+    headers = filter(lambda h: "umbrella" not in h and "Subclass" not in h and "ComponentSwift.h" != h, headers)
     headerFile = generate_umbrella_header(headers)
 
     # write
-    umbrellaPath = "/SupportFiles/ComponentSwift-umbrella.h"
+    umbrellaPath = "/SupportFiles/ComponentSwift.h"
     f = open(targetDir + umbrellaPath, "w+")
     f.write(headerFile)
     print("Umbrella header generated!")

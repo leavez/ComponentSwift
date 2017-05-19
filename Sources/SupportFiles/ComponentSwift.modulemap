@@ -1,5 +1,5 @@
 framework module ComponentSwift {
-  umbrella header "ComponentSwift-umbrella.h"
+  umbrella header "ComponentSwift.h"
   exclude header "ComponentSubclass.h"
 
   export *

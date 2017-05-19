@@ -11,7 +11,6 @@
 #endif
 #endif
 
-#import "ComponentSwift.h"
 #import "CKWComponentAnimation.h"
 #import "CKWCompositeComponent+State.h"
 #import "CKWScope.h"
