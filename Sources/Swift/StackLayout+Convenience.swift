@@ -5,71 +5,97 @@
 //  Created by Gao on 20/05/2017.
 //
 //
-import Foundation
-
 
 public protocol StackLayoutChildType {
+    var toChild: StackLayoutChild? {get}
 }
+
 extension Component: StackLayoutChildType {
+    public var toChild: StackLayoutChild? {
+        return StackLayoutChild().build({
+            $0.component = self
+        })
+    }
 }
 extension StackLayoutChild: StackLayoutChildType {
-}
-
-extension StackLayoutChildType  {
-
-    func convertToStackChild() -> StackLayoutChild? {
-        switch self {
-        case let child as StackLayoutChild:
-            return child
-        case let component as Component:
-            let child = StackLayoutChild()
-            child.component = component
-            return child
-        case _:
-            return nil
-        }
+    public var toChild: StackLayoutChild? {
+        return self
     }
 }
 
 
-
 public class VerticalStackComponnet: StackLayoutComponent {
 
-    public init(_ children:StackLayoutChildType?...) {
+    public convenience init(_ children:StackLayoutChildType?...) {
+        self.init(style: nil, children: children)
+    }
+    public convenience init(style: StackLayoutStyle?, children:StackLayoutChildType?...) {
+        self.init(style: style, children: children)
+    }
+    public init(style: StackLayoutStyle?, children:[StackLayoutChildType?]) {
 
+        style?.direction = .vertical
         super.init(
-            __view:nil, size:nil,
-            style:CKWStackLayoutStyle().build({
-                $0.direction = .vertical
-            }),
-            children: children.flatMap{ $0?.convertToStackChild() }
+            __view:nil, size:nil, style:style,
+            children: children.flatMap{ $0?.toChild }
         )
     }
 }
 public class HorizontalStackComponnet: StackLayoutComponent {
 
-    public init(_ children:StackLayoutChildType?...) {
+    public convenience init(_ children:StackLayoutChildType?...) {
+        self.init(style: nil, children: children)
+    }
+    public convenience init(style: StackLayoutStyle?, children:StackLayoutChildType?...) {
+        self.init(style: style, children: children)
+    }
+    public init(style: StackLayoutStyle?, children:[StackLayoutChildType?]) {
 
+        style?.direction = .horizontal
         super.init(
-            __view:nil, size:nil,
-            style:CKWStackLayoutStyle().build({
-                $0.direction = .horizontal
-            }),
-            children: children.flatMap{ $0?.convertToStackChild() }
+            __view:nil, size:nil, style:style,
+            children: children.flatMap{ $0?.toChild }
         )
     }
 }
 
-extension Component {
-    public var stackLayoutChild: StackLayoutChild {
-        let c = StackLayoutChild()
-        c.component = self
-        return c
+
+
+
+public typealias StackLayoutStyle = CKWStackLayoutStyle
+public typealias StackLayoutChild = CKWStackLayoutChild
+
+///
+/// provide a way of typing:
+///
+/// ```
+///    let style = StackLayoutStyle()
+///                .direction(.vertical)
+///                .spacing(5)
+///
+/// ```
+extension StackLayoutStyle {
+
+    public func direction(_ v: CKWStackLayoutDirection) -> StackLayoutStyle {
+        self.direction = v
+        return self
+    }
+    public func spacing(_ v: CGFloat) -> StackLayoutStyle {
+        self.spacing = v
+        return self
+    }
+    public func justifyContent(_ v: CKWStackLayoutJustifyContent) -> StackLayoutStyle {
+        self.justifyContent = v
+        return self
+    }
+    public func alignItems(_ v: CKWStackLayoutAlignItems) -> StackLayoutStyle {
+        self.alignItems = v
+        return self
     }
 }
 
 
-struct Child {
+extension StackLayoutChild {
 
     public func spacingBefore(_ v: CGFloat) -> StackLayoutChild {
         self.spacingBefore = v
@@ -97,6 +123,23 @@ struct Child {
     }
 }
 
+/**
 
+ ```
+    TextComponent(
+        /// ...
+    ).stackLayoutChild
+        .flexGrow(true)
+        .flexShrink(true)
+
+ ```
+ */
+extension Component {
+    public var stackLayoutChild: StackLayoutChild {
+        let c = StackLayoutChild()
+        c.component = self
+        return c
+    }
+}
 
 

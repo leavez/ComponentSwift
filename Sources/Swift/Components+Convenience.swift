@@ -67,7 +67,6 @@ extension StackLayoutComponent {
     }
 }
 
-public typealias StackLayoutChild = CKWStackLayoutChild
 
 extension CKWStackLayoutChild {
 

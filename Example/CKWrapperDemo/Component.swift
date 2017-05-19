@@ -26,7 +26,11 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
                            component:
 
                 HorizontalStackComponnet(
+                    style:
+                    StackLayoutStyle()
+                        .spacing(5),
 
+                    children:
                     Component(
                         view:
                         CKWViewConfiguration(
