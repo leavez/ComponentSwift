@@ -25,43 +25,35 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
             InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
                            component:
 
-                StackLayoutComponent(
-                    style: CKWStackLayoutStyle().build({
-                        $0.spacing = 20
-                        $0.direction = .horizontal
-                    }), children:[
+                HorizontalStackComponnet(
 
-                        StackLayoutChild(
-                            Component(
-                                view:
-                                CKWViewConfiguration(
-                                    attributes:
-                                    .set(#selector(setter:UIView.backgroundColor), to: UIColor.brown),
-                                    .roundCorner(raidus: 30),
-                                    .clipsToBounds(true),
-                                    .tapGesture(#selector(didTap))
-                                ),
-                                size:.size(60, 60)
-                            )
+                    Component(
+                        view:
+                        CKWViewConfiguration(
+                            attributes:
+                            .set(#selector(setter:UIView.backgroundColor), to: UIColor.brown),
+                            .roundCorner(raidus: 30),
+                            .clipsToBounds(true),
+                            .tapGesture(#selector(didTap))
                         ),
+                        size:.size(60, 60)
+                    ),
 
-                        StackLayoutChild(
-                            TextComponent(
-                                CKWTextAttributes().build({
-                                    $0.attributedString = getText()
-                                    $0.maximumNumberOfLines = state ? 0 : 4
-                                    $0.truncationAttributedString = NSAttributedString(string:"...")
-                                }),
-                                viewAttributes:
-                                CKWViewAttributeMap(
-                                    .tapGesture(#selector(didTap))
-                                )
-
-                            ),
-                            flexGrow: true,
-                            flexShrink: true
+                    TextComponent(
+                        CKWTextAttributes().build({
+                            $0.attributedString = getText()
+                            $0.maximumNumberOfLines = state ? 0 : 4
+                            $0.truncationAttributedString = NSAttributedString(string:"...")
+                        }),
+                        viewAttributes:
+                        CKWViewAttributeMap(
+                            .tapGesture(#selector(didTap))
                         )
-                    ])
+
+                    ).stackLayoutChild
+                        .flexGrow(true)
+                        .flexShrink(true)
+                )
             )
         }
 
