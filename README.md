@@ -41,13 +41,13 @@ or try real demo with `pod try ComponentSwift`
 - [x] Datasource: 
   - CollectionViewTransitionalDatasource
   - TableViewTransitionalDatasource (unofficial) 
+  - HostingView
 - [x] Response Chain and Actions
 - [x] Scope and State
 - [x] Animation
 
 
 #### Not support:
-- [ ] hosting view (not yet)
 - [ ] component controller
 - [ ] StaticLayoutComponent and StatefulViewComponent
 - [ ] ...
