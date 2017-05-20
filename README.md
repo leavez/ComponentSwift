@@ -1,4 +1,6 @@
-# ComponentSwift
+
+<p align="center"><img src="/etc/logo.png" width="512"></p>
+
 [![Swift](https://img.shields.io/badge/swift-3-orange.svg?style=flat)](#)
 [![License](https://img.shields.io/cocoapods/l/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
 [![Platform](https://img.shields.io/cocoapods/p/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
