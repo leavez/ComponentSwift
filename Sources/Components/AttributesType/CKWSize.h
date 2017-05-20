@@ -35,4 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithCGSize:(CGSize)size;
 
 @end
+
+struct CGSizeRange {
+    CGSize min;
+    CGSize max;
+};
+typedef struct CGSizeRange CGSizeRange;
+
 NS_ASSUME_NONNULL_END

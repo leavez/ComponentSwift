@@ -33,6 +33,7 @@
 #import "CKWChangeSet.h"
 #import "CKWCollectionViewDataSource.h"
 #import "CKWComponentProvider.h"
+#import "CKWHostingView.h"
 #import "CKWTableViewDatasource.h"
 
 FOUNDATION_EXPORT double CKWrapperVersionNumber;
