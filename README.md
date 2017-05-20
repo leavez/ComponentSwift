@@ -21,7 +21,7 @@ class DemoComponent: CompositeComponent {
         super.init(
             view:
             CKWViewConfiguration(
-                attributeEnums:
+                attributes:
                 .backgroundColor(.gray),
                 .tapGesture(#selector(didTapSelf))
             ),
