@@ -28,7 +28,7 @@
         Class provider = componentProvider;
         NSAssert([provider isSubclassOfClass:[NSObject class]], @"%@ should be sublcass of NSObject", NSStringFromClass(provider));
 
-        let castedComponentProviderClass = (Class<CKComponentProvider>)componentProvider;
+        let castedComponentProviderClass = (Class<CKComponentProvider>)provider;
         let castedSupplementary = (id<CKSupplementaryViewDataSource>)supplementaryViewDataSource; // force cast
 
         let config = [[CKTransactionalComponentDataSourceConfiguration alloc]
