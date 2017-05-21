@@ -8,9 +8,6 @@
 
 import Foundation
 
-extension ChangeSet: Builder {
-}
-
 public enum CKWSizeFlexibility {
     case none(CGFloat, CGFloat) // parameter is the fixed width, height
     case flexibleWidth(CGFloat)  // parameter is the fixed height
@@ -48,7 +45,7 @@ extension CKWCollectionViewDataSource {
         self.init(__collectionView: collectionView, supplementaryViewDataSource: supplementaryViewDataSource, componentProvider: componentProvider, context: context, minSize:sizes.min , maxSize:sizes.max)
     }
 
-    public func apply(_ changeset: ChangeSet<AnyObject>, asynchronously: Bool, userInfo:[AnyHashable:Any]? = nil) {
+    public func apply(_ changeset: ChangeSet, asynchronously: Bool, userInfo:[AnyHashable:Any]? = nil) {
         self.__applyChangeset(changeset, asynchronously: asynchronously, userInfo: userInfo)
     }
 
@@ -73,7 +70,7 @@ extension CKWTableViewDatasource {
     }
 
 
-    public func apply(_ changeset: ChangeSet<AnyObject>,
+    public func apply(_ changeset: ChangeSet,
                       asynchronously: Bool,
                       cellConfiguration:CKWTableViewCellConfiguration? = nil) {
         self.__applyChangeset(changeset, asynchronously: asynchronously, cellConfiguration: cellConfiguration)
