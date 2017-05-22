@@ -61,7 +61,7 @@ extension CKWViewConfiguration {
     }
 
     public convenience init(_ cls: AnyClass = UIView.self, attributes: Attribute... ) {
-        self.init(attributes: attributes)
+        self.init(cls, attributes: attributes)
     }
 
     public convenience init(_ cls: AnyClass = UIView.self, attributes: [Attribute] ) {
