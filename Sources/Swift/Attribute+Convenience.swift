@@ -80,10 +80,10 @@ extension Attribute {
     public static func tintAdjustmentMode(_ v: UIViewTintAdjustmentMode) -> Attribute {
         return .set(#selector(setter: UIView.tintAdjustmentMode), to: v)
     }
-    public static func isUserInteractionEnabled(_ v: Int) -> Attribute {
+    public static func isUserInteractionEnabled(_ v: Bool) -> Attribute {
         return .set(#selector(setter: UIView.isUserInteractionEnabled), to: v)
     }
-    public static func isExclusiveTouch(_ v: Int) -> Attribute {
+    public static func isExclusiveTouch(_ v: Bool) -> Attribute {
         return .set(#selector(setter: UIView.isExclusiveTouch), to: v)
     }
     public static func autoresizingMask(_ v: UIViewAutoresizing) -> Attribute {
