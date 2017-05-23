@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// for CKRelativeDimension.
-NS_SWIFT_NAME(Dimension)
+NS_SWIFT_NAME(LayoutDimension)
 @interface CKWDimension : NSObject
 - (instancetype)init; //Auto
 - (instancetype)initWithPoint:(CGFloat)p;
@@ -22,7 +22,7 @@ NS_SWIFT_NAME(Dimension)
 
 
 
-NS_SWIFT_NAME(Size)
+NS_SWIFT_NAME(LayoutSize)
 @interface CKWSize : NSObject
 
 @property (nonatomic, nullable) CKWDimension *width;

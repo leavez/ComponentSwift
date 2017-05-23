@@ -110,7 +110,7 @@ extension StackLayoutChild {
         self.flexShrink = v
         return self
     }
-    public func flexBasis(_ v: Dimension?) -> StackLayoutChild {
+    public func flexBasis(_ v: LayoutDimension?) -> StackLayoutChild {
         self.flexBasis = v
         return self
     }

@@ -44,9 +44,6 @@ extension ViewAttributeMap {
         }
         self.init(dict)
     }
-
-//    public init(dictionaryLiteral elements: (Self.Key, Self.Value)...)
-
 }
 
 
@@ -76,32 +73,32 @@ extension ViewConfiguration {
 }
 
 
-extension ComponentSwift.Dimension: ExpressibleByFloatLiteral {
+extension LayoutDimension: ExpressibleByFloatLiteral {
 
     public convenience init(_ value: CGFloat) {
         self.init(point: value)
     }
-    public static func p(_ value: CGFloat) -> ComponentSwift.Dimension {
-        return ComponentSwift.Dimension(point: value)
+    public static func p(_ value: CGFloat) -> LayoutDimension {
+        return LayoutDimension(point: value)
     }
-    public static func percent(_ value: CGFloat) -> ComponentSwift.Dimension {
-        return ComponentSwift.Dimension(percent: value)
+    public static func percent(_ value: CGFloat) -> LayoutDimension {
+        return LayoutDimension(percent: value)
     }
 }
 
 
 
-extension Size {
+extension LayoutSize {
 
     public convenience init(size: CGSize) {
         self.init(cgSize: size)
     }
-    public convenience init(width: ComponentSwift.Dimension? = nil,
-                     height:ComponentSwift.Dimension? = nil,
-                     minWidth: ComponentSwift.Dimension? = nil,
-                     maxWidth: ComponentSwift.Dimension? = nil,
-                     minHeight: ComponentSwift.Dimension? = nil,
-                     maxHeight: ComponentSwift.Dimension? = nil) {
+    public convenience init(width: LayoutDimension? = nil,
+                     height:LayoutDimension? = nil,
+                     minWidth: LayoutDimension? = nil,
+                     maxWidth: LayoutDimension? = nil,
+                     minHeight: LayoutDimension? = nil,
+                     maxHeight: LayoutDimension? = nil) {
         self.init()
         self.width = width
         self.height = height
@@ -138,31 +135,31 @@ extension Size {
     }
 
     public convenience init(size: CGSize,
-                     minWidth: ComponentSwift.Dimension? = nil,
-                     maxWidth: ComponentSwift.Dimension? = nil,
-                     minHeight: ComponentSwift.Dimension? = nil,
-                     maxHeight: ComponentSwift.Dimension? = nil) {
+                     minWidth: LayoutDimension? = nil,
+                     maxWidth: LayoutDimension? = nil,
+                     minHeight: LayoutDimension? = nil,
+                     maxHeight: LayoutDimension? = nil) {
         self.init()
         self.width = .p(size.width)
         self.height = .p(size.height)
         self.minWidth = minWidth
-        self.maxWidth = maxWidth
+        self.maxWidth = maxWidth 
         self.minHeight = minHeight
         self.maxHeight = maxHeight
     }
 
-    public static func size(_ size: CGSize) -> Size {
-        return Size(cgSize: size)
+    public static func size(_ size: CGSize) -> LayoutSize {
+        return LayoutSize(cgSize: size)
     }
-    public static func size(_ width: CGFloat, _ height: CGFloat) -> Size {
-        return Size(cgSize: CGSize(width: width, height: height))
+    public static func size(_ width: CGFloat, _ height: CGFloat) -> LayoutSize {
+        return LayoutSize(cgSize: CGSize(width: width, height: height))
     }
-    public static func height(_ h: CGFloat) -> Size {
+    public static func height(_ h: CGFloat) -> LayoutSize {
         let s = self.init()
         s.height = .p(h)
         return s
     }
-    public static func width(_ w: CGFloat) -> Size {
+    public static func width(_ w: CGFloat) -> LayoutSize {
         let s = self.init()
         s.width = .p(w)
         return s

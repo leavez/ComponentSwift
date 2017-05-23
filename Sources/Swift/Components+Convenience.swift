@@ -15,7 +15,7 @@ extension CenterLayoutComponent {
 
     public convenience init?(centering: CenterLayoutComponentCenteringOptions = .XY,
                              sizing: CenterLayoutComponentSizingOptions = .minimumXY,
-                             child: Component?, size: Size? = nil) {
+                             child: Component?, size: LayoutSize? = nil) {
       self.init(__centeringOptions: centering, sizingOptions: sizing, child: child, size: size)
     }
 }
@@ -25,7 +25,7 @@ extension TextComponent {
     public convenience init(_ textAttributes: TextAttributes,
                             viewAttributes: ViewAttributeMap? = nil,
                             options: TextComponentOptions? = nil,
-                            size: Size? = nil) {
+                            size: LayoutSize? = nil) {
         self.init(__textAttributes: textAttributes, viewAttributes: viewAttributes, options: options, size: size)
     }
 }
@@ -52,14 +52,14 @@ extension TextAttributes {
 extension StackLayoutComponent {
 
     public convenience init(view: ViewConfiguration? = nil,
-                            size: Size? = nil,
+                            size: LayoutSize? = nil,
                             style: StackLayoutStyle? = nil,
                             children: [StackLayoutChild?] )
     {
         self.init(__view:view, size:size, style:style, children:children.flatMap{ $0 })
     }
     public convenience init(view: ViewConfiguration? = nil,
-                            size: Size? = nil,
+                            size: LayoutSize? = nil,
                             style: StackLayoutStyle? = nil,
                             childrenComponents: [Component?] )
     {
@@ -75,7 +75,7 @@ extension StackLayoutChild {
                             spacingBefore: CGFloat = 0,
                             flexGrow: Bool = false,
                             flexShrink: Bool = false,
-                            flexBasis: ComponentSwift.Dimension? = nil,
+                            flexBasis: LayoutDimension? = nil,
                             alignSelf: ComponentSwift.StackLayoutAlignSelf = .auto) {
         guard let component = component else {
             return nil
@@ -108,7 +108,7 @@ extension ButtonComponnet {
                             selected: Bool = false,
                             enabled: Bool = false,
                             action: Selector?,
-                            size: Size? = nil,
+                            size: LayoutSize? = nil,
                             attributes: ViewAttributeMap? = nil,
                             accessibilityLabel: String? = nil) {
 
@@ -149,7 +149,7 @@ extension NetworkImageComponnet {
     public convenience init(url: URL?,
                             imageDownloader: NetworkImageDownloading,
                             scenePath: Any?,
-                            size: Size?,
+                            size: LayoutSize?,
                             placeholderImage: UIImage?,
                             cropRect: CGRect?,
                             attributes: ViewAttributeMap?) {
@@ -158,7 +158,7 @@ extension NetworkImageComponnet {
 
     public convenience init(url: URL?,
                             imageDownloader: NetworkImageDownloading,
-                            size: Size? = nil,
+                            size: LayoutSize? = nil,
                             placeholderImage: UIImage? = nil,
                             attributes: ViewAttributeMap? = nil) {
         self.init(__url: url, imageDownloader: imageDownloader, scenePath: nil, size: size, placeholderImage: placeholderImage, cropRect: .zero, attributes: attributes)
