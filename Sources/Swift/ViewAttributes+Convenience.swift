@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import ComponentSwift.CKWSize
-
 
 extension ViewAttributeBase {
 

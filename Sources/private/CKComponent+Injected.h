@@ -7,14 +7,14 @@
 //
 
 #import <ComponentKit/ComponentKit.h>
-#import "CKWComponent.h"
+#import "CSComponent.h"
 
 @interface CKComponent(Injected)
 
-@property (nonatomic, readonly) CKWComponent *wrapper;
+@property (nonatomic, readonly) CSComponent *wrapper;
 
-- (void)setWrapperStrongly:(CKWComponent *)wrapper;
-- (void)setWrapperWeakly:(CKWComponent *)wrapper;
+- (void)setWrapperStrongly:(CSComponent *)wrapper;
+- (void)setWrapperWeakly:(CSComponent *)wrapper;
 
 - (id)nextResponderSkippedWrapper;
 

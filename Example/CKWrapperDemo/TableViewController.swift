@@ -51,7 +51,7 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
     }
 
 
-    static func ckwComponent(forModel model: Any, context: Any?) -> Component? {
+    static func csComponent(forModel model: Any, context: Any?) -> Component? {
 
         return CompositeComponent(
             view:

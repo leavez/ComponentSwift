@@ -12,7 +12,7 @@
 
 @implementation FadeNetworkImageComponent
 
--(instancetype)initWithURL:(NSURL *)url imageDownloader:(id<CKNetworkImageDownloading>)imageDownloader scenePath:(id)scenePath size:(CKWSize *)size placeholderImage:(UIImage *)placeholderImage attributes:(CKWViewAttributeMap *)attributes endurance:(NSTimeInterval)endurance transitionDuration:(NSTimeInterval)transitionDuration
+-(instancetype)initWithURL:(NSURL *)url imageDownloader:(id<CKNetworkImageDownloading>)imageDownloader scenePath:(id)scenePath size:(CSSize *)size placeholderImage:(UIImage *)placeholderImage attributes:(CSViewAttributeMap *)attributes endurance:(NSTimeInterval)endurance transitionDuration:(NSTimeInterval)transitionDuration
 {
     CKComponent *component = [CKFadeNetworkImageComponent
                               newWithURL:url
