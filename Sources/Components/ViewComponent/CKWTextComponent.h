@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, CKWAsyncLayerDisplayMode) {
     CKWAsyncLayerDisplayModeAlwaysSync,
 };
 
+NS_SWIFT_NAME(TextComponentOptions)
 @interface CKWTextComponentOptions : CKWCreatorBase
 /**
  Controls if rendering should be done synchronously or async

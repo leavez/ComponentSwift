@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CKWComponentProvider.h"
 #import "CKWChangeSet.h"
+NS_SWIFT_NAME(TableViewSupplementaryDataSource)
 @protocol CKWTableViewSupplementaryDataSource;
 @class CKWTableViewCellConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
+NS_SWIFT_NAME(TableViewDatasource)
 @interface CKWTableViewDatasource : NSObject
 
 @property (readonly, nonatomic) UITableView *tableView;
@@ -84,6 +86,7 @@ typedef void(*CKWTableViewCellConfigurationFunction)(UITableViewCell *cell, NSIn
  CKTableViewTransactionalDataSource always returns a copy from its -cellConfiguration
  property. Mutate the copy and pass it in an update operation to override the default.
  */
+NS_SWIFT_NAME(TableViewCellConfiguration)
 @interface CKWTableViewCellConfiguration : NSObject
 
 @property (nonatomic, assign) UITableViewRowAnimation animationRowInsert;
@@ -98,7 +101,7 @@ typedef void(*CKWTableViewCellConfigurationFunction)(UITableViewCell *cell, NSIn
 
 @end
 
-
+NS_SWIFT_NAME(TableViewSupplementaryDataSource)
 @protocol CKWTableViewSupplementaryDataSource <NSObject>
 @optional
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;

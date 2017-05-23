@@ -11,7 +11,7 @@ import ComponentSwift
 import WrapExisted
 
 
-class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
+class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
 
     typealias StateType = Bool
 
@@ -33,7 +33,7 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
                     children:
                     Component(
                         view:
-                        CKWViewConfiguration(
+                        ViewConfiguration(
                             attributes:
                             .set(#selector(setter:UIView.backgroundColor), to: UIColor.brown),
                             .roundCorner(raidus: 30),
@@ -44,13 +44,13 @@ class SwiftComponent: CompositeComponent, CKWComponentInitialStateProtocol {
                     ),
 
                     TextComponent(
-                        CKWTextAttributes().build({
+                        TextAttributes().build({
                             $0.attributedString = getText()
                             $0.maximumNumberOfLines = state ? 0 : 4
                             $0.truncationAttributedString = NSAttributedString(string:"...")
                         }),
                         viewAttributes:
-                        CKWViewAttributeMap(
+                        ViewAttributeMap(
                             .tapGesture(#selector(didTap))
                         )
 

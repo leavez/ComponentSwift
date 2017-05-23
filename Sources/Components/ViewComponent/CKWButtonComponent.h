@@ -8,6 +8,7 @@
 
 #import "CKWComponent.h"
 
+NS_SWIFT_NAME(ButtonAttributes)
 @interface CKWButtonAttributes : NSObject
 @property (nonatomic) UIControlState state;
 @property (nonatomic, nullable) NSString *title;

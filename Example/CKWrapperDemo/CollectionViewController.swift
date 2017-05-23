@@ -17,7 +17,7 @@ struct Context {
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    var datasource: CKWCollectionViewDataSource!
+    var datasource: CollectionViewDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.collectionView.backgroundColor = .orange
 
-        self.datasource = CKWCollectionViewDataSource(collectionView: collectionView, componentProvider: Provider.self, context: Context())
+        self.datasource = CollectionViewDataSource(collectionView: collectionView, componentProvider: Provider.self, context: Context())
         self.collectionView.delegate = self
         self.collectionView.reloadData()
 

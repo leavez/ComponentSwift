@@ -10,11 +10,13 @@
 #import "CKWViewAttributes.h"
 
 /// represent CKComponentViewAttributeValue of CK
+NS_SWIFT_NAME(ViewAttributeValueType)
 @interface CKWViewAttributeValueType: CKWViewAttributeBase
 @property (nonatomic, nonnull) CKWViewAttribute *attribute;
 @property (nonatomic, nonnull) id value;
 @end
 
+NS_SWIFT_NAME(GestureAttribute)
 @interface CKWGestureAttribute: CKWViewAttributeValueType
 @property (nonatomic, readonly, nonnull) Class gestureClass;
 @property (nonatomic, readonly, nonnull) SEL action;

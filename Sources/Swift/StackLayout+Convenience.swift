@@ -62,9 +62,6 @@ public class HorizontalStackComponnet: StackLayoutComponent {
 
 
 
-public typealias StackLayoutStyle = CKWStackLayoutStyle
-public typealias StackLayoutChild = CKWStackLayoutChild
-
 ///
 /// provide a way of typing:
 ///
@@ -76,7 +73,7 @@ public typealias StackLayoutChild = CKWStackLayoutChild
 /// ```
 extension StackLayoutStyle {
 
-    public func direction(_ v: CKWStackLayoutDirection) -> StackLayoutStyle {
+    public func direction(_ v: StackLayoutDirection) -> StackLayoutStyle {
         self.direction = v
         return self
     }
@@ -84,11 +81,11 @@ extension StackLayoutStyle {
         self.spacing = v
         return self
     }
-    public func justifyContent(_ v: CKWStackLayoutJustifyContent) -> StackLayoutStyle {
+    public func justifyContent(_ v: StackLayoutJustifyContent) -> StackLayoutStyle {
         self.justifyContent = v
         return self
     }
-    public func alignItems(_ v: CKWStackLayoutAlignItems) -> StackLayoutStyle {
+    public func alignItems(_ v: StackLayoutAlignItems) -> StackLayoutStyle {
         self.alignItems = v
         return self
     }
@@ -113,11 +110,11 @@ extension StackLayoutChild {
         self.flexShrink = v
         return self
     }
-    public func flexBasis(_ v: CKWDimension?) -> StackLayoutChild {
+    public func flexBasis(_ v: Dimension?) -> StackLayoutChild {
         self.flexBasis = v
         return self
     }
-    public func alignSelf(_ v: CKWStackLayoutAlignSelf) -> StackLayoutChild {
+    public func alignSelf(_ v: StackLayoutAlignSelf) -> StackLayoutChild {
         self.alignSelf = v
         return self
     }

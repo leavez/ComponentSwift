@@ -7,6 +7,7 @@
 //
 
 #import "CKWComponent.h"
+NS_SWIFT_NAME(NetworkImageDownloading)
 @protocol CKWNetworkImageDownloading;
 
 
@@ -28,6 +29,7 @@ NS_SWIFT_NAME(NetworkImageComponnet)
 
 
 /** Downloads images for a network image component. */
+NS_SWIFT_NAME(NetworkImageDownloading)
 @protocol CKWNetworkImageDownloading <NSObject>
 @required
 

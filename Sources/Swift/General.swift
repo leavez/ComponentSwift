@@ -19,4 +19,4 @@ extension Builder where Self: AnyObject {
     }
 }
 
-extension CKWCreatorBase : Builder {}
+extension CreatorBase : Builder {}

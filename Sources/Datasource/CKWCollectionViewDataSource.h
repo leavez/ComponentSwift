@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CKWComponentProvider.h"
 #import "CKWChangeSet.h"
+NS_SWIFT_NAME(SupplementaryViewDataSource)
 @protocol CKWSupplementaryViewDataSource;
 
 
 NS_ASSUME_NONNULL_BEGIN
+NS_SWIFT_NAME(CollectionViewDataSource)
 @interface CKWCollectionViewDataSource : NSObject
 
 @property (readonly, nonatomic) UICollectionView *collectionView;
@@ -60,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-
+NS_SWIFT_NAME(SupplementaryViewDataSource)
 @protocol CKWSupplementaryViewDataSource<NSObject>
 
 - (nullable UICollectionReusableView *)collectionView:(UICollectionView *)collectionView

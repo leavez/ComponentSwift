@@ -12,7 +12,7 @@
 typedef NS_ENUM(NSUInteger, CKWStackLayoutDirection) {
     CKWStackLayoutDirectionVertical,
     CKWStackLayoutDirectionHorizontal,
-};
+} NS_SWIFT_NAME(StackLayoutDirection);
 
 /** If no children are flexible, how should this component justify its children in the available space? */
 typedef NS_ENUM(NSUInteger, CKWStackLayoutJustifyContent) {
@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, CKWStackLayoutJustifyContent) {
      On underflow, children are right/bottom-aligned within this component's bounds.
      */
     CKWStackLayoutJustifyContentEnd,
-};
+} NS_SWIFT_NAME(StackLayoutJustifyContent);
 
 typedef NS_ENUM(NSUInteger, CKWStackLayoutAlignItems) {
     /** Align children to start of cross axis */
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, CKWStackLayoutAlignItems) {
     CKWStackLayoutAlignItemsCenter,
     /** Expand children to fill cross axis */
     CKWStackLayoutAlignItemsStretch,
-};
+} NS_SWIFT_NAME(StackLayoutAlignItems);
 
 /**
  Each child may override their parent stack's cross axis alignment.
@@ -55,9 +55,10 @@ typedef NS_ENUM(NSUInteger, CKWStackLayoutAlignSelf) {
     CKWStackLayoutAlignSelfEnd,
     CKWStackLayoutAlignSelfCenter,
     CKWStackLayoutAlignSelfStretch,
-};
+} NS_SWIFT_NAME(StackLayoutAlignSelf);
 
 /// for CKStackLayoutComponentStyle.
+NS_SWIFT_NAME(StackLayoutStyle)
 @interface CKWStackLayoutStyle : CKWCreatorBase
 
 /** Specifies the direction children are stacked in. */
@@ -73,6 +74,7 @@ typedef NS_ENUM(NSUInteger, CKWStackLayoutAlignSelf) {
 
 
 /// for CKStackLayoutComponentChild.
+NS_SWIFT_NAME(StackLayoutChild)
 @interface CKWStackLayoutChild : CKWCreatorBase
 
 @property (nonatomic, nullable) CKWComponent *component;

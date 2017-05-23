@@ -9,10 +9,10 @@
 import UIKit
 import ComponentSwift
 
-class TableViewController: UIViewController, UITableViewDelegate, ComponentProvider {
+class TableViewController: UIViewController, UITableViewDelegate, ComponentProviderProtocol {
 
     let tableView = UITableView()
-    var datasource: CKWTableViewDatasource!
+    var datasource: TableViewDatasource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
         self.tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.tableView.backgroundColor = .orange
 
-        self.datasource = CKWTableViewDatasource(tableView: tableView, componentProvider: type(of:self), context: Context())
+        self.datasource = TableViewDatasource(tableView: tableView, componentProvider: type(of:self), context: Context())
         self.tableView.delegate = self
 
         // add a header
@@ -55,7 +55,7 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
 
         return CompositeComponent(
             view:
-            CKWViewConfiguration(
+            ViewConfiguration(
                 attributes:
                 A.backgroundColor(.white)
             ),

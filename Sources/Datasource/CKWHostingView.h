@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "CKWComponentProvider.h"
 #import "CKWSize.h"
+NS_SWIFT_NAME(HostingViewDelegate)
 @protocol CKWHostingViewDelegate;
 
 
 /** A view that renders a single component. */
 /// for CKComponentHostingView
+NS_SWIFT_NAME(HostingView)
 @interface CKWHostingView : UIView
 
 /** Notified when the view's ideal size (measured by -sizeThatFits:) may have changed. */
@@ -36,6 +38,7 @@
 
 
 
+NS_SWIFT_NAME(HostingViewDelegate)
 @protocol CKWHostingViewDelegate <NSObject>
 @required
 /**

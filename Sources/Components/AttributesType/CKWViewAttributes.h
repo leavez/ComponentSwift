@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - --------------- ViewClass ----------------------
+NS_SWIFT_NAME(ViewClass)
 @interface CKWViewClass : CKWCreatorBase
 
 typedef void (^CKWViewReuseBlock)(UIView *);
@@ -25,8 +26,10 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 
 
 #pragma mark - --------------- ViewAttribute ----------------------
+NS_SWIFT_NAME(ViewAttributeBase)
 @interface CKWViewAttributeBase: CKWCreatorBase <NSCopying>
 @end
+NS_SWIFT_NAME(ViewAttribute)
 @interface CKWViewAttribute: CKWViewAttributeBase
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)initWithSetter:(SEL)setter NS_SWIFT_NAME(init(_:));
@@ -39,6 +42,7 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 
 
 #pragma mark - --------------- AccessibilityTextAttribute ---------------
+NS_SWIFT_NAME(AccessibilityTextAttribute)
 @interface CKWAccessibilityTextAttribute : CKWCreatorBase
 - (instancetype)initWithText:(NSString *)text NS_SWIFT_NAME(init(_:));
 - (instancetype)initWithLazyTextBlock:(NSString *(^)())textBlock NS_SWIFT_NAME(init(_:));
@@ -47,6 +51,7 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 @end
 
 #pragma mark - --------------- AccessibilityContext ---------------
+NS_SWIFT_NAME(AccessibilityContext)
 @interface CKWAccessibilityContext : CKWCreatorBase
 @property (nonatomic, nullable) NSNumber *isAccessibilityElement;
 @property (nonatomic, nullable) CKWAccessibilityTextAttribute *accessibilityLabel;
@@ -55,6 +60,7 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 
 
 #pragma mark - --------------- ViewAttributesMap ---------------
+NS_SWIFT_NAME(ViewAttributeMap)
 @interface CKWViewAttributeMap : CKWCreatorBase
 @property (nonatomic, readonly) NSDictionary<CKWViewAttributeBase *, id> *content;
 - (instancetype)initWithDictionary:(NSDictionary<CKWViewAttributeBase *, id> *)dict NS_SWIFT_NAME(init(_:));
@@ -62,6 +68,7 @@ typedef UIView * _Nonnull(* _Nonnull CKWViewFactoryType)(void);
 
 
 #pragma mark - --------------- ViewConfiguration ---------------
+NS_SWIFT_NAME(ViewConfiguration)
 @interface CKWViewConfiguration : CKWCreatorBase
 @property (nonatomic, nullable) CKWViewClass *cls;;
 @property (nonatomic, nullable) CKWViewAttributeMap *viewAttributeMap;

@@ -10,6 +10,7 @@
 #import "CKWComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
+NS_SWIFT_NAME(ComponentAnimation)
 @interface CKWComponentAnimation: CKWCreatorBase
 
 - (nonnull instancetype)initWithComponent:(nonnull CKWComponent *)component
@@ -26,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-
+NS_SWIFT_NAME(ComponentAnimationProtocol)
 @protocol CKWComponentAnimationProtocol
 
 - (nullable NSArray<CKWComponentAnimation *> *)animationsOnInitialMount;

@@ -8,6 +8,7 @@
 
 #import "CKWComponent.h"
 
+
 typedef NS_OPTIONS(NSUInteger, CKWCenterLayoutComponentCenteringOptions) {
     /** The child is positioned in {0,0} relatively to the layout bounds */
     CKWCenterLayoutComponentCenteringNone = 0,
@@ -17,7 +18,8 @@ typedef NS_OPTIONS(NSUInteger, CKWCenterLayoutComponentCenteringOptions) {
     CKWCenterLayoutComponentCenteringY = 1 << 1,
     /** Convenience option to center both along the X and Y axis */
     CKWCenterLayoutComponentCenteringXY = CKWCenterLayoutComponentCenteringX | CKWCenterLayoutComponentCenteringY
-};
+} NS_SWIFT_NAME(CenterLayoutComponentCenteringOptions);
+
 
 typedef NS_OPTIONS(NSUInteger, CKWCenterLayoutComponentSizingOptions) {
     /** The component will take up the maximum size possible */
@@ -28,7 +30,7 @@ typedef NS_OPTIONS(NSUInteger, CKWCenterLayoutComponentSizingOptions) {
     CKWCenterLayoutComponentSizingOptionMinimumY = 1 << 1,
     /** Convenience option to take up the minimum size along both the X and Y axis */
     CKWCenterLayoutComponentSizingOptionMinimumXY = CKWCenterLayoutComponentSizingOptionMinimumX | CKWCenterLayoutComponentSizingOptionMinimumY,
-};
+} NS_SWIFT_NAME(CenterLayoutComponentSizingOptions);
 
 // for CKCenterLayoutComponent.
 NS_SWIFT_NAME(CenterLayoutComponent)

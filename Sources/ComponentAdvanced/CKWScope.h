@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+NS_SWIFT_NAME(Scope)
 @interface CKWScope : NSObject
 
 - (nonnull instancetype)initWithClass:(Class)cls

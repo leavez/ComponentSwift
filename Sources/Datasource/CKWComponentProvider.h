@@ -9,7 +9,7 @@
 #import "CKWComponent.h"
 
 /// for CKComponentProvider.
-NS_SWIFT_NAME(ComponentProvider)
+NS_SWIFT_NAME(ComponentProviderProtocol)
 @protocol CKWComponentProviderProtocol <NSObject>
 
 + (nullable CKWComponent *)ckwComponentForModel:(nonnull id)model context:(nullable id)context;
