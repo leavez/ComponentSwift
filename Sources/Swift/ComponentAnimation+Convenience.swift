@@ -8,9 +8,7 @@
 
 import Foundation
 
-public typealias ComponentAnimation = CKWComponentAnimation
-
-extension CKWComponentAnimation {
+extension ComponentAnimation {
 
     @nonobjc
     public convenience init(component: Component, animation: CAAnimation?, layerPath: String? = nil) {

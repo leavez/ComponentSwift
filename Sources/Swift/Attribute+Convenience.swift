@@ -10,23 +10,23 @@ import Foundation
 
 public enum Attribute {
 
-    case attribute(CKWViewAttribute, to: Any?)
-    case attributeWithValue(CKWViewAttributeValueType)
+    case attribute(ViewAttribute, to: Any?)
+    case attributeWithValue(ViewAttributeValueType)
 
     // convenience
     case set(Selector, to:Any?)
     case setLayer(Selector, to:Any?)
 
-    internal func convert() -> (CKWViewAttributeBase, Any?) {
+    internal func convert() -> (ViewAttributeBase, Any?) {
         switch self {
         case .attribute(let a, to: let v):
             return (a, v)
         case .attributeWithValue(let o):
             return (o, 0)
         case .set(let sel, to: let v):
-            return (CKWViewAttribute(sel), v)
+            return (ViewAttribute(sel), v)
         case .setLayer(let sel, to: let v):
-            return (CKWViewAttribute(layerSetter:sel), v)
+            return (ViewAttribute(layerSetter:sel), v)
         }
     }
 }
@@ -43,7 +43,7 @@ public typealias A = Attribute
 extension Attribute {
 
     public static func tapGesture(_ selector:Selector) -> Attribute {
-        return .attributeWithValue(CKWGestureAttribute(tapAction: selector))
+        return .attributeWithValue(GestureAttribute(tapAction: selector))
     }
     public static func roundCorner(raidus: CGFloat) -> Attribute {
         return .setLayer(#selector(setter: CALayer.cornerRadius), to: raidus)
@@ -80,10 +80,10 @@ extension Attribute {
     public static func tintAdjustmentMode(_ v: UIViewTintAdjustmentMode) -> Attribute {
         return .set(#selector(setter: UIView.tintAdjustmentMode), to: v)
     }
-    public static func isUserInteractionEnabled(_ v: Int) -> Attribute {
+    public static func isUserInteractionEnabled(_ v: Bool) -> Attribute {
         return .set(#selector(setter: UIView.isUserInteractionEnabled), to: v)
     }
-    public static func isExclusiveTouch(_ v: Int) -> Attribute {
+    public static func isExclusiveTouch(_ v: Bool) -> Attribute {
         return .set(#selector(setter: UIView.isExclusiveTouch), to: v)
     }
     public static func autoresizingMask(_ v: UIViewAutoresizing) -> Attribute {

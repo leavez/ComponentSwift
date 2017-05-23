@@ -7,22 +7,22 @@
 //
 
 #import "CKComponent+Injected.h"
-#import "CKWComponentInner.h"
+#import "CSComponentInner.h"
 #import <objc/runtime.h>
 
 @implementation CKComponent(Injected)
 
-static NSString *key = @"com.ckwrapper.component.warpper";
+static NSString *key = @"com.CSrapper.component.warpper";
 
-- (void)setWrapperStrongly:(CKWComponent *)wrapper {
+- (void)setWrapperStrongly:(CSComponent *)wrapper {
     objc_setAssociatedObject(self, &key, wrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)setWrapperWeakly:(CKWComponent *)wrapper {
+- (void)setWrapperWeakly:(CSComponent *)wrapper {
     objc_setAssociatedObject(self, &key, wrapper, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (CKWComponent *)wrapper {
+- (CSComponent *)wrapper {
     return objc_getAssociatedObject(self, &key);
 }
 

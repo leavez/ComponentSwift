@@ -1,7 +1,10 @@
-# ComponentSwift
-[![Swift](https://img.shields.io/badge/swift-3-orange.svg?style=flat)](#)
-[![License](https://img.shields.io/cocoapods/l/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
+
+<p align="center"><img src="/etc/logo.png" width="512"></p>
+
 [![Platform](https://img.shields.io/cocoapods/p/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
+[![Swift](https://img.shields.io/badge/swift-3-orange.svg?style=flat)](#)
+[![Build Status](https://travis-ci.org/leavez/ComponentSwift.svg?branch=master)](https://travis-ci.org/leavez/ComponentSwift)
+
 
 ComponentSwift brings ComponentKit to swift.
 
@@ -12,18 +15,18 @@ ComponentSwift is an objc wrapper of ComponentKit and refined for swift. Compone
 ### Example
 
 ```Swift
-class DemoComponent: CompositeComponent {
+class CellComponent: CompositeComponent {
 
     init?(text: String) {
         super.init(
             view:
-            CKWViewConfiguration(
-                attributeEnums:
+            ViewConfiguration(
+                attributes:
                 .backgroundColor(.gray),
                 .tapGesture(#selector(didTapSelf))
             ),
             component:
-            InnerComponent(text)
+            getAnotherComponent(text) //
     }
 // ...
 
@@ -36,17 +39,17 @@ or try real demo with `pod try ComponentSwift`
   -  almost all build-in components. 
   -  ability to wrap an an existed CKComponent on your own
 - [x] Datasource: 
-  - CollectionViewTransitionalDatasource
-  - TableViewTransitionalDatasource (unofficial) 
+  - CollectionViewTransactionalDatasource
+  - TableViewTransactionalDatasource (unofficial) 
+  - HostingView
 - [x] Response Chain and Actions
 - [x] Scope and State
 - [x] Animation
 
 
 #### Not support:
-- [ ] hosting view (not yet)
 - [ ] component controller
-- [ ] StaticLayoutComponent and StatefulViewComponent
+- [ ] StaticLayoutComponent and StatefulViewComponent (not yet)
 - [ ] ...
 
 
@@ -54,7 +57,7 @@ or try real demo with `pod try ComponentSwift`
 
 Legacy CKComponent classes could continue to work in swift when using ComponentSwift. Classes and methods are provided to wrap your legacy components conveniently. Every attributes in ComponentKit have an equivalent in ComponentSwift. 
 
-Subclass `CKWCompositeComponent` and use `initWithCKComponent` in its implementation. Import `ComponentSubclass.h` to use this stuff. Reference more from `WrapExisted` in the demo project.
+Subclass `CSCompositeComponent` and use `initWithCKComponent` in its implementation. Import `ComponentSubclass.h` to use this stuff. Reference more from `WrapExisted` in the demo project.
 
 ## TLDR
 ComponentKit is implemented and used with objc++, which is pretty cool. It's incompatible with swift, since swift doesn't support objc++. So comes the ComponentSwift.

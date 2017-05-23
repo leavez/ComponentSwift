@@ -8,18 +8,17 @@
 
 import Foundation
 
+extension ViewAttributeBase {
 
-extension CKWViewAttributeBase {
-
-    public static func set(_ setter: Selector) -> CKWViewAttribute {
-        return CKWViewAttribute(setter)
+    public static func set(_ setter: Selector) -> ViewAttribute {
+        return ViewAttribute(setter)
     }
-    public static func setLayer(_ setter: Selector) -> CKWViewAttribute {
-        return CKWViewAttribute(layerSetter: setter)
+    public static func setLayer(_ setter: Selector) -> ViewAttribute {
+        return ViewAttribute(layerSetter: setter)
     }
 }
 
-extension CKWViewAttribute {
+extension ViewAttribute {
     public convenience init(identifier: String,
                             applicator: @escaping (_ view: Any, _ value: Any) -> Void,
                             unapplicator:((_ view: Any, _ value: Any) -> Void)?                     = nil,
@@ -30,77 +29,74 @@ extension CKWViewAttribute {
 
 }
 
-extension CKWViewAttributeMap {
+extension ViewAttributeMap {
 
     public convenience init(_ attributes: Attribute...) {
         self.init(attributes:attributes);
     }
     public convenience init(attributes: [Attribute] ) {
-        var dict: [CKWViewAttributeBase: Any] = [:]
+        var dict: [ViewAttributeBase: Any] = [:]
         attributes.forEach {
             let keyValue = $0.convert()
             dict[keyValue.0] = keyValue.1
         }
         self.init(dict)
     }
-
-//    public init(dictionaryLiteral elements: (Self.Key, Self.Value)...)
-
 }
 
 
-extension CKWViewConfiguration {
+extension ViewConfiguration {
 
-    public convenience init(_ cls: AnyClass?, attributeMap: CKWViewAttributeMap? = nil) {
-        self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: attributeMap)
+    public convenience init(_ cls: AnyClass?, attributeMap: ViewAttributeMap? = nil) {
+        self.init(viewClass: cls.map(ViewClass.init), viewAttributeMap: attributeMap)
     }
 
-    public convenience init(_ cls: AnyClass?, attributeDictionay: [CKWViewAttributeBase: Any]) {
-        let map = CKWViewAttributeMap(attributeDictionay)
-        self.init(viewClass: cls.map(CKWViewClass.init), viewAttributeMap: map)
+    public convenience init(_ cls: AnyClass?, attributeDictionay: [ViewAttributeBase: Any]) {
+        let map = ViewAttributeMap(attributeDictionay)
+        self.init(viewClass: cls.map(ViewClass.init), viewAttributeMap: map)
     }
 
     public convenience init(_ cls: AnyClass = UIView.self, attributes: Attribute... ) {
-        self.init(attributes: attributes)
+        self.init(cls, attributes: attributes)
     }
 
     public convenience init(_ cls: AnyClass = UIView.self, attributes: [Attribute] ) {
-        var dict: [CKWViewAttributeBase: Any] = [:]
+        var dict: [ViewAttributeBase: Any] = [:]
         attributes.forEach {
             let keyValue = $0.convert()
             dict[keyValue.0] = keyValue.1
         }
-        self.init(viewClass: CKWViewClass(cls), viewAttributeMap: CKWViewAttributeMap(dict))
+        self.init(viewClass: ViewClass(cls), viewAttributeMap: ViewAttributeMap(dict))
     }
 }
 
 
-extension CKWDimension: ExpressibleByFloatLiteral {
+extension LayoutDimension: ExpressibleByFloatLiteral {
 
     public convenience init(_ value: CGFloat) {
         self.init(point: value)
     }
-    public static func p(_ value: CGFloat) -> CKWDimension {
-        return CKWDimension(point: value)
+    public static func p(_ value: CGFloat) -> LayoutDimension {
+        return LayoutDimension(point: value)
     }
-    public static func percent(_ value: CGFloat) -> CKWDimension {
-        return CKWDimension(percent: value)
+    public static func percent(_ value: CGFloat) -> LayoutDimension {
+        return LayoutDimension(percent: value)
     }
 }
 
 
 
-extension CKWSize {
+extension LayoutSize {
 
     public convenience init(size: CGSize) {
         self.init(cgSize: size)
     }
-    public convenience init(width: CKWDimension? = nil,
-                     height:CKWDimension? = nil,
-                     minWidth: CKWDimension? = nil,
-                     maxWidth: CKWDimension? = nil,
-                     minHeight: CKWDimension? = nil,
-                     maxHeight: CKWDimension? = nil) {
+    public convenience init(width: LayoutDimension? = nil,
+                     height:LayoutDimension? = nil,
+                     minWidth: LayoutDimension? = nil,
+                     maxWidth: LayoutDimension? = nil,
+                     minHeight: LayoutDimension? = nil,
+                     maxHeight: LayoutDimension? = nil) {
         self.init()
         self.width = width
         self.height = height
@@ -109,33 +105,59 @@ extension CKWSize {
         self.minHeight = minHeight 
         self.maxHeight = maxHeight 
     }
+    public convenience init(width: CGFloat? = nil,
+                            height:CGFloat? = nil,
+                            minWidth: CGFloat? = nil,
+                            maxWidth: CGFloat? = nil,
+                            minHeight: CGFloat? = nil,
+                            maxHeight: CGFloat? = nil) {
+        self.init()
+        if let width = width {
+            self.width = .p(width)
+        }
+        if let height = height {
+            self.height = .p(height)
+        }
+        if let minWidth = minWidth {
+            self.minWidth = .p(minWidth)
+        }
+        if let maxWidth = maxWidth {
+            self.maxWidth = .p(maxWidth)
+        }
+        if let minHeight = minHeight {
+            self.minHeight = .p(minHeight)
+        }
+        if let maxHeight = maxHeight {
+            self.maxHeight = .p(maxHeight)
+        }
+    }
 
     public convenience init(size: CGSize,
-                     minWidth: CKWDimension? = nil,
-                     maxWidth: CKWDimension? = nil,
-                     minHeight: CKWDimension? = nil,
-                     maxHeight: CKWDimension? = nil) {
+                     minWidth: LayoutDimension? = nil,
+                     maxWidth: LayoutDimension? = nil,
+                     minHeight: LayoutDimension? = nil,
+                     maxHeight: LayoutDimension? = nil) {
         self.init()
         self.width = .p(size.width)
         self.height = .p(size.height)
         self.minWidth = minWidth
-        self.maxWidth = maxWidth
+        self.maxWidth = maxWidth 
         self.minHeight = minHeight
         self.maxHeight = maxHeight
     }
 
-    public static func size(_ size: CGSize) -> CKWSize {
-        return CKWSize(cgSize: size)
+    public static func size(_ size: CGSize) -> LayoutSize {
+        return LayoutSize(cgSize: size)
     }
-    public static func size(_ width: CGFloat, _ height: CGFloat) -> CKWSize {
-        return CKWSize(cgSize: CGSize(width: width, height: height))
+    public static func size(_ width: CGFloat, _ height: CGFloat) -> LayoutSize {
+        return LayoutSize(cgSize: CGSize(width: width, height: height))
     }
-    public static func height(_ h: CGFloat) -> CKWSize {
+    public static func height(_ h: CGFloat) -> LayoutSize {
         let s = self.init()
         s.height = .p(h)
         return s
     }
-    public static func width(_ w: CGFloat) -> CKWSize {
+    public static func width(_ w: CGFloat) -> LayoutSize {
         let s = self.init()
         s.width = .p(w)
         return s

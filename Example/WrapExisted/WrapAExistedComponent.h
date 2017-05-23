@@ -8,14 +8,14 @@
 
 #import <ComponentSwift/ComponentSwift.h>
 
-@interface FadeNetworkImageComponent : CKWCompositeComponent
+@interface FadeNetworkImageComponent : CSCompositeComponent
 
 - (nonnull instancetype)initWithURL:(nullable NSURL *)url
                    imageDownloader:(nullable id)imageDownloader
                          scenePath:(nullable id)scenePath
-                              size:(nullable CKWSize *)size
+                              size:(nullable CSSize *)size
                   placeholderImage:(nullable UIImage *)placeholderImage
-                        attributes:(nullable CKWViewAttributeMap *)attributes
+                        attributes:(nullable CSViewAttributeMap *)attributes
                          endurance:(NSTimeInterval)endurance
                 transitionDuration:(NSTimeInterval)transitionDuration;
 

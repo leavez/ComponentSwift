@@ -8,10 +8,7 @@
 
 import Foundation
 
-extension ChangeSet: Builder {
-}
-
-public enum CKWSizeFlexibility {
+public enum SizeFlexibility {
     case none(CGFloat, CGFloat) // parameter is the fixed width, height
     case flexibleWidth(CGFloat)  // parameter is the fixed height
     case flexibleHeight(CGFloat) // parameter is the fixed width
@@ -33,49 +30,49 @@ public enum CKWSizeFlexibility {
 }
 
 
-extension CKWCollectionViewDataSource {
+extension CSCollectionViewDataSource {
 
     /// - Note:
     ///    componentProvider must be subclass of NSObject
     ///
     public convenience init(collectionView: UICollectionView,
-                supplementaryViewDataSource: CKWSupplementaryViewDataSource? = nil,
-                componentProvider: ComponentProvider.Type,
+                supplementaryViewDataSource: SupplementaryViewDataSource? = nil,
+                componentProvider: ComponentProviderProtocol.Type,
                 context: Any?,
-                sizeFlexibility: CKWSizeFlexibility? = nil ) {
+                sizeFlexibility: SizeFlexibility? = nil ) {
 
-        let sizes = (sizeFlexibility ?? CKWSizeFlexibility.flexibleHeight(screenWidth(collectionView)) ).sizeRange()
+        let sizes = (sizeFlexibility ?? SizeFlexibility.flexibleHeight(screenWidth(collectionView)) ).sizeRange()
         self.init(__collectionView: collectionView, supplementaryViewDataSource: supplementaryViewDataSource, componentProvider: componentProvider, context: context, minSize:sizes.min , maxSize:sizes.max)
     }
 
-    public func apply(_ changeset: ChangeSet<AnyObject>, asynchronously: Bool, userInfo:[AnyHashable:Any]? = nil) {
+    public func apply(_ changeset: ChangeSet, asynchronously: Bool, userInfo:[AnyHashable:Any]? = nil) {
         self.__applyChangeset(changeset, asynchronously: asynchronously, userInfo: userInfo)
     }
 
 }
 
 
-extension CKWTableViewDatasource {
+extension CSTableViewDataSource {
 
     /// - Note:
     ///    componentProvider must be subclass of NSObject
     ///
     public convenience init(tableView: UITableView,
-                supplementaryViewDataSource: CKWTableViewSupplementaryDataSource? = nil,
-                componentProvider: ComponentProvider.Type,
+                supplementaryViewDataSource: TableViewSupplementaryDataSource? = nil,
+                componentProvider: ComponentProviderProtocol.Type,
                 context: Any?,
-                cellConfiguration: CKWTableViewCellConfiguration = CKWTableViewCellConfiguration.noAnimationConfig(),
-                sizeFlexibility: CKWSizeFlexibility? = nil) {
+                cellConfiguration: TableViewCellConfiguration = TableViewCellConfiguration.noAnimationConfig(),
+                sizeFlexibility: SizeFlexibility? = nil) {
 
 
-        let sizes = (sizeFlexibility ?? CKWSizeFlexibility.flexibleHeight(screenWidth(tableView)) ).sizeRange()
+        let sizes = (sizeFlexibility ?? SizeFlexibility.flexibleHeight(screenWidth(tableView)) ).sizeRange()
         self.init(__tableView: tableView, supplementaryViewDataSource: supplementaryViewDataSource, componentProvider: componentProvider, context: context, cellConfiguration:cellConfiguration, minSize:sizes.min , maxSize:sizes.max)
     }
 
 
-    public func apply(_ changeset: ChangeSet<AnyObject>,
+    public func apply(_ changeset: ChangeSet,
                       asynchronously: Bool,
-                      cellConfiguration:CKWTableViewCellConfiguration? = nil) {
+                      cellConfiguration:TableViewCellConfiguration? = nil) {
         self.__applyChangeset(changeset, asynchronously: asynchronously, cellConfiguration: cellConfiguration)
     }
 

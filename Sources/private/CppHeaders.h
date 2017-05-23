@@ -9,8 +9,8 @@
 #ifndef CppHeaders_h
 #define CppHeaders_h
 
-#import "CKWObject+Convert.h"
-#import "CKWComponentInner.h"
+#import "CSObject+Convert.h"
+#import "CSComponentInner.h"
 
 
 #endif /* CppHeaders_h */

@@ -9,13 +9,12 @@
 import Foundation
 import ComponentSwift
 
-class Provider: NSObject, ComponentProvider {
-
-    static func ckwComponent(forModel model: Any, context: Any?) -> Component? {
+class Provider: NSObject, ComponentProviderProtocol {
+    static func csComponent(forModel model: Any, context: Any?) -> Component? {
 
         return CompositeComponent(
             view:
-            CKWViewConfiguration(
+            ViewConfiguration(
                 attributes:
                 A.backgroundColor(.white)
             ),

@@ -11,7 +11,7 @@ import ComponentSwift
 import WrapExisted
 
 
-class AnimatedComponent: CompositeComponent, CKWComponentInitialStateProtocol, CKWComponentAnimationProtocol {
+class AnimatedComponent: CompositeComponent, ComponentInitialStateProtocol, ComponentAnimationProtocol {
 
     typealias StateType = Bool
 
@@ -25,13 +25,13 @@ class AnimatedComponent: CompositeComponent, CKWComponentInitialStateProtocol, C
         self.init(scope: scope) { (state) -> Component? in
 
             text = TextComponent(
-                CKWTextAttributes().build({
+                TextAttributes().build({
                     $0.attributedString = getText()
                     $0.maximumNumberOfLines = state ? 0 : 4
                     $0.truncationAttributedString = NSAttributedString(string:"...")
                 }),
                 viewAttributes:
-                CKWViewAttributeMap(
+                ViewAttributeMap(
                     .tapGesture(#selector(didTap))
                 )
             )
@@ -57,12 +57,12 @@ class AnimatedComponent: CompositeComponent, CKWComponentInitialStateProtocol, C
     }
 
 
-    func animationsOnInitialMount() -> [CKWComponentAnimation]? {
+    func animationsOnInitialMount() -> [ComponentAnimation]? {
 
         return self.animations(fromPreviousComponent: nil)
     }
 
-    func animations(fromPreviousComponent previousComponent: Component?) -> [CKWComponentAnimation]? {
+    func animations(fromPreviousComponent previousComponent: Component?) -> [ComponentAnimation]? {
         guard let textComponent = textComponent else {
             return nil
         }

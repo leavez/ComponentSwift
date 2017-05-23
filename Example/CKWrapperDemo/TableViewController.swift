@@ -9,10 +9,10 @@
 import UIKit
 import ComponentSwift
 
-class TableViewController: UIViewController, UITableViewDelegate, ComponentProvider {
+class TableViewController: UIViewController, UITableViewDelegate, ComponentProviderProtocol {
 
     let tableView = UITableView()
-    var datasource: CKWTableViewDatasource!
+    var datasource: CSTableViewDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
         self.tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.tableView.backgroundColor = .orange
 
-        self.datasource = CKWTableViewDatasource(tableView: tableView, componentProvider: type(of:self), context: Context())
+        self.datasource = CSTableViewDataSource(tableView: tableView, componentProvider: type(of:self), context: Context())
         self.tableView.delegate = self
 
         // add a header
@@ -35,31 +35,27 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
         header.layer.cornerRadius = 20
         header.layer.masksToBounds = true
         self.tableView.tableHeaderView = header
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let changeset = ChangeSet<AnyObject>()
-        changeset.insertedSections = [0]
-        var insetItem: [IndexPath: AnyObject] = [:]
-        for i in (0..<100) {
-            insetItem[[0, i]] = 1 as AnyObject
+
+        // add changeset
+        let changeset = ChangeSet().build {
+            $0.with(insertedSectionAt: 0)
+            $0.with(insertedItems: (0..<100).map{ ([0, $0], $0)})
         }
-        changeset.insertedItems = insetItem
-
         self.datasource.apply(changeset, asynchronously: true)
     }
+
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.datasource.sizeForItem(at: indexPath).height
     }
 
 
-    static func ckwComponent(forModel model: Any, context: Any?) -> Component? {
+    static func csComponent(forModel model: Any, context: Any?) -> Component? {
 
         return CompositeComponent(
             view:
-            CKWViewConfiguration(
+            ViewConfiguration(
                 attributes:
                 A.backgroundColor(.white)
             ),

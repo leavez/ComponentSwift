@@ -13,24 +13,24 @@ extension InsetComponent {
 
 extension CenterLayoutComponent {
 
-    public convenience init?(centering: CKWCenterLayoutComponentCenteringOptions = .XY,
-                             sizing: CKWCenterLayoutComponentSizingOptions = .minimumXY,
-                             child: Component?, size: CKWSize? = nil) {
+    public convenience init?(centering: CenterLayoutComponentCenteringOptions = .XY,
+                             sizing: CenterLayoutComponentSizingOptions = .minimumXY,
+                             child: Component?, size: LayoutSize? = nil) {
       self.init(__centeringOptions: centering, sizingOptions: sizing, child: child, size: size)
     }
 }
 
 extension TextComponent {
 
-    public convenience init(_ textAttributes: CKWTextAttributes,
-                            viewAttributes: CKWViewAttributeMap? = nil,
-                            options: CKWTextComponentOptions? = nil,
-                            size: CKWSize? = nil) {
+    public convenience init(_ textAttributes: TextAttributes,
+                            viewAttributes: ViewAttributeMap? = nil,
+                            options: TextComponentOptions? = nil,
+                            size: LayoutSize? = nil) {
         self.init(__textAttributes: textAttributes, viewAttributes: viewAttributes, options: options, size: size)
     }
 }
 
-extension CKWTextAttributes {
+extension TextAttributes {
 
     public convenience init(_ attributedString: NSAttributedString?) {
         self.init()
@@ -51,33 +51,32 @@ extension CKWTextAttributes {
 
 extension StackLayoutComponent {
 
-    public convenience init(view: CKWViewConfiguration? = nil,
-                            size: CKWSize? = nil,
-                            style: CKWStackLayoutStyle? = nil,
-                            children: [CKWStackLayoutChild?] )
+    public convenience init(view: ViewConfiguration? = nil,
+                            size: LayoutSize? = nil,
+                            style: StackLayoutStyle? = nil,
+                            children: [StackLayoutChild?] )
     {
         self.init(__view:view, size:size, style:style, children:children.flatMap{ $0 })
     }
-    public convenience init(view: CKWViewConfiguration? = nil,
-                            size: CKWSize? = nil,
-                            style: CKWStackLayoutStyle? = nil,
+    public convenience init(view: ViewConfiguration? = nil,
+                            size: LayoutSize? = nil,
+                            style: StackLayoutStyle? = nil,
                             childrenComponents: [Component?] )
     {
-        self.init(__view:view, size:size, style:style, children:childrenComponents.flatMap{ CKWStackLayoutChild($0) })
+        self.init(__view:view, size:size, style:style, children:childrenComponents.flatMap{ ComponentSwift.StackLayoutChild($0) })
     }
 }
 
-public typealias StackLayoutChild = CKWStackLayoutChild
 
-extension CKWStackLayoutChild {
+extension StackLayoutChild {
 
     public convenience init?(_ component: Component?,
                             spacingAfter: CGFloat = 0,
                             spacingBefore: CGFloat = 0,
                             flexGrow: CGFloat? = nil,
                             flexShrink: CGFloat? = nil,
-                            flexBasis: CKWDimension? = nil,
-                            alignSelf: CKWStackLayoutAlignSelf = .auto) {
+                            flexBasis: LayoutDimension? = nil,
+                            alignSelf: StackLayoutAlignSelf = .auto) {
         guard let component = component else {
             return nil
         }
@@ -109,14 +108,14 @@ extension ButtonComponnet {
                             selected: Bool = false,
                             enabled: Bool = false,
                             action: Selector?,
-                            size: CKWSize? = nil,
-                            attributes: CKWViewAttributeMap? = nil,
+                            size: LayoutSize? = nil,
+                            attributes: ViewAttributeMap? = nil,
                             accessibilityLabel: String? = nil) {
 
         let list: [[UIControlState: Any?]?] = [titles, titleColors, images, backgroundImages]
         let states: [UIControlState] = list.flatMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
-        let buttonAttrs = Set(states).map{ (state) -> CKWButtonAttributes in
-            let a = CKWButtonAttributes()
+        let buttonAttrs = Set(states).map{ (state) -> ButtonAttributes in
+            let a = ButtonAttributes()
             a.state = state
             return a
         }
@@ -148,19 +147,19 @@ extension ImageComponnet {
 extension NetworkImageComponnet {
     
     public convenience init(url: URL?,
-                            imageDownloader: CKWNetworkImageDownloading,
-                            size: CKWSize?,
+                            imageDownloader: NetworkImageDownloading,
+                            size: LayoutSize?,
                             placeholderImage: UIImage?,
                             cropRect: CGRect?,
-                            attributes: CKWViewAttributeMap?) {
+                            attributes: ViewAttributeMap?) {
         self.init(__url: url, imageDownloader: imageDownloader, size: size, placeholderImage: placeholderImage, cropRect: cropRect ?? .zero, attributes: attributes)
     }
 
     public convenience init(url: URL?,
-                            imageDownloader: CKWNetworkImageDownloading,
-                            size: CKWSize? = nil,
+                            imageDownloader: NetworkImageDownloading,
+                            size: LayoutSize? = nil,
                             placeholderImage: UIImage? = nil,
-                            attributes: CKWViewAttributeMap? = nil) {
+                            attributes: ViewAttributeMap? = nil) {
         self.init(__url: url, imageDownloader: imageDownloader, size: size, placeholderImage: placeholderImage, cropRect: .zero, attributes: attributes)
     }
 }
