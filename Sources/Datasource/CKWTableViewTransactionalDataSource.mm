@@ -1,12 +1,12 @@
 //
-//  CKWTableViewDatasource.m
+//  CKWTableViewTransactionalDataSource.m
 //  Pods
 //
 //  Created by Gao on 16/05/2017.
 //
 //
 
-#import "CKWTableViewDatasource.h"
+#import "CKWTableViewTransactionalDataSource.h"
 #import <CKTableViewTransactionalDataSource/CKTableViewTransactionalDataSource.h>
 #import "macro.h"
 #import "CKWChangeSet+Build.h"
@@ -41,7 +41,7 @@
 
 
 
-@implementation CKWTableViewDatasource  {
+@implementation CKWTableViewTransactionalDataSource  {
     CKTableViewTransactionalDataSource *_innerDatasource;
 }
 

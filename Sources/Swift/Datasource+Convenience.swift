@@ -30,7 +30,7 @@ public enum SizeFlexibility {
 }
 
 
-extension CollectionViewDataSource {
+extension CSCollectionViewDataSource {
 
     /// - Note:
     ///    componentProvider must be subclass of NSObject
@@ -52,7 +52,7 @@ extension CollectionViewDataSource {
 }
 
 
-extension TableViewDatasource {
+extension CSTableViewDataSource {
 
     /// - Note:
     ///    componentProvider must be subclass of NSObject

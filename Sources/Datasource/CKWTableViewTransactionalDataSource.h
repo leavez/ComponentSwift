@@ -1,5 +1,5 @@
 //
-//  CKWTableViewDatasource.h
+//  CKWTableViewTransactionalDataSource.h
 //  Pods
 //
 //  Created by Gao on 16/05/2017.
@@ -14,8 +14,8 @@ NS_SWIFT_NAME(TableViewSupplementaryDataSource)
 @class CKWTableViewCellConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
-NS_SWIFT_NAME(TableViewDatasource)
-@interface CKWTableViewDatasource : NSObject
+NS_SWIFT_NAME(CSTableViewDataSource)
+@interface CKWTableViewTransactionalDataSource : NSObject
 
 @property (readonly, nonatomic) UITableView *tableView;
 

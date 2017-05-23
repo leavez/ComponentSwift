@@ -1,18 +1,18 @@
 //
-//  CKWCollectionViewDataSource.m
+//  CKWCollectionViewTransactionalDataSource.m
 //  Pods
 //
 //  Created by Gao on 06/05/2017.
 //
 //
 
-#import "CKWCollectionViewDataSource.h"
+#import "CKWCollectionViewTransactionalDataSource.h"
 #import <ComponentKit/ComponentKit.h>
 #import "macro.h"
 #import "CKWChangeSet+Build.h"
 
 
-@implementation CKWCollectionViewDataSource {
+@implementation CKWCollectionViewTransactionalDataSource {
     CKCollectionViewTransactionalDataSource *_innerDatasource;
 }
 

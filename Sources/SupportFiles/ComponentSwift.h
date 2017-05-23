@@ -31,10 +31,10 @@
 #import "CKWNetworkImageComponnet.h"
 #import "CKWTextComponent.h"
 #import "CKWChangeSet.h"
-#import "CKWCollectionViewDataSource.h"
+#import "CKWCollectionViewTransactionalDataSource.h"
 #import "CKWComponentProvider.h"
 #import "CKWHostingView.h"
-#import "CKWTableViewDatasource.h"
+#import "CKWTableViewTransactionalDataSource.h"
 
 FOUNDATION_EXPORT double CKWrapperVersionNumber;
 FOUNDATION_EXPORT const unsigned char CKWrapperVersionString[];

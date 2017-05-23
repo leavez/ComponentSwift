@@ -12,7 +12,7 @@ import ComponentSwift
 class TableViewController: UIViewController, UITableViewDelegate, ComponentProviderProtocol {
 
     let tableView = UITableView()
-    var datasource: TableViewDatasource!
+    var datasource: CSTableViewDataSource!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
         self.tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.tableView.backgroundColor = .orange
 
-        self.datasource = TableViewDatasource(tableView: tableView, componentProvider: type(of:self), context: Context())
+        self.datasource = CSTableViewDataSource(tableView: tableView, componentProvider: type(of:self), context: Context())
         self.tableView.delegate = self
 
         // add a header

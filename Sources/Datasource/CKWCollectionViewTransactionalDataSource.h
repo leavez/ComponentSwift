@@ -1,5 +1,5 @@
 //
-//  CKWCollectionViewDataSource.h
+//  CKWCollectionViewTransactionalDataSource.h
 //  Pods
 //
 //  Created by Gao on 06/05/2017.
@@ -14,8 +14,10 @@ NS_SWIFT_NAME(SupplementaryViewDataSource)
 
 
 NS_ASSUME_NONNULL_BEGIN
-NS_SWIFT_NAME(CollectionViewDataSource)
-@interface CKWCollectionViewDataSource : NSObject
+
+/// for CKCollectionViewTransactionalDataSource
+NS_SWIFT_NAME(CSCollectionViewDataSource)
+@interface CKWCollectionViewTransactionalDataSource : NSObject
 
 @property (readonly, nonatomic) UICollectionView *collectionView;
 
