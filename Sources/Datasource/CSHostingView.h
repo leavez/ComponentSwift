@@ -37,7 +37,7 @@ NS_SWIFT_NAME(HostingView)
 @end
 
 
-
+// for CKComponentHostingViewDelegate
 NS_SWIFT_NAME(HostingViewDelegate)
 @protocol CSHostingViewDelegate <NSObject>
 @required

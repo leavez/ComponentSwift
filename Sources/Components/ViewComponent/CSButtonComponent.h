@@ -22,6 +22,8 @@ NS_SWIFT_NAME(ButtonAttributes)
 
  This component chooses the smallest size within its SizeRange that will fit its content. If its max size is smaller
  than the size required to fit its content, it will be truncated.
+ 
+ for CKButtonComponent
  */
 NS_SWIFT_NAME(ButtonComponnet)
 @interface CSButtonComponent : CSComponent

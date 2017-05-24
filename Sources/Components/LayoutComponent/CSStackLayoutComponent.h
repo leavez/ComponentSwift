@@ -8,7 +8,6 @@
 
 #import "CSComponent.h"
 
-
 typedef NS_ENUM(NSUInteger, CSStackLayoutDirection) {
     CSStackLayoutDirectionVertical,
     CSStackLayoutDirectionHorizontal,
@@ -94,7 +93,7 @@ NS_SWIFT_NAME(StackLayoutChild)
 @end
 
 
-
+/// for CKStackLayoutComponent
 NS_SWIFT_NAME(StackLayoutComponent)
 @interface CSStackLayoutComponent : CSComponent
 

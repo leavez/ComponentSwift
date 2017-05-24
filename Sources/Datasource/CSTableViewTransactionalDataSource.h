@@ -14,6 +14,8 @@ NS_SWIFT_NAME(TableViewSupplementaryDataSource)
 @class CSTableViewCellConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
+
+// for CKTableViewTransactionalDataSource. It's implementation is unofficial.
 NS_SWIFT_NAME(CSTableViewDataSource)
 @interface CSTableViewTransactionalDataSource : NSObject
 
@@ -85,6 +87,8 @@ typedef void(*CSTableViewCellConfigurationFunction)(UITableViewCell *cell, NSInd
  @note Properties are mutable for convenience when instantiating. However,
  CKTableViewTransactionalDataSource always returns a copy from its -cellConfiguration
  property. Mutate the copy and pass it in an update operation to override the default.
+ 
+ for CKTableViewTransactionalDataSourceCellConfiguration
  */
 NS_SWIFT_NAME(TableViewCellConfiguration)
 @interface CSTableViewCellConfiguration : NSObject
@@ -101,6 +105,7 @@ NS_SWIFT_NAME(TableViewCellConfiguration)
 
 @end
 
+// for CKTableViewSupplementaryDataSource
 NS_SWIFT_NAME(TableViewSupplementaryDataSource)
 @protocol CSTableViewSupplementaryDataSource <NSObject>
 @optional

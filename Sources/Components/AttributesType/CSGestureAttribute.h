@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CSViewAttributes.h"
 
-/// represent CKComponentViewAttributeValue of CK
+/// represent CKComponentViewAttributeValue, a pair of key and value
 NS_SWIFT_NAME(ViewAttributeValueType)
 @interface CSViewAttributeValueType: CSViewAttributeBase
 @property (nonatomic, nonnull) CSViewAttribute *attribute;
@@ -24,6 +24,7 @@ NS_SWIFT_NAME(GestureAttribute)
 + (nonnull instancetype)new NS_UNAVAILABLE;
 - (nonnull instancetype)init NS_UNAVAILABLE;
 
+// for CKComponentTapGestureAttribute:
 - (nonnull instancetype)initWithTapAction:(nonnull SEL)tapAction;
 - (nonnull instancetype)initWithPanAction:(nonnull SEL)tapAction;
 - (nonnull instancetype)initWithLongPressAction:(nonnull SEL)tapAction;

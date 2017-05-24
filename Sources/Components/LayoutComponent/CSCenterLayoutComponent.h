@@ -8,7 +8,6 @@
 
 #import "CSComponent.h"
 
-
 typedef NS_OPTIONS(NSUInteger, CSCenterLayoutComponentCenteringOptions) {
     /** The child is positioned in {0,0} relatively to the layout bounds */
     CSCenterLayoutComponentCenteringNone = 0,

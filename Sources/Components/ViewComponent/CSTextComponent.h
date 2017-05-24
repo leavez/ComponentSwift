@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, CSAsyncLayerDisplayMode) {
     CSAsyncLayerDisplayModeAlwaysSync,
 };
 
+// for CKTextComponentOptions
 NS_SWIFT_NAME(TextComponentOptions)
 @interface CSTextComponentOptions : CSOptionBase
 /**
@@ -36,6 +37,7 @@ NS_SWIFT_NAME(TextComponentOptions)
 @property (nonatomic, nullable) CSAccessibilityTextAttribute *accessibilityLabel;
 @end
 
+// for CKTextComponent
 NS_SWIFT_NAME(TextComponent)
 @interface CSTextComponent : CSComponent
 

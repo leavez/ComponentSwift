@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - --------------- ViewClass ----------------------
+// for CKComponentViewClass
 NS_SWIFT_NAME(ViewClass)
 @interface CSViewClass : CSOptionBase
 
@@ -26,9 +27,12 @@ typedef UIView * _Nonnull(* _Nonnull CSViewFactoryType)(void);
 
 
 #pragma mark - --------------- ViewAttribute ----------------------
+// no corresponding in componentKit
 NS_SWIFT_NAME(ViewAttributeBase)
 @interface CSViewAttributeBase: CSOptionBase <NSCopying>
 @end
+
+// for CKComponentViewAttribute
 NS_SWIFT_NAME(ViewAttribute)
 @interface CSViewAttribute: CSViewAttributeBase
 + (instancetype)new NS_UNAVAILABLE;
@@ -42,6 +46,7 @@ NS_SWIFT_NAME(ViewAttribute)
 
 
 #pragma mark - --------------- AccessibilityTextAttribute ---------------
+// for CKComponentAccessibilityTextAttribute
 NS_SWIFT_NAME(AccessibilityTextAttribute)
 @interface CSAccessibilityTextAttribute : CSOptionBase
 - (instancetype)initWithText:(NSString *)text NS_SWIFT_NAME(init(_:));
@@ -51,6 +56,7 @@ NS_SWIFT_NAME(AccessibilityTextAttribute)
 @end
 
 #pragma mark - --------------- AccessibilityContext ---------------
+// for CKComponentAccessibilityContext
 NS_SWIFT_NAME(AccessibilityContext)
 @interface CSAccessibilityContext : CSOptionBase
 @property (nonatomic, nullable) NSNumber *isAccessibilityElement;
@@ -60,14 +66,19 @@ NS_SWIFT_NAME(AccessibilityContext)
 
 
 #pragma mark - --------------- ViewAttributesMap ---------------
+// fof CKViewComponentAttributeValueMap
 NS_SWIFT_NAME(ViewAttributeMap)
 @interface CSViewAttributeMap : CSOptionBase
 @property (nonatomic, readonly) NSDictionary<CSViewAttributeBase *, id> *content;
+/// Due to the limit of objc, this api is different from componentKit.
+/// The key may be `CSViewAttribute` or `CSViewAttributeValueType`. If `CSViewAttributeValueType`, value in
+/// for this key is meaningless, won't be used.
 - (instancetype)initWithDictionary:(NSDictionary<CSViewAttributeBase *, id> *)dict NS_SWIFT_NAME(init(_:));
 @end
 
 
 #pragma mark - --------------- ViewConfiguration ---------------
+// for CKComponentViewConfiguration
 NS_SWIFT_NAME(ViewConfiguration)
 @interface CSViewConfiguration : CSOptionBase
 @property (nonatomic, nullable) CSViewClass *cls;;

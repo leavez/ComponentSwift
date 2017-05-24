@@ -28,7 +28,8 @@ NS_SWIFT_NAME(NetworkImageComponnet)
 
 
 
-/** Downloads images for a network image component. */
+/// Downloads images for a network image component.
+// for CKNetworkImageDownloading
 NS_SWIFT_NAME(NetworkImageDownloading)
 @protocol CSNetworkImageDownloading <NSObject>
 @required

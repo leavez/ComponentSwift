@@ -10,6 +10,8 @@
 #import "CSComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+// for CKComponentAnimation
 NS_SWIFT_NAME(ComponentAnimation)
 @interface CSComponentAnimation: CSOptionBase
 

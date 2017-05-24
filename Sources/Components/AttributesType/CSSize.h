@@ -21,7 +21,7 @@ NS_SWIFT_NAME(LayoutDimension)
 @end
 
 
-
+// for CKComponentSize
 NS_SWIFT_NAME(LayoutSize)
 @interface CSSize : NSObject
 
