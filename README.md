@@ -59,6 +59,8 @@ Legacy CKComponent classes could continue to work in swift when using ComponentS
 
 Subclass `CSCompositeComponent` and use `initWithCKComponent` in its implementation. Import `ComponentSubclass.h` to use this stuff. Reference more from `WrapExisted` in the demo project.
 
+[more document here](/etc/doc.md)
+
 ## TLDR
 ComponentKit is implemented and used with objc++, which is pretty cool. It's incompatible with swift, since swift doesn't support objc++. So comes the ComponentSwift.
 
