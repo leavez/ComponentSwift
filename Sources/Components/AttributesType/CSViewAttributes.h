@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CSCreatorBase.h"
+#import "CSOptionBase.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - --------------- ViewClass ----------------------
 NS_SWIFT_NAME(ViewClass)
-@interface CSViewClass : CSCreatorBase
+@interface CSViewClass : CSOptionBase
 
 typedef void (^CSViewReuseBlock)(UIView *);
 typedef UIView * _Nonnull(* _Nonnull CSViewFactoryType)(void);
@@ -27,7 +27,7 @@ typedef UIView * _Nonnull(* _Nonnull CSViewFactoryType)(void);
 
 #pragma mark - --------------- ViewAttribute ----------------------
 NS_SWIFT_NAME(ViewAttributeBase)
-@interface CSViewAttributeBase: CSCreatorBase <NSCopying>
+@interface CSViewAttributeBase: CSOptionBase <NSCopying>
 @end
 NS_SWIFT_NAME(ViewAttribute)
 @interface CSViewAttribute: CSViewAttributeBase
@@ -43,7 +43,7 @@ NS_SWIFT_NAME(ViewAttribute)
 
 #pragma mark - --------------- AccessibilityTextAttribute ---------------
 NS_SWIFT_NAME(AccessibilityTextAttribute)
-@interface CSAccessibilityTextAttribute : CSCreatorBase
+@interface CSAccessibilityTextAttribute : CSOptionBase
 - (instancetype)initWithText:(NSString *)text NS_SWIFT_NAME(init(_:));
 - (instancetype)initWithLazyTextBlock:(NSString *(^)())textBlock NS_SWIFT_NAME(init(_:));
 - (BOOL)hasText;
@@ -52,7 +52,7 @@ NS_SWIFT_NAME(AccessibilityTextAttribute)
 
 #pragma mark - --------------- AccessibilityContext ---------------
 NS_SWIFT_NAME(AccessibilityContext)
-@interface CSAccessibilityContext : CSCreatorBase
+@interface CSAccessibilityContext : CSOptionBase
 @property (nonatomic, nullable) NSNumber *isAccessibilityElement;
 @property (nonatomic, nullable) CSAccessibilityTextAttribute *accessibilityLabel;
 @property (nonatomic, nullable) SEL accessibilityComponentAction;
@@ -61,7 +61,7 @@ NS_SWIFT_NAME(AccessibilityContext)
 
 #pragma mark - --------------- ViewAttributesMap ---------------
 NS_SWIFT_NAME(ViewAttributeMap)
-@interface CSViewAttributeMap : CSCreatorBase
+@interface CSViewAttributeMap : CSOptionBase
 @property (nonatomic, readonly) NSDictionary<CSViewAttributeBase *, id> *content;
 - (instancetype)initWithDictionary:(NSDictionary<CSViewAttributeBase *, id> *)dict NS_SWIFT_NAME(init(_:));
 @end
@@ -69,7 +69,7 @@ NS_SWIFT_NAME(ViewAttributeMap)
 
 #pragma mark - --------------- ViewConfiguration ---------------
 NS_SWIFT_NAME(ViewConfiguration)
-@interface CSViewConfiguration : CSCreatorBase
+@interface CSViewConfiguration : CSOptionBase
 @property (nonatomic, nullable) CSViewClass *cls;;
 @property (nonatomic, nullable) CSViewAttributeMap *viewAttributeMap;
 @property (nonatomic, nullable) CSAccessibilityContext *context;

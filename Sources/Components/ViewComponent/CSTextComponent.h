@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, CSAsyncLayerDisplayMode) {
 };
 
 NS_SWIFT_NAME(TextComponentOptions)
-@interface CSTextComponentOptions : CSCreatorBase
+@interface CSTextComponentOptions : CSOptionBase
 /**
  Controls if rendering should be done synchronously or async
  See @CKAsyncLayer

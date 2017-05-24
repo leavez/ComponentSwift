@@ -16,7 +16,7 @@
 #import "CSScope.h"
 #import "CSComponent.h"
 #import "CSCompositeComponent.h"
-#import "CSCreatorBase.h"
+#import "CSOptionBase.h"
 #import "CSGestureAttribute.h"
 #import "CSSize.h"
 #import "CSTextAttributes.h"

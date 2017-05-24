@@ -59,7 +59,7 @@ typedef NS_ENUM(NSUInteger, CSStackLayoutAlignSelf) {
 
 /// for CKStackLayoutComponentStyle.
 NS_SWIFT_NAME(StackLayoutStyle)
-@interface CSStackLayoutStyle : CSCreatorBase
+@interface CSStackLayoutStyle : CSOptionBase
 
 /** Specifies the direction children are stacked in. */
 @property (nonatomic) CSStackLayoutDirection direction;
@@ -75,7 +75,7 @@ NS_SWIFT_NAME(StackLayoutStyle)
 
 /// for CKStackLayoutComponentChild.
 NS_SWIFT_NAME(StackLayoutChild)
-@interface CSStackLayoutChild : CSCreatorBase
+@interface CSStackLayoutChild : CSOptionBase
 
 @property (nonatomic, nullable) CSComponent *component;
 /** Additional space to place before the component in the stacking direction. */
