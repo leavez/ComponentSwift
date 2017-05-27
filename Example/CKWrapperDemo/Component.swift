@@ -28,16 +28,15 @@ class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
                 HorizontalStackComponnet(
                     style:
                     StackLayoutStyle()
-                        .spacing(5),
+                        .spacing(15),
 
                     children:
                     Component(
                         view:
                         ViewConfiguration(
                             attributes:
-                            .set(#selector(setter:UIView.backgroundColor), to: UIColor.brown),
+                            .set(#selector(setter:UIView.backgroundColor), to: UIColor.orange),
                             .roundCorner(raidus: 30),
-                            .clipsToBounds(true),
                             .tapGesture(#selector(didTap))
                         ),
                         size:.size(60, 60)
@@ -70,10 +69,7 @@ class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
     @objc func didTap(sender: Any) {
         print("tapped")
 
-        self.updateState({ (state) -> Bool in
-            !state
-        }, asynchronously: true)
-
+        self.updateState({ !$0 }, asynchronously: true)
     }
 
 }
@@ -84,6 +80,7 @@ class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
 func getText() -> NSAttributedString {
     let text = "I/O Extended events include a variety of options for developers—from live streaming sessions to local demos, hackathons, codelabs, and more. These events are hosted in your neighborhood by local developer communities."
     let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.hyphenationFactor = 1
     let attributeString = NSAttributedString(string: text, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSParagraphStyleAttributeName: paragraphStyle])
     return attributeString
 }
