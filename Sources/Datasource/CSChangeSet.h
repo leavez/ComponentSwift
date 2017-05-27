@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- Designated initializer. Any parameter may be nil.
- */
+// for CKTransactionalComponentDataSourceChangeset
 NS_SWIFT_NAME(ChangeSet)
 @interface CSChangeSet : NSObject<NSCopying>
 

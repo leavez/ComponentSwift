@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// for CKComponentScope
 NS_SWIFT_NAME(Scope)
 @interface CSScope : NSObject
 

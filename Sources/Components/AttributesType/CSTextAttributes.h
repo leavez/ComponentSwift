@@ -6,11 +6,11 @@
 //
 //
 
-#import "CSCreatorBase.h"
+#import "CSOptionBase.h"
 
 /// for CKTextKitAttributes
 NS_SWIFT_NAME(TextAttributes)
-@interface CSTextAttributes : CSCreatorBase
+@interface CSTextAttributes : CSOptionBase
 /**
  The string to be drawn.  CKTextKit will not augment this string with default colors, etc. so this must be complete.
  */

@@ -8,23 +8,15 @@
 
 import Foundation
 
-extension ViewAttributeBase {
-
-    public static func set(_ setter: Selector) -> ViewAttribute {
-        return ViewAttribute(setter)
-    }
-    public static func setLayer(_ setter: Selector) -> ViewAttribute {
-        return ViewAttribute(layerSetter: setter)
-    }
-}
 
 extension ViewAttribute {
+    @nonobjc
     public convenience init(identifier: String,
                             applicator: @escaping (_ view: Any, _ value: Any) -> Void,
                             unapplicator:((_ view: Any, _ value: Any) -> Void)?                     = nil,
                             updater:     ((_ view: Any, _ oldValue: Any, _ newValue: Any) -> Void)? = nil) {
 
-        self.init(identifierString:identifier, applicator:applicator, unapplicator:unapplicator, updater:updater)
+        self.init(__identifierString:identifier, applicator:applicator, unapplicator:unapplicator, updater:updater)
     }
 
 }
@@ -35,14 +27,10 @@ extension ViewAttributeMap {
         self.init(attributes:attributes);
     }
     public convenience init(attributes: [Attribute] ) {
-        var dict: [ViewAttributeBase: Any] = [:]
-        attributes.forEach {
-            let keyValue = $0.convert()
-            dict[keyValue.0] = keyValue.1
-        }
-        self.init(dict)
+        self.init(Attribute.convert(attributes: attributes))
     }
 }
+
 
 
 extension ViewConfiguration {
@@ -51,23 +39,18 @@ extension ViewConfiguration {
         self.init(viewClass: cls.map(ViewClass.init), viewAttributeMap: attributeMap)
     }
 
-    public convenience init(_ cls: AnyClass?, attributeDictionay: [ViewAttributeBase: Any]) {
-        let map = ViewAttributeMap(attributeDictionay)
-        self.init(viewClass: cls.map(ViewClass.init), viewAttributeMap: map)
-    }
-
     public convenience init(_ cls: AnyClass = UIView.self, attributes: Attribute... ) {
         self.init(cls, attributes: attributes)
     }
 
     public convenience init(_ cls: AnyClass = UIView.self, attributes: [Attribute] ) {
-        var dict: [ViewAttributeBase: Any] = [:]
-        attributes.forEach {
-            let keyValue = $0.convert()
-            dict[keyValue.0] = keyValue.1
-        }
-        self.init(viewClass: ViewClass(cls), viewAttributeMap: ViewAttributeMap(dict))
+        self.init(viewClass: ViewClass(cls), viewAttributeMap: ViewAttributeMap(attributes:attributes))
     }
+
+    public convenience init(_ cls: ViewClass, attributes: [Attribute] ) {
+        self.init(viewClass: cls, viewAttributeMap: ViewAttributeMap(attributes:attributes))
+    }
+
 }
 
 

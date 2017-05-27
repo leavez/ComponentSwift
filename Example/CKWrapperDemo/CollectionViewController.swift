@@ -24,7 +24,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         self.view.addSubview(self.collectionView);
         self.collectionView.frame = self.view.bounds
         self.collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.collectionView.backgroundColor = .orange
+        self.collectionView.backgroundColor = .lightGray
 
         self.datasource = CSCollectionViewDataSource(collectionView: collectionView, componentProvider: Provider.self, context: Context())
         self.collectionView.delegate = self

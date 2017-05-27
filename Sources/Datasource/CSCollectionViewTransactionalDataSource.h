@@ -63,7 +63,7 @@ NS_SWIFT_NAME(CSCollectionViewDataSource)
 
 
 
-
+// for CKSupplementaryViewDataSource
 NS_SWIFT_NAME(SupplementaryViewDataSource)
 @protocol CSSupplementaryViewDataSource<NSObject>
 

@@ -50,6 +50,7 @@ or try real demo with `pod try ComponentSwift`
 #### Not support:
 - [ ] component controller
 - [ ] StaticLayoutComponent and StatefulViewComponent (not yet)
+- [ ] `computeLayoutThatFits:` overriding
 - [ ] ...
 
 
@@ -58,6 +59,8 @@ or try real demo with `pod try ComponentSwift`
 Legacy CKComponent classes could continue to work in swift when using ComponentSwift. Classes and methods are provided to wrap your legacy components conveniently. Every attributes in ComponentKit have an equivalent in ComponentSwift. 
 
 Subclass `CSCompositeComponent` and use `initWithCKComponent` in its implementation. Import `ComponentSubclass.h` to use this stuff. Reference more from `WrapExisted` in the demo project.
+
+[more document here](/etc/doc.md)
 
 ## TLDR
 ComponentKit is implemented and used with objc++, which is pretty cool. It's incompatible with swift, since swift doesn't support objc++. So comes the ComponentSwift.

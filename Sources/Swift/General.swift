@@ -19,4 +19,4 @@ extension Builder where Self: AnyObject {
     }
 }
 
-extension CreatorBase : Builder {}
+extension OptionBase : Builder {}

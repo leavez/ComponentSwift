@@ -6,12 +6,14 @@
 //
 //
 
-#import "CSCreatorBase.h"
+#import "CSOptionBase.h"
 #import "CSComponent.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+// for CKComponentAnimation
 NS_SWIFT_NAME(ComponentAnimation)
-@interface CSComponentAnimation: CSCreatorBase
+@interface CSComponentAnimation: CSOptionBase
 
 - (nonnull instancetype)initWithComponent:(nonnull CSComponent *)component
                         animation:(nullable CAAnimation *)animation

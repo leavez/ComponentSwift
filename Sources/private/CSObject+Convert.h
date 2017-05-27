@@ -28,7 +28,7 @@ EXTENSION(CSViewClass,
 EXTENSION(CSViewAttribute,
           - (CKComponentViewAttribute)convert;
           )
-EXTENSION(CSViewAttributeValueType,
+EXTENSION(CSViewAttributeValue,
           - (CKComponentViewAttributeValue)convert;
           )
 EXTENSION(CSViewAttributeMap,

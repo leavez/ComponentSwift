@@ -19,7 +19,7 @@ class Provider: NSObject, ComponentProviderProtocol {
                 A.backgroundColor(.white)
             ),
             component:
-            SwiftComponent(model: 1)
+            SwiftComponent(model: model)
         )
     }
 }
