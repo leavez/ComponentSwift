@@ -10,24 +10,30 @@ import Foundation
 
 public enum Attribute {
 
-    case attribute(ViewAttribute, to: Any?)
-    case attributeWithValue(ViewAttributeValueType)
+    case key(ViewAttribute, value: Any?)
+    case keyAndValue(ViewAttributeValue)
+    case keyAndValueList([ViewAttributeValue])
 
     // convenience
     case set(Selector, to:Any?)
     case setLayer(Selector, to:Any?)
 
-    internal func convert() -> (ViewAttributeBase, Any?) {
-        switch self {
-        case .attribute(let a, to: let v):
-            return (a, v)
-        case .attributeWithValue(let o):
-            return (o, 0)
-        case .set(let sel, to: let v):
-            return (ViewAttribute(sel), v)
-        case .setLayer(let sel, to: let v):
-            return (ViewAttribute(layerSetter:sel), v)
-        }
+    // convert
+    static func convert(attributes: [Attribute]) -> [ViewAttributeValue] {
+        return attributes.reduce([], { sum, element in
+            switch element {
+            case .key(let key, value: let value):
+                return sum + [ViewAttributeValue().build({ $0.key = key; $0.value = value })]
+            case .keyAndValue(let kv):
+                return sum + [kv]
+            case .keyAndValueList(let kvList):
+                return sum + kvList
+            case set(let selector, to: let value):
+                return sum + [ViewAttributeValue().build({ $0.key = ViewAttribute(selector); $0.value = value })]
+            case .setLayer(let selector, to: let value):
+                return sum + [ViewAttributeValue().build({ $0.key = ViewAttribute(layerSetter:selector); $0.value = value })]
+            }
+        })
     }
 }
 
@@ -43,10 +49,13 @@ public typealias A = Attribute
 extension Attribute {
 
     public static func tapGesture(_ selector:Selector) -> Attribute {
-        return .attributeWithValue(GestureAttribute(tapAction: selector))
+        return .keyAndValue(GestureAttributeValue(tapAction: selector))
     }
     public static func roundCorner(raidus: CGFloat) -> Attribute {
         return .setLayer(#selector(setter: CALayer.cornerRadius), to: raidus)
+            (view as? UIButton)?.setTitle(newValue as? String, for: .normal)
+        })
+        return .key(key, value: title)
     }
 }
 
