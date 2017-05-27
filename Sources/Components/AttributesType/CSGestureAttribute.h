@@ -9,15 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "CSViewAttributes.h"
 
-/// represent CKComponentViewAttributeValue, a pair of key and value
-NS_SWIFT_NAME(ViewAttributeValueType)
-@interface CSViewAttributeValueType: CSViewAttributeBase
-@property (nonatomic, nonnull) CSViewAttribute *attribute;
-@property (nonatomic, nonnull) id value;
-@end
-
-NS_SWIFT_NAME(GestureAttribute)
-@interface CSGestureAttribute: CSViewAttributeValueType
+NS_SWIFT_NAME(GestureAttributeValue)
+@interface CSGestureAttributeValue: CSViewAttributeValue
 @property (nonatomic, readonly, nonnull) Class gestureClass;
 @property (nonatomic, readonly, nonnull) SEL action;
 

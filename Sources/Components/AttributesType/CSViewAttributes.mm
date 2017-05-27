@@ -8,7 +8,6 @@
 
 #import "CSViewAttributes.h"
 #import "CSObject+Convert.h"
-#import "CSGestureAttribute.h"
 #import <ComponentKit/ComponentKit.h>
 #import "macro.h"
 
@@ -127,80 +126,42 @@ struct _CKComponentViewAttribute {
 @end
 
 
-@implementation CSAccessibilityTextAttribute {
-    CKComponentAccessibilityTextAttribute _inner;
-}
-- (instancetype)initWithText:(NSString *)text {
-    self = [super init];
-    if (self) {
-        _inner = CKComponentAccessibilityTextAttribute(text);
-    }
-    return self;
-}
-- (instancetype)initWithLazyTextBlock:(NSString *(^)())textBlock {
-    self = [super init];
-    if (self) {
-        _inner = CKComponentAccessibilityTextAttribute(textBlock);
-    }
-    return self;
-}
-- (BOOL)hasText {
-    return _inner.hasText();
-}
-- (NSString *)value {
-    return _inner.value();
-}
-- (CKComponentAccessibilityTextAttribute)convert {
-    return _inner;
+@implementation CSViewAttributeValue
+- (CKComponentViewAttributeValue)convert {
+    return {self.key.convert, self.value};
 }
 @end
 
 
-@implementation CSAccessibilityContext
-- (CKComponentAccessibilityContext)convert {
-    var c = CKComponentAccessibilityContext();
-    c.isAccessibilityElement = self.isAccessibilityElement;
-    c.accessibilityComponentAction = self.accessibilityComponentAction;
-    c.accessibilityLabel = self.accessibilityLabel.convert;
-    return c;
-}
-@end
 
 
 
 @implementation CSViewAttributeMap {
-    NSDictionary<CSViewAttributeBase *, id> *_dict;
+    NSArray<CSViewAttributeValue *> *_content;
 }
-- (instancetype)initWithDictionary:(NSDictionary<CSViewAttributeBase *, id> *)dict {
+
+- (instancetype)initWithItems:(NSArray<CSViewAttributeValue *> *)items {
     self = [super init];
     if (self) {
-        _dict = dict; // the dict bridged from swift dict will not copy keys, which is efficient.
+        _content = items; // the dict bridged from swift dict will not copy keys, which is efficient.
     }
     return self;
 }
-- (NSDictionary<CSViewAttributeBase *,id> *)content {
-    if (!_dict) {
-        _dict = @{};
+- (NSArray<CSViewAttributeValue *> *)content {
+    if (!_content) {
+        _content = @[];
     }
-    return _dict;
+    return _content;
 }
 
 - (CKViewComponentAttributeValueMap)convert {
-    if (_dict.count == 0) {
+    if (_content.count == 0) {
         return {};
     }
-    __block CKViewComponentAttributeValueMap map = CKViewComponentAttributeValueMap();
-    [_dict enumerateKeysAndObjectsUsingBlock:^(CSViewAttributeBase *key, id obj, BOOL *stop) {
-        if ([key isKindOfClass:[CSViewAttributeValueType class]]) {
-            let k = (CSViewAttributeValueType *)key;
-            map.insert(k.convert);
-        } else if ([key isKindOfClass:[CSViewAttribute class]]) {
-            let k = (CSViewAttribute *)key;
-            map[k.convert] = obj;
-        } else  {
-            assert(@"key must be CSViewAttribute or CSViewAttributeValueType");
-        }
-    }];
+    CKViewComponentAttributeValueMap map = CKViewComponentAttributeValueMap();
+    for (CSViewAttributeValue *value in _content) {
+        map.insert(value.convert);
+    }
     return map;
 }
 

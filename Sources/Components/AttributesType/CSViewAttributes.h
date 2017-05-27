@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "CSOptionBase.h"
+#import "CSViewAccessibility.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -27,14 +28,10 @@ typedef UIView * _Nonnull(* _Nonnull CSViewFactoryType)(void);
 
 
 #pragma mark - --------------- ViewAttribute ----------------------
-// no corresponding in componentKit
-NS_SWIFT_NAME(ViewAttributeBase)
-@interface CSViewAttributeBase: CSOptionBase <NSCopying>
-@end
 
 // for CKComponentViewAttribute
 NS_SWIFT_NAME(ViewAttribute)
-@interface CSViewAttribute: CSViewAttributeBase
+@interface CSViewAttribute: CSOptionBase
 + (instancetype)new NS_UNAVAILABLE;
 - (instancetype)initWithSetter:(SEL)setter NS_SWIFT_NAME(init(_:));
 - (instancetype)initWithLayerSetter:(SEL)setter;
@@ -44,36 +41,24 @@ NS_SWIFT_NAME(ViewAttribute)
                                  updater:(void (^ _Nullable)(id view, id oldValue, id newValue))updater;
 @end
 
-
-#pragma mark - --------------- AccessibilityTextAttribute ---------------
-// for CKComponentAccessibilityTextAttribute
-NS_SWIFT_NAME(AccessibilityTextAttribute)
-@interface CSAccessibilityTextAttribute : CSOptionBase
-- (instancetype)initWithText:(NSString *)text NS_SWIFT_NAME(init(_:));
-- (instancetype)initWithLazyTextBlock:(NSString *(^)())textBlock NS_SWIFT_NAME(init(_:));
-- (BOOL)hasText;
-- (nullable NSString *)value;
+// for CKComponentViewAttributeValue, a pair of key and value
+NS_SWIFT_NAME(ViewAttributeValue)
+@interface CSViewAttributeValue: CSOptionBase
+@property (nonatomic, nonnull) CSViewAttribute *key;
+@property (nonatomic, nullable) id value;
 @end
 
-#pragma mark - --------------- AccessibilityContext ---------------
-// for CKComponentAccessibilityContext
-NS_SWIFT_NAME(AccessibilityContext)
-@interface CSAccessibilityContext : CSOptionBase
-@property (nonatomic, nullable) NSNumber *isAccessibilityElement;
-@property (nonatomic, nullable) CSAccessibilityTextAttribute *accessibilityLabel;
-@property (nonatomic, nullable) SEL accessibilityComponentAction;
-@end
 
 
 #pragma mark - --------------- ViewAttributesMap ---------------
 // fof CKViewComponentAttributeValueMap
 NS_SWIFT_NAME(ViewAttributeMap)
 @interface CSViewAttributeMap : CSOptionBase
-@property (nonatomic, readonly) NSDictionary<CSViewAttributeBase *, id> *content;
+@property (nonatomic, readonly) NSArray<CSViewAttributeValue *> *content;
 /// Due to the limit of objc, this api is different from componentKit.
 /// The key may be `CSViewAttribute` or `CSViewAttributeValueType`. If `CSViewAttributeValueType`, value in
 /// for this key is meaningless, won't be used.
-- (instancetype)initWithDictionary:(NSDictionary<CSViewAttributeBase *, id> *)dict NS_SWIFT_NAME(init(_:));
+- (instancetype)initWithItems:(NSArray<CSViewAttributeValue *> *)items NS_SWIFT_NAME(init(_:));
 @end
 
 

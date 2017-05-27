@@ -10,19 +10,13 @@
 #import "CSObject+Convert.h"
 #import "macro.h"
 
-@implementation CSViewAttributeValueType
-- (CKComponentViewAttributeValue)convert {
-    return {self.attribute.convert, self.value};
-}
-@end
 
-
-@interface CSGestureAttribute ()
+@interface CSGestureAttributeValue ()
 @property (nonatomic, readwrite) Class gestureClass;
 @property (nonatomic, readwrite) SEL action;
 @end
 
-@implementation CSGestureAttribute
+@implementation CSGestureAttributeValue
 
 - (CSViewAttribute *)attribute {
     NSAssert(NO, @"attribute is not available in this class");
@@ -65,8 +59,8 @@
 - (BOOL)isEqual:(id)other {
     if (other == self) {
         return YES;
-    } else if ([other isKindOfClass:CSGestureAttribute.class]){
-        CSGestureAttribute *g = (CSGestureAttribute *)other;
+    } else if ([other isKindOfClass:CSGestureAttributeValue.class]){
+        CSGestureAttributeValue *g = (CSGestureAttributeValue *)other;
         return self.class == g.class && self.action == g.action;
     }
     return NO;
@@ -77,7 +71,7 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    CSGestureAttribute *c = [[self.class alloc] init];
+    CSGestureAttributeValue *c = [[self.class alloc] init];
     c.action = self.action;
     c.gestureClass = self.gestureClass;
     return c;
