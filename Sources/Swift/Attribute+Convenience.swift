@@ -51,8 +51,22 @@ extension Attribute {
     public static func tapGesture(_ selector:Selector) -> Attribute {
         return .keyAndValue(GestureAttributeValue(tapAction: selector))
     }
+
+    // combination of cornerRadius: and clipsToBounds:
     public static func roundCorner(raidus: CGFloat) -> Attribute {
-        return .setLayer(#selector(setter: CALayer.cornerRadius), to: raidus)
+        let list = [self.Layer.cornerRadius(raidus), self.clipsToBounds(true)]
+        return .keyAndValueList(Attribute.convert(attributes: list))
+    }
+
+    // only can be applied to UIButton or its subclass
+    public static func setButtonTitle(_ title: String?) -> Attribute {
+        let key = ViewAttribute(
+            identifier: "setTitleForState",
+            applicator:
+            { (view, value) in
+                assert(view is UIButton, "the view must be UIButton or its subclass")
+                (view as? UIButton)?.setTitle(value as? String, for: .normal)
+        }, updater: { (view, _, newValue) in
             (view as? UIButton)?.setTitle(newValue as? String, for: .normal)
         })
         return .key(key, value: title)

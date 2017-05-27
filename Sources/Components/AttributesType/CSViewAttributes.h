@@ -38,7 +38,7 @@ NS_SWIFT_NAME(ViewAttribute)
 - (instancetype)initWithIdentifierString:(NSString *)string
                               applicator:(void (^ _Nonnull)(id view, id value))applicator
                             unapplicator:(void (^ _Nullable)(id view, id value))unapplicator
-                                 updater:(void (^ _Nullable)(id view, id oldValue, id newValue))updater;
+                                 updater:(void (^ _Nullable)(id view, id oldValue, id newValue))updater NS_REFINED_FOR_SWIFT;
 @end
 
 // for CKComponentViewAttributeValue, a pair of key and value
