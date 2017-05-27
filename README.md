@@ -50,6 +50,7 @@ or try real demo with `pod try ComponentSwift`
 #### Not support:
 - [ ] component controller
 - [ ] StaticLayoutComponent and StatefulViewComponent (not yet)
+- [ ] `computeLayoutThatFits:` overriding
 - [ ] ...
 
 
