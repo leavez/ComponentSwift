@@ -88,32 +88,6 @@ extension LayoutSize {
         self.minHeight = minHeight 
         self.maxHeight = maxHeight 
     }
-    public convenience init(width: CGFloat? = nil,
-                            height:CGFloat? = nil,
-                            minWidth: CGFloat? = nil,
-                            maxWidth: CGFloat? = nil,
-                            minHeight: CGFloat? = nil,
-                            maxHeight: CGFloat? = nil) {
-        self.init()
-        if let width = width {
-            self.width = .p(width)
-        }
-        if let height = height {
-            self.height = .p(height)
-        }
-        if let minWidth = minWidth {
-            self.minWidth = .p(minWidth)
-        }
-        if let maxWidth = maxWidth {
-            self.maxWidth = .p(maxWidth)
-        }
-        if let minHeight = minHeight {
-            self.minHeight = .p(minHeight)
-        }
-        if let maxHeight = maxHeight {
-            self.maxHeight = .p(maxHeight)
-        }
-    }
 
     public convenience init(size: CGSize,
                      minWidth: LayoutDimension? = nil,
@@ -144,6 +118,11 @@ extension LayoutSize {
         let s = self.init()
         s.width = .p(w)
         return s
+    }
+
+    public func width(_ v: LayoutDimension) -> LayoutSize {
+        self.width = v
+        return self
     }
 }
 
