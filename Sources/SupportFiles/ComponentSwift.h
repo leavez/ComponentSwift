@@ -36,6 +36,7 @@
 #import "CSComponentProvider.h"
 #import "CSHostingView.h"
 #import "CSTableViewTransactionalDataSource.h"
+#import "CSTransactionalDataSourceConfiguration.h"
 
 FOUNDATION_EXPORT double CKWrapperVersionNumber;
 FOUNDATION_EXPORT const unsigned char CKWrapperVersionString[];

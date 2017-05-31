@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CSComponentProvider.h"
 #import "CSChangeSet.h"
-NS_SWIFT_NAME(SupplementaryViewDataSource)
+#import "CSTransactionalDataSourceConfiguration.h"
 @protocol CSSupplementaryViewDataSource;
 
 
@@ -22,12 +22,10 @@ NS_SWIFT_NAME(CSCollectionViewDataSource)
 @property (readonly, nonatomic) UICollectionView *collectionView;
 
 - (instancetype)init NS_UNAVAILABLE;
+
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
            supplementaryViewDataSource:(nullable id<CSSupplementaryViewDataSource>)supplementaryViewDataSource
-                     componentProvider:(Class<CSComponentProviderProtocol>)componentProvider
-                               context:(nullable id)context
-                               minSize:(CGSize)minSize
-                               maxSize:(CGSize)maxSize NS_REFINED_FOR_SWIFT;
+                         configuration:(CSTransactionalDataSourceConfiguration *)configuration;
 
 
 /**
@@ -56,8 +54,15 @@ NS_SWIFT_NAME(CSCollectionViewDataSource)
 
 /** @see `CKTransactionalComponentDataSource` */
 - (void)reloadAsynchronously:(BOOL)asynchronously
-                    userInfo:(nullable NSDictionary *)userInfo;
+                    userInfo:(nullable NSDictionary *)userInfo NS_SWIFT_NAME(reload(asynchronously:userInfo:));
 
+
+/** @see `CKTransactionalComponentDataSource` */
+- (void)updateConfiguration:(CSTransactionalDataSourceConfiguration *)configuration
+             asynchronously:(BOOL)asynchronously
+                   userInfo:(nullable NSDictionary *)userInfo;
+
+- (void)updateSizeRange:(CGSizeRange)sizeRange asynchronously:(BOOL)asynchronously NS_REFINED_FOR_SWIFT;
 
 @end
 

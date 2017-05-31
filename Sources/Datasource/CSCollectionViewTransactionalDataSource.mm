@@ -10,37 +10,36 @@
 #import <ComponentKit/ComponentKit.h>
 #import "macro.h"
 #import "CSChangeSet+Build.h"
+#import "CSObject+Convert.h"
 
 
 @implementation CSCollectionViewTransactionalDataSource {
     CKCollectionViewTransactionalDataSource *_innerDatasource;
+    CSTransactionalDataSourceConfiguration *_config;
 }
 
+
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView
-           supplementaryViewDataSource:(id<CSSupplementaryViewDataSource>)supplementaryViewDataSource
-                     componentProvider:(Class<CSComponentProviderProtocol>)componentProvider
-                               context:(id<NSObject>)context
-                               minSize:(CGSize)minSize
-                               maxSize:(CGSize)maxSize;
+           supplementaryViewDataSource:(nullable id<CSSupplementaryViewDataSource>)supplementaryViewDataSource
+                         configuration:(CSTransactionalDataSourceConfiguration *)configuration
+
 {
     self = [super init];
     if (self) {
-        Class provider = componentProvider;
-        NSAssert([provider isSubclassOfClass:[NSObject class]], @"%@ should be sublcass of NSObject", NSStringFromClass(provider));
 
-        let castedComponentProviderClass = (Class<CKComponentProvider>)provider;
         let castedSupplementary = (id<CKSupplementaryViewDataSource>)supplementaryViewDataSource; // force cast
 
-        let config = [[CKTransactionalComponentDataSourceConfiguration alloc]
-                      initWithComponentProvider:castedComponentProviderClass
-                      context:context
-                      sizeRange:CKSizeRange(minSize, maxSize)];
+        let config = configuration.convert;
 
         _innerDatasource =
         [[CKCollectionViewTransactionalDataSource alloc]
          initWithCollectionView:collectionView
          supplementaryViewDataSource:castedSupplementary
          configuration:config];
+
+
+        // save for later
+        _config = configuration;
     }
     return self;
 }
@@ -63,5 +62,16 @@
 
 - (void)reloadAsynchronously:(BOOL)asynchronously userInfo:(NSDictionary *)userInfo {
     [_innerDatasource reloadWithMode:asynchronously ? CKUpdateModeAsynchronous : CKUpdateModeSynchronous userInfo:userInfo];
+}
+
+- (void)updateConfiguration:(CSTransactionalDataSourceConfiguration *)configuration
+             asynchronously:(BOOL)asynchronously userInfo:(NSDictionary *)userInfo {
+    [_innerDatasource updateConfiguration:configuration.convert mode:asynchronously ? CKUpdateModeAsynchronous : CKUpdateModeSynchronous userInfo:userInfo];
+}
+
+- (void)updateSizeRange:(CGSizeRange)sizeRange asynchronously:(BOOL)asynchronously {
+    let config = [[CSTransactionalDataSourceConfiguration alloc] initWithComponentProvider:_config.componentProvider context:_config.context sizeRange:sizeRange];
+    [self updateConfiguration:config asynchronously:asynchronously userInfo:nil];
+    _config = config;
 }
 @end

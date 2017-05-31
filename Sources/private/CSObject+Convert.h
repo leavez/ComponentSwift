@@ -15,6 +15,7 @@
 #import "CSStackLayoutComponent.h"
 #import "CSScope.h"
 #import "CSComponentAnimation.h"
+#import "CSTransactionalDataSourceConfiguration.h"
 
 #define EXTENSION(__class__, __content__) \
 @interface __class__ () \
@@ -61,6 +62,9 @@ EXTENSION(CSStackLayoutStyle ,
           )
 EXTENSION(CSStackLayoutChild ,
           - (CKStackLayoutComponentChild)convert;
+          )
+EXTENSION(CSTransactionalDataSourceConfiguration,
+          - (CKTransactionalComponentDataSourceConfiguration *)convert;
           )
 
 
