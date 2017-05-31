@@ -4,7 +4,7 @@ PODS:
   - ComponentKit (0.15.1)
   - ComponentSwift (0.2):
     - CKTableViewTransactionalDataSource
-    - ComponentKit
+    - ComponentKit (= 0.15.1)
   - WrapExisted (0.0.1):
     - ComponentSwift
 
@@ -22,7 +22,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CKTableViewTransactionalDataSource: 9f3da988ea8a9d00c68757f95a960e0dee6cf44d
   ComponentKit: beef88630f344efb8344fe40fc6fc7c1732b68c8
-  ComponentSwift: 4309771d4d71809aa1422882b5e0111200871902
+  ComponentSwift: 82454dfab21caac56bf41c157ccd68277bf73a03
   WrapExisted: 4d1757604e8dae1060d5e4ebe7ccca31f7123c5c
 
 PODFILE CHECKSUM: 00b1b9bb8109730b3adc9f47a6cf90c92fd44213
