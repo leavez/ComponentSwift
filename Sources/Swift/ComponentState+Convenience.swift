@@ -26,13 +26,30 @@ public extension ComponentStateProtocol where Self: CompositeComponent {
             updateBlock($0 as! StateType)
         }, asynchronously: asynchronously)
     }
+}
 
-    public init?(scope: StateScope<StateType>?, componentConstructor: (StateType) -> Component?) {
-        self.init(__scope:scope, componentConstructor: {
-            componentConstructor($0 as! StateType)
+
+open class CompositeComponent: __CompositeComponent {
+
+    public override init?(component: Component?) {
+        super.init(component: component)
+    }
+
+    public override init?(view: ViewConfiguration?, component: Component?) {
+        super.init(view: view, component: component)
+    }
+
+    public override init?(scope: Scope?, component: Component?) {
+        super.init(scope: scope, component: component)
+    }
+
+    public init?<T>(scope: StateScope<T>?, componentConstructor: (T) -> Component?) {
+        super.init(__scope:scope, componentConstructor: {
+            componentConstructor($0 as! T)
         })
     }
 }
+
 
 
 public class StateScope<ValueType>: Scope {
