@@ -107,8 +107,6 @@ NS_SWIFT_NAME(TableViewCellConfiguration)
 @property (nonatomic, assign) BOOL animationsDisabled;
 @property (nonatomic, assign) CSTableViewCellConfigurationFunction cellConfigurationFunction;
 
-+ (instancetype)noAnimationConfig;
-
 @end
 
 // for CKTableViewSupplementaryDataSource

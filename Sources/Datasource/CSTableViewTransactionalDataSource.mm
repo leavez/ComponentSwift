@@ -26,16 +26,6 @@
     return config;
 }
 
-+ (instancetype)noAnimationConfig {
-    CSTableViewCellConfiguration *config = [[self alloc] init];
-    config.animationSectionInsert =
-    config.animationSectionDelete =
-    config.animationRowInsert =
-    config.animationRowDelete = UITableViewRowAnimationNone;
-    config.animationsDisabled = YES;
-    return config;
-}
-
 @end
 
 

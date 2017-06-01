@@ -55,6 +55,7 @@ extension CSCollectionViewDataSource {
         let sizes = sizeFlexibility.sizeRange()
         self.__update(sizes, asynchronously: asynchronously)
     }
+
 }
 
 
@@ -68,7 +69,7 @@ extension CSTableViewDataSource {
                 context: Any?,
                 sizeFlexibility: SizeFlexibility? = nil,
                 supplementaryViewDataSource: TableViewSupplementaryDataSource? = nil,
-                cellConfiguration: TableViewCellConfiguration = TableViewCellConfiguration.noAnimationConfig())
+                cellConfiguration: TableViewCellConfiguration = .noAnimationConfig )
     {
 
         let sizes = (sizeFlexibility ?? SizeFlexibility.flexibleHeight(screenWidth(tableView)) ).sizeRange()
@@ -88,9 +89,30 @@ extension CSTableViewDataSource {
         let sizes = sizeFlexibility.sizeRange()
         self.__update(sizes, asynchronously: asynchronously)
     }
-
-
     
+}
+
+extension TableViewCellConfiguration: Builder {}
+extension TableViewCellConfiguration {
+
+    public static var noAnimationConfig: TableViewCellConfiguration {
+        let config = TableViewCellConfiguration()
+        config.animationRowDelete = .none
+        config.animationRowInsert = .none
+        config.animationSectionDelete = .none
+        config.animationSectionInsert = .none
+        config.animationsDisabled = true
+        return config
+    }
+
+    public static func animationConfig(style: UITableViewRowAnimation = .automatic) -> TableViewCellConfiguration {
+        let config = TableViewCellConfiguration()
+        config.animationRowDelete = style
+        config.animationRowInsert = style
+        config.animationSectionDelete = style
+        config.animationSectionInsert = style
+        return config
+    }
 }
 
 private func screenWidth(_ view: UIView) -> CGFloat {
