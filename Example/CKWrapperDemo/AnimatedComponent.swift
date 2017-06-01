@@ -11,18 +11,18 @@ import ComponentSwift
 import WrapExisted
 
 
-class AnimatedComponent: CompositeComponent, ComponentInitialStateProtocol, ComponentAnimationProtocol {
+class AnimatedComponent: CompositeComponent, ComponentStateProtocol, ComponentAnimationProtocol {
 
     typealias StateType = Bool
 
     var textComponent: Component?
 
-    convenience init?(model:Any) {
+    init?(model:Any) {
 
-        let scope = StateScope(with: type(of: self))
+        let scope = StateScope(with: type(of: self), identifier:nil) { false }
         var text: Component?
 
-        self.init(scope: scope) { (state) -> Component? in
+        super.init(scope: scope) { (state) -> Component? in
 
             text = TextComponent(
                 TextAttributes().build({
@@ -43,9 +43,6 @@ class AnimatedComponent: CompositeComponent, ComponentInitialStateProtocol, Comp
         self.textComponent = text
     }
 
-    static func initialState() -> Bool {
-        return false
-    }
 
     @objc func didTap(sender: Any) {
         print("tapped")

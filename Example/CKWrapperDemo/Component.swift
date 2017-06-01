@@ -16,11 +16,11 @@ class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
     typealias StateType = Bool
 
 
-    convenience init?(model:Any) {
+    init?(model:Any) {
 
         let scope = StateScope(with: type(of: self))
 
-        self.init(scope: scope) { (state) -> Component? in
+        super.init(scope: scope) { (state) -> Component? in
 
             InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
                            component:
