@@ -38,10 +38,10 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
 
 
         // add changeset
-        let changeset = ChangeSet().build {
-            $0.with(insertedSectionAt: 0)
-            $0.with(insertedItems: (0..<100).map{ ([0, $0], $0)})
-        }
+        let changeset = ChangeSet()
+            .with(insertedSectionAt: 0)
+            .with(insertedItems: (0..<100).map{ ([0, $0], $0)})
+        
         self.datasource.apply(changeset, asynchronously: true)
     }
 
