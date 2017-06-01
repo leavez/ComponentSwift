@@ -11,7 +11,7 @@
 #import "CSScope.h"
 @class CKComponent;
 
-NS_SWIFT_NAME(CompositeComponent)
+NS_SWIFT_NAME(__CompositeComponent)
 @interface CSCompositeComponent : CSComponent
 
 - (nullable instancetype)initWithComponent:(nullable CSComponent *)component;

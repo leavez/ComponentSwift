@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CSComponentProvider.h"
 #import "CSChangeSet.h"
-NS_SWIFT_NAME(TableViewSupplementaryDataSource)
+#import "CSTransactionalDataSourceConfiguration.h"
 @protocol CSTableViewSupplementaryDataSource;
 @class CSTableViewCellConfiguration;
 
@@ -23,12 +23,9 @@ NS_SWIFT_NAME(CSTableViewDataSource)
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithTableView:(UITableView *)tableView
+                    configuration:(CSTransactionalDataSourceConfiguration *)configuration
       supplementaryViewDataSource:(nullable id<CSTableViewSupplementaryDataSource>)supplementaryViewDataSource
-                componentProvider:(Class<CSComponentProviderProtocol>)componentProvider
-                          context:(nullable id)context
-                cellConfiguration:(CSTableViewCellConfiguration *)cellConfiguration
-                          minSize:(CGSize)minSize
-                          maxSize:(CGSize)maxSize NS_REFINED_FOR_SWIFT;
+                cellConfiguration:(CSTableViewCellConfiguration *)cellConfiguration;
 
 
 /**
@@ -59,7 +56,16 @@ NS_SWIFT_NAME(CSTableViewDataSource)
 
 /** @see `CKTransactionalComponentDataSource` */
 - (void)reloadAsynchronously:(BOOL)asynchronously
-                    userInfo:(nullable NSDictionary *)userInfo;
+                    userInfo:(nullable NSDictionary *)userInfo NS_SWIFT_NAME(reload(asynchronously:userInfo:));
+
+
+/** @see `CKTransactionalComponentDataSource` */
+- (void)updateConfiguration:(CSTransactionalDataSourceConfiguration *)configuration
+          cellConfiguration:(CSTableViewCellConfiguration *)cellConfiguration
+             asynchronously:(BOOL)asynchronously;
+
+
+- (void)updateSizeRange:(CGSizeRange)sizeRange asynchronously:(BOOL)asynchronously NS_REFINED_FOR_SWIFT;
 
 
 @end
@@ -100,8 +106,6 @@ NS_SWIFT_NAME(TableViewCellConfiguration)
 /** If `YES`, will perform updates with `+[UIView performWithoutAnimation:]` */
 @property (nonatomic, assign) BOOL animationsDisabled;
 @property (nonatomic, assign) CSTableViewCellConfigurationFunction cellConfigurationFunction;
-
-+ (instancetype)noAnimationConfig;
 
 @end
 

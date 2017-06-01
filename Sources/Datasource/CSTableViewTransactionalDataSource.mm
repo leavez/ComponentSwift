@@ -10,6 +10,7 @@
 #import <CKTableViewTransactionalDataSource/CKTableViewTransactionalDataSource.h>
 #import "macro.h"
 #import "CSChangeSet+Build.h"
+#import "CSObject+Convert.h"
 
 
 @implementation CSTableViewCellConfiguration
@@ -25,16 +26,6 @@
     return config;
 }
 
-+ (instancetype)noAnimationConfig {
-    CSTableViewCellConfiguration *config = [[self alloc] init];
-    config.animationSectionInsert =
-    config.animationSectionDelete =
-    config.animationRowInsert =
-    config.animationRowDelete = UITableViewRowAnimationNone;
-    config.animationsDisabled = YES;
-    return config;
-}
-
 @end
 
 
@@ -43,27 +34,21 @@
 
 @implementation CSTableViewTransactionalDataSource  {
     CKTableViewTransactionalDataSource *_innerDatasource;
+    CSTransactionalDataSourceConfiguration *_config;
+    CSTableViewCellConfiguration *_cellConfig;
 }
 
 - (instancetype)initWithTableView:(UITableView *)tableView
-      supplementaryViewDataSource:(id<CSTableViewSupplementaryDataSource>)supplementaryViewDataSource
-                componentProvider:(Class<CSComponentProviderProtocol>)componentProvider
-                          context:(id)context
+                    configuration:(CSTransactionalDataSourceConfiguration *)configuration
+      supplementaryViewDataSource:(nullable id<CSTableViewSupplementaryDataSource>)supplementaryViewDataSource
                 cellConfiguration:(CSTableViewCellConfiguration *)cellConfiguration
-                          minSize:(CGSize)minSize maxSize:(CGSize)maxSize
 {
     self = [super init];
     if (self) {
-        Class provider = componentProvider;
-        NSAssert([provider isSubclassOfClass:[NSObject class]], @"%@ should be sublcass of NSObject", NSStringFromClass(provider));
 
-        let castedComponentProviderClass = (Class<CKComponentProvider>)provider;
         let castedSupplementary = (id<CKTableViewSupplementaryDataSource>)supplementaryViewDataSource; // force cast
 
-        let config = [[CKTransactionalComponentDataSourceConfiguration alloc]
-                      initWithComponentProvider:castedComponentProviderClass
-                      context:context
-                      sizeRange:CKSizeRange(minSize, maxSize)];
+        let config = configuration.convert;
 
         _innerDatasource =
         [[CKTableViewTransactionalDataSource alloc]
@@ -71,6 +56,10 @@
          supplementaryDataSource:castedSupplementary
          configuration:config
          defaultCellConfiguration:cellConfiguration.convert];
+
+        // save for later
+        _config = configuration;
+        _cellConfig = cellConfiguration;
     }
     return self;
 }
@@ -96,6 +85,18 @@
     [_innerDatasource reloadWithMode:asynchronously ? CKUpdateModeAsynchronous : CKUpdateModeSynchronous userInfo:userInfo];
 }
 
+- (void)updateConfiguration:(CSTransactionalDataSourceConfiguration *)configuration
+          cellConfiguration:(CSTableViewCellConfiguration *)cellConfiguration
+             asynchronously:(BOOL)asynchronously
+{
+    [_innerDatasource updateConfiguration:configuration.convert mode:asynchronously ? CKUpdateModeAsynchronous : CKUpdateModeSynchronous cellConfiguration:cellConfiguration.convert];
+}
+
+- (void)updateSizeRange:(CGSizeRange)sizeRange asynchronously:(BOOL)asynchronously {
+    let config = [[CSTransactionalDataSourceConfiguration alloc] initWithComponentProvider:_config.componentProvider context:_config.context sizeRange:sizeRange];
+    [self updateConfiguration:config cellConfiguration:_cellConfig asynchronously:asynchronously];
+    _config = config;
+}
 
 @end
 

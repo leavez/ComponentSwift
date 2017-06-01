@@ -14,17 +14,17 @@ public enum SizeFlexibility {
     case flexibleHeight(CGFloat) // parameter is the fixed width
     case flexibleWidthAndHeight
 
-    fileprivate func sizeRange() -> (min:CGSize, max:CGSize) {
+    fileprivate func sizeRange() -> CGSizeRange {
         switch self {
         case .none(let w, let h):
             let size = CGSize(width: w, height: h)
-            return (size, size)
+            return CGSizeRange(min: size, max: size)
         case .flexibleWidth(let h):
-            return (CGSize(width: 0, height: h), CGSize(width: .infinity, height: h))
+            return CGSizeRange(min: CGSize(width: 0, height: h), max: CGSize(width: .infinity, height: h))
         case .flexibleHeight(let w):
-            return (CGSize(width: w, height: 0), CGSize(width: w, height: .infinity))
+            return CGSizeRange(min: CGSize(width: w, height: 0), max: CGSize(width: w, height: .infinity))
         case .flexibleWidthAndHeight:
-            return (CGSize(width: 0, height: 0), CGSize(width: CGFloat.infinity, height: .infinity))
+            return CGSizeRange(min: CGSize(width: 0, height: 0), max: CGSize(width: CGFloat.infinity, height: .infinity))
         }
     }
 }
@@ -42,11 +42,18 @@ extension CSCollectionViewDataSource {
                 sizeFlexibility: SizeFlexibility? = nil ) {
 
         let sizes = (sizeFlexibility ?? SizeFlexibility.flexibleHeight(screenWidth(collectionView)) ).sizeRange()
-        self.init(__collectionView: collectionView, supplementaryViewDataSource: supplementaryViewDataSource, componentProvider: componentProvider, context: context, minSize:sizes.min , maxSize:sizes.max)
+        let configuration = DataSourceConfiguration(componentProvider: componentProvider, context: context, sizeRange: sizes)
+
+        self.init(collectionView: collectionView, supplementaryViewDataSource: supplementaryViewDataSource, configuration: configuration)
     }
 
     public func apply(_ changeset: ChangeSet, asynchronously: Bool, userInfo:[AnyHashable:Any]? = nil) {
         self.__applyChangeset(changeset, asynchronously: asynchronously, userInfo: userInfo)
+    }
+
+    public func update(sizeFlexibility: SizeFlexibility, asynchronously: Bool) {
+        let sizes = sizeFlexibility.sizeRange()
+        self.__update(sizes, asynchronously: asynchronously)
     }
 
 }
@@ -58,15 +65,17 @@ extension CSTableViewDataSource {
     ///    componentProvider must be subclass of NSObject
     ///
     public convenience init(tableView: UITableView,
-                supplementaryViewDataSource: TableViewSupplementaryDataSource? = nil,
                 componentProvider: ComponentProviderProtocol.Type,
                 context: Any?,
-                cellConfiguration: TableViewCellConfiguration = TableViewCellConfiguration.noAnimationConfig(),
-                sizeFlexibility: SizeFlexibility? = nil) {
-
+                sizeFlexibility: SizeFlexibility? = nil,
+                supplementaryViewDataSource: TableViewSupplementaryDataSource? = nil,
+                cellConfiguration: TableViewCellConfiguration = .noAnimationConfig )
+    {
 
         let sizes = (sizeFlexibility ?? SizeFlexibility.flexibleHeight(screenWidth(tableView)) ).sizeRange()
-        self.init(__tableView: tableView, supplementaryViewDataSource: supplementaryViewDataSource, componentProvider: componentProvider, context: context, cellConfiguration:cellConfiguration, minSize:sizes.min , maxSize:sizes.max)
+        let configuration = DataSourceConfiguration(componentProvider: componentProvider, context: context, sizeRange: sizes)
+
+        self.init(tableView: tableView, configuration: configuration, supplementaryViewDataSource:supplementaryViewDataSource, cellConfiguration: cellConfiguration)
     }
 
 
@@ -76,8 +85,34 @@ extension CSTableViewDataSource {
         self.__applyChangeset(changeset, asynchronously: asynchronously, cellConfiguration: cellConfiguration)
     }
 
-
+    public func update(sizeFlexibility: SizeFlexibility, asynchronously: Bool) {
+        let sizes = sizeFlexibility.sizeRange()
+        self.__update(sizes, asynchronously: asynchronously)
+    }
     
+}
+
+extension TableViewCellConfiguration: Builder {}
+extension TableViewCellConfiguration {
+
+    static var noAnimationConfig: TableViewCellConfiguration {
+        let config = TableViewCellConfiguration()
+        config.animationRowDelete = .none
+        config.animationRowInsert = .none
+        config.animationSectionDelete = .none
+        config.animationSectionInsert = .none
+        config.animationsDisabled = true
+        return config
+    }
+
+    func animationConfig(style: UITableViewRowAnimation = .automatic) -> TableViewCellConfiguration {
+        let config = TableViewCellConfiguration()
+        config.animationRowDelete = style
+        config.animationRowInsert = style
+        config.animationSectionDelete = style
+        config.animationSectionInsert = style
+        return config
+    }
 }
 
 private func screenWidth(_ view: UIView) -> CGFloat {

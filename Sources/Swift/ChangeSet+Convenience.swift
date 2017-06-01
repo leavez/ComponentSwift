@@ -16,45 +16,69 @@ extension ChangeSet {
 
     // MARK:- insert & update
 
-    public func with(insertedItems : [(indexPath: IndexPath, model: Any?)]?) {
+    @discardableResult
+    public func with(insertedItems : [(indexPath: IndexPath, model: Any?)]?) -> ChangeSet {
         self.insertedItems = convert(items: insertedItems)
+        return self
     }
-    public func with(updatedItems : [(indexPath: IndexPath, model: Any?)]?) {
+    @discardableResult
+    public func with(updatedItems : [(indexPath: IndexPath, model: Any?)]?) -> ChangeSet {
         self.updatedItems = convert(items: updatedItems)
+        return self
     }
 
     // MARK:- remove
 
-    public func with(removedIndex: CountableRange<Int>, in section: Int = 0) {
-        self.removedItems = Set(removedIndex.map{ IndexPath(row:$0, section:section) })
+    @discardableResult
+    public func with(removedItems: [IndexPath]) -> ChangeSet {
+        self.removedItems = Set(removedItems)
+        return self
     }
-    public func with(removedIndex: CountableClosedRange<Int>, in section: Int = 0) {
+    @discardableResult
+    public func with(removedIndex: CountableRange<Int>, in section: Int = 0) -> ChangeSet {
         self.removedItems = Set(removedIndex.map{ IndexPath(row:$0, section:section) })
+        return self
     }
-
+    @discardableResult
+    public func with(removedIndex: CountableClosedRange<Int>, in section: Int = 0) -> ChangeSet {
+        self.removedItems = Set(removedIndex.map{ IndexPath(row:$0, section:section) })
+        return self
+    }
 
     // MARK:- insert sections
 
-    public func with(insertedSectionAt: Int) {
+    @discardableResult
+    public func with(insertedSectionAt: Int) -> ChangeSet {
         self.insertedSections = IndexSet(integer: insertedSectionAt)
+        return self
     }
-    public func with(insertedSections: CountableRange<Int>) {
+    @discardableResult
+    public func with(insertedSections: CountableRange<Int>) -> ChangeSet {
         self.insertedSections = IndexSet(integersIn: insertedSections)
+        return self
     }
-    public func with(insertedSections: CountableClosedRange<Int>) {
+    @discardableResult
+    public func with(insertedSections: CountableClosedRange<Int>) -> ChangeSet {
         self.insertedSections = IndexSet(integersIn: insertedSections)
+        return self
     }
 
     // MARK:- remove sections
 
-    public func with(removedSectionAt: Int) {
+    @discardableResult
+    public func with(removedSectionAt: Int) -> ChangeSet {
         self.removedSections = IndexSet(integer: removedSectionAt)
+        return self
     }
-    public func with(removedSections: CountableRange<Int>) {
+    @discardableResult
+    public func with(removedSections: CountableRange<Int>) -> ChangeSet {
         self.removedSections = IndexSet(integersIn: removedSections)
+        return self
     }
-    public func with(removedSections: CountableClosedRange<Int>) {
+    @discardableResult
+    public func with(removedSections: CountableClosedRange<Int>) -> ChangeSet {
         self.removedSections = IndexSet(integersIn: removedSections)
+        return self
     }
 
 
