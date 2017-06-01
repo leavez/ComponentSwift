@@ -17,7 +17,7 @@ ComponentSwift is an objc wrapper of ComponentKit and refined for swift. Compone
   s.author           = { 'leavez' => 'gaojiji@gmail.com' }
   s.source           = { :git => 'https://github.com/leavez/ComponentSwift.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '8.1'
 
   s.source_files = 'Sources/**/*.{swift,h,m,mm}'
   s.private_header_files = 'Sources/private/**/*.{h}'
