@@ -68,7 +68,7 @@ extension LayoutDimension: ExpressibleByFloatLiteral {
 }
 
 
-
+extension LayoutSize: Builder {}
 extension LayoutSize {
 
     public convenience init(size: CGSize) {
@@ -89,19 +89,6 @@ extension LayoutSize {
         self.maxHeight = maxHeight 
     }
 
-    public convenience init(size: CGSize,
-                     minWidth: LayoutDimension? = nil,
-                     maxWidth: LayoutDimension? = nil,
-                     minHeight: LayoutDimension? = nil,
-                     maxHeight: LayoutDimension? = nil) {
-        self.init()
-        self.width = .p(size.width)
-        self.height = .p(size.height)
-        self.minWidth = minWidth
-        self.maxWidth = maxWidth 
-        self.minHeight = minHeight
-        self.maxHeight = maxHeight
-    }
 
     public static func size(_ size: CGSize) -> LayoutSize {
         return LayoutSize(cgSize: size)
@@ -118,11 +105,6 @@ extension LayoutSize {
         let s = self.init()
         s.width = .p(w)
         return s
-    }
-
-    public func width(_ v: LayoutDimension) -> LayoutSize {
-        self.width = v
-        return self
     }
 }
 
