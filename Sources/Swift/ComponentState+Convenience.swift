@@ -74,3 +74,10 @@ public class StateScope<ValueType>: Scope {
         super.init(__with: cls, identifier: identifier, initialStateCreator: initialStateCreator)
     }
 }
+
+extension Scope {
+    @nonobjc
+    public convenience init(_ cls: AnyClass, identifier: String? = nil, initialStateCreator: (() -> Any?)? = nil) {
+        self.init(__with: cls, identifier: identifier, initialStateCreator: initialStateCreator)
+    }
+}
