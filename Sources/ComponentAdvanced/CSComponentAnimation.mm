@@ -8,6 +8,8 @@
 
 #import "CSComponentAnimation.h"
 #import "CppHeaders.h"
+#import <ComponentKit/CKComponentInternal.h>
+#import "CSComponentInner.h"
 
 
 /// _CKComponentAnimation have no default initializer, which cannot used as property in Objc class.
@@ -42,8 +44,19 @@ struct _CKComponentAnimation {
     }
     return self;
 }
+
 - (CKComponentAnimation)convert {
     return _inner.inner;
 }
 
+
+
+@end
+
+
+
+@implementation CSComponent (animation)
+- (UIView *)viewForAnimation {
+    return [self.realComponentWithoutChangingOwnership viewForAnimation];
+}
 @end
