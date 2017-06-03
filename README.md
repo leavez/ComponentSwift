@@ -48,8 +48,8 @@ or try real demo with `pod try ComponentSwift`
 
 
 #### Not support:
-- [ ] component controller
-- [ ] StaticLayoutComponent and StatefulViewComponent (not yet)
+- [ ] component controller and StatefulViewComponent 
+- [ ] things about viewContext, mount
 - [ ] `computeLayoutThatFits:` overriding
 - [ ] ...
 
