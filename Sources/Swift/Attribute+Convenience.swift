@@ -52,6 +52,10 @@ extension Attribute {
         return .keyAndValue(GestureAttributeValue(tapAction: selector))
     }
 
+    public static func controlAction(event:UIControlEvents, action: Selector) -> Attribute {
+        return .keyAndValue(ControlActionAttribute(event: event, action: action))
+    }
+
     // combination of cornerRadius: and clipsToBounds:
     public static func roundCorner(raidus: CGFloat) -> Attribute {
         let list = [self.Layer.cornerRadius(raidus), self.clipsToBounds(true)]
