@@ -25,27 +25,35 @@ class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
             InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
                            component:
 
-                HorizontalStackComponnet(
+                VerticalStackComponnet(
                     style:
                     StackLayoutStyle()
                         .spacing(15),
 
                     children:
-                    Component(
-                        view:
-                        ViewConfiguration(
-                            attributes:
-                            .set(#selector(setter:UIView.backgroundColor), to: UIColor.orange),
-                            .roundCorner(raidus: 30),
-                            .tapGesture(#selector(didTap))
+
+                    HorizontalStackComponnet(
+                        // circle
+                        Component(
+                            view:
+                            ViewConfiguration(
+                                attributes:
+                                .set(#selector(setter:UIView.backgroundColor), to: UIColor.orange),
+                                .roundCorner(raidus: 30),
+                                .tapGesture(#selector(didTap))
+                            ),
+                            size:.size(60, 60)
                         ),
-                        size:.size(60, 60)
+                        // 
+                        Component(view: nil, size: .width(15)),
+                        //
+                        cuteRobot()
                     ),
 
                     TextComponent(
                         TextAttributes().build({
                             $0.attributedString = getText()
-                            $0.maximumNumberOfLines = state ? 0 : 4
+                            $0.maximumNumberOfLines = state ? 0 : 3
                             $0.truncationAttributedString = NSAttributedString(string:"...")
                         }),
                         viewAttributes:
@@ -74,6 +82,30 @@ class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
 
 }
 
+private func cuteRobot() -> Component {
+    return StaticLayoutComponent(
+        view:
+        ViewConfiguration(
+            attributes:
+            A.backgroundColor(Color(248,174,201)),
+            A.roundCorner(raidus: 3)
+        ),
+        children:[
+            StaticLayoutChild().build({
+                $0.component = Component(view: ViewConfiguration(attributes:A.backgroundColor(Color(23,70,98))), size: .size(20,20))
+                $0.position = CGPoint(x: 10, y: 0)
+            }),
+            StaticLayoutChild().build({
+                $0.component = Component(view: ViewConfiguration(attributes:A.backgroundColor(Color(23,70,98))), size: .size(15,20))
+                $0.position = CGPoint(x: 200, y: 0)
+            }),
+            StaticLayoutChild().build({
+                $0.component = Component(view: ViewConfiguration(attributes:A.backgroundColor(Color(33,90,127))), size: .size(44,44))
+                $0.position = CGPoint(x: 100, y: 30)
+            })
+        ]
+    )
+}
 
 
 
@@ -85,5 +117,8 @@ func getText() -> NSAttributedString {
     return attributeString
 }
 
+func Color(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat) -> UIColor {
+    return UIColor(red: r/255.0, green: g/255.0, blue: b/255.0, alpha: 1)
+}
 
 
