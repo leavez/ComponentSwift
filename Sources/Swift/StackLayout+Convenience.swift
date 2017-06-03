@@ -12,9 +12,7 @@ public protocol StackLayoutChildType {
 
 extension Component: StackLayoutChildType {
     public var toChild: StackLayoutChild? {
-        return StackLayoutChild().build({
-            $0.component = self
-        })
+        return self.stackLayoutChild
     }
 }
 extension StackLayoutChild: StackLayoutChildType {
@@ -24,41 +22,39 @@ extension StackLayoutChild: StackLayoutChildType {
 }
 
 
-public class VerticalStackComponnet: StackLayoutComponent {
 
-    public convenience init(_ children:StackLayoutChildType?...) {
+
+// MARK:- convenient initialier for stack layout component
+
+
+public class VerticalStackComponnet: StackLayoutComponent, StackComponentInitialierProtocol {
+    public static var layoutDirection: StackLayoutDirection = .vertical
+}
+public class HorizontalStackComponnet: StackLayoutComponent, StackComponentInitialierProtocol {
+    public static var layoutDirection: StackLayoutDirection = .horizontal
+}
+
+public protocol StackComponentInitialierProtocol: class {
+    static var layoutDirection: StackLayoutDirection {get}
+}
+
+extension StackComponentInitialierProtocol where Self: StackLayoutComponent {
+
+    public init(_ children:StackLayoutChildType?...) {
         self.init(style: nil, children: children)
     }
-    public convenience init(style: StackLayoutStyle?, children:StackLayoutChildType?...) {
+    public init(style: StackLayoutStyle?, size:LayoutSize? = nil, children:StackLayoutChildType?...) {
         self.init(style: style, children: children)
     }
-    public init(style: StackLayoutStyle?, children:[StackLayoutChildType?]) {
+    public init(style: StackLayoutStyle?, size:LayoutSize? = nil, children:[StackLayoutChildType?]) {
 
-        style?.direction = .vertical
-        super.init(
+        style?.direction = Self.layoutDirection
+        self.init(
             __view:nil, size:nil, style:style,
             children: children.flatMap{ $0?.toChild }
         )
     }
 }
-public class HorizontalStackComponnet: StackLayoutComponent {
-
-    public convenience init(_ children:StackLayoutChildType?...) {
-        self.init(style: nil, children: children)
-    }
-    public convenience init(style: StackLayoutStyle?, children:StackLayoutChildType?...) {
-        self.init(style: style, children: children)
-    }
-    public init(style: StackLayoutStyle?, children:[StackLayoutChildType?]) {
-
-        style?.direction = .horizontal
-        super.init(
-            __view:nil, size:nil, style:style,
-            children: children.flatMap{ $0?.toChild }
-        )
-    }
-}
-
 
 
 
@@ -133,9 +129,9 @@ extension StackLayoutChild {
  */
 extension Component {
     public var stackLayoutChild: StackLayoutChild {
-        let c = StackLayoutChild()
-        c.component = self
-        return c
+        return StackLayoutChild().build {
+            $0.component = self
+        }
     }
 }
 
