@@ -49,47 +49,6 @@ extension TextAttributes {
 
 
 
-extension StackLayoutComponent {
-
-    public convenience init(view: ViewConfiguration? = nil,
-                            size: LayoutSize? = nil,
-                            style: StackLayoutStyle? = nil,
-                            children: [StackLayoutChild?] )
-    {
-        self.init(__view:view, size:size, style:style, children:children.flatMap{ $0 })
-    }
-    public convenience init(view: ViewConfiguration? = nil,
-                            size: LayoutSize? = nil,
-                            style: StackLayoutStyle? = nil,
-                            childrenComponents: [Component?] )
-    {
-        self.init(__view:view, size:size, style:style, children:childrenComponents.flatMap{ ComponentSwift.StackLayoutChild($0) })
-    }
-}
-
-
-extension StackLayoutChild {
-
-    public convenience init?(_ component: Component?,
-                            spacingAfter: CGFloat = 0,
-                            spacingBefore: CGFloat = 0,
-                            flexGrow: Bool = false,
-                            flexShrink: Bool = false,
-                            flexBasis: LayoutDimension? = nil,
-                            alignSelf: ComponentSwift.StackLayoutAlignSelf = .auto) {
-        guard let component = component else {
-            return nil
-        }
-        self.init()
-        self.component = component
-        self.spacingAfter = spacingAfter
-        self.spacingBefore = spacingBefore
-        self.flexGrow = flexGrow
-        self.flexShrink = flexShrink
-        self.flexBasis = flexBasis
-        self.alignSelf = alignSelf
-    }
-}
 
 extension UIControlState: Hashable {
     public var hashValue: Int {

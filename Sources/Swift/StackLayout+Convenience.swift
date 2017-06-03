@@ -6,6 +6,7 @@
 //
 //
 
+
 public protocol StackLayoutChildType {
     var toChild: StackLayoutChild? {get}
 }
@@ -26,31 +27,40 @@ extension StackLayoutChild: StackLayoutChildType {
 
 // MARK:- convenient initialier for stack layout component
 
-
-public class VerticalStackComponnet: StackLayoutComponent, StackComponentInitialierProtocol {
-    public static var layoutDirection: StackLayoutDirection = .vertical
+extension StackLayoutComponent : StackComponentInitialierProtocol {
+    public class func modifyStyle(_ v: StackLayoutStyle) { }
 }
-public class HorizontalStackComponnet: StackLayoutComponent, StackComponentInitialierProtocol {
-    public static var layoutDirection: StackLayoutDirection = .horizontal
+
+/// subclass of StackLayoutComponent, with preset layoutDirction
+public class VerticalStackComponnet: StackLayoutComponent {
+    public override class func modifyStyle(_ v: StackLayoutStyle) {
+        v.direction = .vertical
+    }
+}
+/// subclass of StackLayoutComponent, with preset layoutDirction
+public class HorizontalStackComponnet: StackLayoutComponent {
+    public override class func modifyStyle(_ v: StackLayoutStyle) {
+        v.direction = .horizontal
+    }
 }
 
 public protocol StackComponentInitialierProtocol: class {
-    static var layoutDirection: StackLayoutDirection {get}
+    static func modifyStyle(_ v: StackLayoutStyle)
 }
-
 extension StackComponentInitialierProtocol where Self: StackLayoutComponent {
 
     public init(_ children:StackLayoutChildType?...) {
         self.init(style: nil, children: children)
     }
-    public init(style: StackLayoutStyle?, size:LayoutSize? = nil, children:StackLayoutChildType?...) {
+    public init(view: ViewConfiguration? = nil, style: StackLayoutStyle?, size:LayoutSize? = nil, children:StackLayoutChildType?...) {
         self.init(style: style, children: children)
     }
-    public init(style: StackLayoutStyle?, size:LayoutSize? = nil, children:[StackLayoutChildType?]) {
+    public init(view: ViewConfiguration? = nil, style: StackLayoutStyle?, size:LayoutSize? = nil, children:[StackLayoutChildType?]) {
 
-        style?.direction = Self.layoutDirection
+        let s = style ?? StackLayoutStyle()
+        Self.modifyStyle(s)
         self.init(
-            __view:nil, size:nil, style:style,
+            __view:view, size:size, style:s,
             children: children.flatMap{ $0?.toChild }
         )
     }
