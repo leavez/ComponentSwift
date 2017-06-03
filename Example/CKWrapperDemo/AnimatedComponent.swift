@@ -15,11 +15,11 @@ class AnimatedComponent: CompositeComponent, ComponentStateProtocol, ComponentAn
 
     typealias StateType = Bool
 
-    var textComponent: Component?
+    var textComponent: Component!
 
     init?(model:Any) {
 
-        let scope = StateScope(with: type(of: self), identifier:nil) { false }
+        let scope = StateScope(with: type(of: self), identifier:nil) { true }
         var text: Component?
 
         super.init(scope: scope) { (state) -> Component? in
@@ -27,7 +27,7 @@ class AnimatedComponent: CompositeComponent, ComponentStateProtocol, ComponentAn
             text = TextComponent(
                 TextAttributes().build({
                     $0.attributedString = getText()
-                    $0.maximumNumberOfLines = state ? 0 : 4
+                    $0.maximumNumberOfLines = state ? 4 : 0
                     $0.truncationAttributedString = NSAttributedString(string:"...")
                 }),
                 viewAttributes:
@@ -56,14 +56,6 @@ class AnimatedComponent: CompositeComponent, ComponentStateProtocol, ComponentAn
 
     func animationsOnInitialMount() -> [ComponentAnimation]? {
 
-        return self.animations(fromPreviousComponent: nil)
-    }
-
-    func animations(fromPreviousComponent previousComponent: Component?) -> [ComponentAnimation]? {
-        guard let textComponent = textComponent else {
-            return nil
-        }
-
         let scale = CABasicAnimation(keyPath: "transform.scale")
         scale.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
         scale.duration = 1
@@ -79,7 +71,32 @@ class AnimatedComponent: CompositeComponent, ComponentStateProtocol, ComponentAn
         return [
             ComponentAnimation(component: textComponent, animation: scale),
             ComponentAnimation(component: textComponent, animation: fade)
-            ]
+        ]
+    }
+
+    func animations(fromPreviousComponent previousComponent: Component?) -> [ComponentAnimation]? {
+        guard let previousComponent = previousComponent as? AnimatedComponent else {
+            return nil
+        }
+
+        return [
+            ComponentAnimation(previousComponent: previousComponent.textComponent, component: textComponent, animation: { (previous, view) in
+                // because the cell configuration of datasource is set to noAnimation,
+                // which will perform change with uiview animation diabled. so we enable
+                // animation here, to allow performing uiview animaiton.
+                UIView.setAnimationsEnabled(true)
+                view?.alpha = 0
+                view?.transform = CGAffineTransform(translationX: 0, y: -50)
+                UIView.animate(withDuration: 0.4, animations: {
+                    previous?.alpha = 0
+                    previous?.transform = CGAffineTransform(translationX: 0, y: 50)
+                    view?.alpha = 1
+                    view?.transform = .identity
+                })
+                UIView.setAnimationsEnabled(false)
+            })
+        ]
+
     }
     
 }
