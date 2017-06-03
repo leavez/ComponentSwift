@@ -11,12 +11,14 @@ import Foundation
 
 public protocol Builder {}
 
-extension Builder where Self: AnyObject {
+extension Builder {
 
-    public func build(_ block: (Self) -> Void) -> Self {
-        block(self)
-        return self
+    public func build(_ block: (inout Self) -> Void) -> Self {
+        var copy = self
+        block(&copy)
+        return copy
     }
 }
+
 
 extension OptionBase : Builder {}

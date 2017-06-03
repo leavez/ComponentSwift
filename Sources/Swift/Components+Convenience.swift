@@ -91,7 +91,7 @@ extension StackLayoutChild {
     }
 }
 
-extension UIControlState :Hashable {
+extension UIControlState: Hashable {
     public var hashValue: Int {
         return Int(self.rawValue)
     }
@@ -99,20 +99,42 @@ extension UIControlState :Hashable {
 
 extension ButtonComponnet {
 
+    public struct ButtonAttribute: Builder {
+        var titles: [UIControlState: String?]?
+        var titleColors: [UIControlState: UIColor?]?
+        var images: [UIControlState: UIImage?]?
+        var backgroundImages:[UIControlState: UIImage?]?
+        var titleFont: UIFont = .systemFont(ofSize: 15)
+        var selected: Bool = false
+        var enabled: Bool = true
+        var accessibilityLabel: String?
+    }
 
-    public convenience init(titles:[UIControlState: String?]? = nil,
-                            titleColors:[UIControlState: UIColor?]? = nil,
-                            images:[UIControlState: UIImage?]? = nil,
-                            backgroundImages:[UIControlState: UIImage?]? = nil,
-                            titleFont: UIFont,
-                            selected: Bool = false,
-                            enabled: Bool = false,
+
+    public convenience init(title: (String, UIColor, UIFont)? = nil,
+                            image: UIImage? = nil,
                             action: Selector?,
-                            size: LayoutSize? = nil,
-                            attributes: ViewAttributeMap? = nil,
+                            size: LayoutSize?,
+                            viewAttributes: ViewAttributeMap? = nil,
                             accessibilityLabel: String? = nil) {
+        let attr = ButtonAttribute().build {
+            if let title = title {
+                $0.titles = [.normal : title.0]
+                $0.titleColors = [.normal : title.1]
+                $0.titleFont = title.2
+            }
+            $0.images = [.normal : image]
+            $0.accessibilityLabel = accessibilityLabel
+        }
+        self.init(attributes: attr, action: action, size: size, viewAttributes: viewAttributes)
+    }
 
-        let list: [[UIControlState: Any?]?] = [titles, titleColors, images, backgroundImages]
+    public convenience init(attributes: ButtonAttribute,
+                            action: Selector?,
+                            size: LayoutSize?,
+                            viewAttributes: ViewAttributeMap? = nil) {
+
+        let list: [[UIControlState: Any?]?] = [attributes.titles, attributes.titleColors, attributes.images, attributes.backgroundImages]
         let states: [UIControlState] = list.flatMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
         let buttonAttrs = Set(states).map{ (state) -> ButtonAttributes in
             let a = ButtonAttributes()
@@ -121,22 +143,21 @@ extension ButtonComponnet {
         }
 
         for attr in buttonAttrs {
-            if let t = titles?[attr.state] {
+            if let t = attributes.titles?[attr.state] {
                 attr.title = t
             }
-            if let color = titleColors?[attr.state] {
+            if let color = attributes.titleColors?[attr.state] {
                 attr.titleColor = color
             }
-            if let image = images?[attr.state] {
+            if let image = attributes.images?[attr.state] {
                 attr.image = image
             }
-            if let image = backgroundImages?[attr.state] {
+            if let image = attributes.backgroundImages?[attr.state] {
                 attr.backgroundImage = image
             }
         }
 
-        self.init(__buttonAttribute: buttonAttrs, titleFont: titleFont, selected: selected, enabled: enabled, action: action, size: size, attributes: attributes, accessibilityLabel: accessibilityLabel)
-
+        self.init(__buttonAttribute: buttonAttrs, titleFont: attributes.titleFont, selected: attributes.selected, enabled: attributes.enabled, action: action, size: size, attributes: viewAttributes, accessibilityLabel: attributes.accessibilityLabel)
     }
 }
 
