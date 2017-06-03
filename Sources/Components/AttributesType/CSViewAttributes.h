@@ -23,7 +23,7 @@ typedef UIView * _Nonnull(* _Nonnull CSViewFactoryType)(void);
 - (instancetype)init;
 - (instancetype)initWithCls:(Class)viewClass NS_SWIFT_NAME(init(_:));
 - (instancetype)initWithCls:(Class)viewClass didEnterReusePoolMessage:(nullable SEL)didEnterReusePoolMessage willLeaveReusePoolMessage:(nullable SEL)willLeaveReusePoolMessage;
-- (instancetype)initWithFactory:(CSViewFactoryType)factory didEnterReusePool:(nullable CSViewReuseBlock)didEnterReusePool willLeaveReusePool:(nullable CSViewReuseBlock)willLeaveReusePool;
+- (instancetype)initWithFactory:(CSViewFactoryType)factory didEnterReusePool:(nullable CSViewReuseBlock)didEnterReusePool willLeaveReusePool:(nullable CSViewReuseBlock)willLeaveReusePool NS_REFINED_FOR_SWIFT;
 @end
 
 

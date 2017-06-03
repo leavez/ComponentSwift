@@ -8,6 +8,16 @@
 
 import Foundation
 
+extension ViewClass {
+
+    @nonobjc
+    public convenience init(factory: @escaping @convention(c) () -> UIView,
+                            didEnterReusePool: CSViewReuseBlock? = nil,
+                            willLeaveReusePool: CSViewReuseBlock? = nil) {
+        self.init(__factory: factory, didEnterReusePool: didEnterReusePool, willLeaveReusePool: willLeaveReusePool)
+    }
+}
+
 
 extension ViewAttribute {
     @nonobjc
