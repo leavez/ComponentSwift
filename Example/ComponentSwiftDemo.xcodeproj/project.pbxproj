@@ -51,6 +51,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4131254B1EE30504002ECFC9 /* tab 2 */ = {
+			isa = PBXGroup;
+			children = (
+				41A051ED1ECA2CCF005E3866 /* TableViewController.swift */,
+				3EACD3B81ECB1C930086F6DD /* AnimatedComponent.swift */,
+			);
+			name = "tab 2";
+			sourceTree = "<group>";
+		};
+		4131254C1EE30512002ECFC9 /* tab 1 */ = {
+			isa = PBXGroup;
+			children = (
+				41D7C9511EABA789004B2DE7 /* CollectionViewController.swift */,
+				41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */,
+				412FD89B1EAC833300220B36 /* Component.swift */,
+			);
+			name = "tab 1";
+			sourceTree = "<group>";
+		};
+		4131254D1EE3052B002ECFC9 /* tab 3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "tab 3";
+			sourceTree = "<group>";
+		};
 		41D7C9431EABA789004B2DE7 = {
 			isa = PBXGroup;
 			children = (
@@ -73,11 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */,
-				41D7C9511EABA789004B2DE7 /* CollectionViewController.swift */,
-				41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */,
-				412FD89B1EAC833300220B36 /* Component.swift */,
-				41A051ED1ECA2CCF005E3866 /* TableViewController.swift */,
-				3EACD3B81ECB1C930086F6DD /* AnimatedComponent.swift */,
+				4131254C1EE30512002ECFC9 /* tab 1 */,
+				4131254B1EE30504002ECFC9 /* tab 2 */,
+				4131254D1EE3052B002ECFC9 /* tab 3 */,
 				41D7C9531EABA789004B2DE7 /* Main.storyboard */,
 				41D7C9561EABA789004B2DE7 /* Assets.xcassets */,
 				41D7C9581EABA789004B2DE7 /* LaunchScreen.storyboard */,
