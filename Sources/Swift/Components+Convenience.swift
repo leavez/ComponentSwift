@@ -146,3 +146,14 @@ extension NetworkImageComponnet {
 }
 
 
+
+extension StaticLayoutComponent {
+
+    @nonobjc
+    public convenience init(view: ViewConfiguration? = nil, size: LayoutSize? = nil, children: [StaticLayoutChild]) {
+        self.init(__view: view, size: size, children: children)
+    }
+    
+}
+
+

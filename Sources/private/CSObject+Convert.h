@@ -16,6 +16,7 @@
 #import "CSScope.h"
 #import "CSComponentAnimation.h"
 #import "CSTransactionalDataSourceConfiguration.h"
+#import "CSStaticLayoutComponent.h"
 
 #define EXTENSION(__class__, __content__) \
 @interface __class__ () \
@@ -76,6 +77,10 @@ EXTENSION(CSScope ,
 
 EXTENSION(CSComponentAnimation ,
           - (CKComponentAnimation)convert;
+          )
+
+EXTENSION(CSStaticLayoutChild ,
+          - (CKStaticLayoutComponentChild)convert;
           )
 
 
