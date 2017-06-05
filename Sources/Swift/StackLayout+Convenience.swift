@@ -53,7 +53,7 @@ extension StackComponentInitialierProtocol where Self: StackLayoutComponent {
         self.init(style: nil, children: children)
     }
     public init(view: ViewConfiguration? = nil, style: StackLayoutStyle?, size:LayoutSize? = nil, children:StackLayoutChildType?...) {
-        self.init(style: style, children: children)
+        self.init(view: view, style: style, size: size, children: children)
     }
     public init(view: ViewConfiguration? = nil, style: StackLayoutStyle?, size:LayoutSize? = nil, children:[StackLayoutChildType?]) {
 
