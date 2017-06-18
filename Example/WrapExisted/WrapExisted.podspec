@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "http://xxxx/WrapExsitance.git", :tag => "#{s.version}" }
   s.source_files  = "**/*.{h,mm,m}"
   s.private_header_files = 'private/**/*'
+  s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => 'NO' }
   s.dependency "ComponentSwift"
 
 end

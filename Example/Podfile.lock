@@ -1,15 +1,15 @@
 PODS:
-  - CKTableViewTransactionalDataSource (0.2):
+  - CKTableViewTransactionalDataSource (0.2.1):
     - ComponentKit (~> 0.20)
   - ComponentKit (0.20)
-  - ComponentSwift (0.2):
-    - CKTableViewTransactionalDataSource (~> 0.2)
+  - ComponentSwift (0.3):
+    - CKTableViewTransactionalDataSource (~> 0.2.0)
     - ComponentKit (~> 0.20)
   - WrapExisted (0.0.1):
     - ComponentSwift
 
 DEPENDENCIES:
-  - CKTableViewTransactionalDataSource (from `https://github.com/leavez/CKTableViewTransactionalDataSource.git`, tag `0.2`)
+  - CKTableViewTransactionalDataSource (from `https://github.com/leavez/CKTableViewTransactionalDataSource.git`, tag `0.2.1`)
   - ComponentKit (from `https://github.com/leavez/componentkit`, branch `pod`)
   - ComponentSwift (from `../`)
   - WrapExisted (from `./WrapExisted`)
@@ -17,7 +17,7 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   CKTableViewTransactionalDataSource:
     :git: https://github.com/leavez/CKTableViewTransactionalDataSource.git
-    :tag: '0.2'
+    :tag: 0.2.1
   ComponentKit:
     :branch: pod
     :git: https://github.com/leavez/componentkit
@@ -29,17 +29,17 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   CKTableViewTransactionalDataSource:
     :git: https://github.com/leavez/CKTableViewTransactionalDataSource.git
-    :tag: '0.2'
+    :tag: 0.2.1
   ComponentKit:
     :commit: 3c33e17106e296e0fdd0b191a820a744b78a5e4f
     :git: https://github.com/leavez/componentkit
 
 SPEC CHECKSUMS:
-  CKTableViewTransactionalDataSource: 0bec471cdfabd8b6ef55cc973a2b3bf85210f0cc
+  CKTableViewTransactionalDataSource: a7ea39dd8a9630a64f1352e5b09f46078434d0ec
   ComponentKit: 54a9e19e4072c4a11dae762e1846cc1e7496cf48
-  ComponentSwift: 28252f1a91261a0a7efa40d57d99d61bb922b3b5
-  WrapExisted: 4d1757604e8dae1060d5e4ebe7ccca31f7123c5c
+  ComponentSwift: bc1771d3f20d0c0c9e7c475fd09a9c4d303864f7
+  WrapExisted: 314e296d1445a284c31d6d75aabdb7b4c62c41bd
 
-PODFILE CHECKSUM: be1f2eb7c3fb280ddf1d07549494533e7d9cd677
+PODFILE CHECKSUM: c75b14aee523a3f1323596faa8d8809d171cf4bd
 
 COCOAPODS: 1.2.1

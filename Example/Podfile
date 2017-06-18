@@ -9,7 +9,7 @@ target 'ComponentSwiftDemo' do
   pod 'ComponentSwift', :path => '../'
   pod 'WrapExisted', :path => './WrapExisted'
   pod "ComponentKit", :git=> "https://github.com/leavez/componentkit", :branch => "pod", :inhibit_warnings => true
-  pod "CKTableViewTransactionalDataSource", :git=> "https://github.com/leavez/CKTableViewTransactionalDataSource.git", :tag => "0.2"
+  pod "CKTableViewTransactionalDataSource", :git=> "https://github.com/leavez/CKTableViewTransactionalDataSource.git", :tag => "0.2.1"
 
 end
 

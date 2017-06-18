@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ComponentSwift'
-  s.version          = '0.2'
+  s.version          = '0.3'
   s.summary          = 'ComponentSwift brings ComponentKit to swift'
 
   s.description      = <<-DESC
@@ -19,13 +19,13 @@ ComponentSwift is an objc wrapper of ComponentKit and refined for swift. Compone
 
   s.ios.deployment_target = '8.1'
 
+
   s.source_files = 'Sources/**/*.{swift,h,m,mm}'
   s.private_header_files = 'Sources/private/**/*.{h}'
   s.module_map = 'Sources/SupportFiles/ComponentSwift.modulemap'
-
+  s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => 'NO' }
 
   s.dependency "ComponentKit", " ~> 0.20"
-  s.dependency "CKTableViewTransactionalDataSource", " ~> 0.2"
-
+  s.dependency "CKTableViewTransactionalDataSource", " ~> 0.2.0"
 
 end
