@@ -14,14 +14,21 @@
 @implementation CSImageComponent
 
 - (instancetype)initWithImage:(UIImage *)image {
-    return [self initWithImage:image size:[[CSSize alloc] initWithCGSize:image.size]];
+    return [self initWithImage:image contentMode:UIViewContentModeScaleAspectFill size:[[CSSize alloc] initWithCGSize:image.size]];
 }
 
-- (instancetype)initWithImage:(UIImage *)image size:(CSSize *)size {
+- (instancetype)initWithImage:(UIImage *)image contentMode:(UIViewContentMode)mode size:(CSSize *)size {
 
     self = [super init];
     if (self) {
-        self.realComponent = [CKImageComponent newWithImage:image size:ConvertWithDefault(size, CKComponentSize())];
+        self.realComponent = [CKComponent newWithView:{
+            [UIImageView class],
+            {
+                {@selector(setImage:), image},
+                {@selector(setContentMode:) , @(mode)},
+                {@selector(setClipsToBounds:), @YES}
+            }
+        } size:ConvertWithDefault(size, CKComponentSize())];
     }
     return self;
 }

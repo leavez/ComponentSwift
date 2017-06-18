@@ -21,6 +21,7 @@ NS_SWIFT_NAME(ImageComponnet)
  Uses a static layout with the given image size.
  */
 - (nonnull instancetype)initWithImage:(nullable UIImage *)image
+                          contentMode:(UIViewContentMode)mode
                                  size:(nullable CSSize *)size;
 
 @end
