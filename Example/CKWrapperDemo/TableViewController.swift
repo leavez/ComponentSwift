@@ -20,20 +20,26 @@ class TableViewController: UIViewController, UITableViewDelegate, ComponentProvi
         self.view.addSubview(self.tableView);
         self.tableView.frame = self.view.bounds
         self.tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.tableView.backgroundColor = .orange
+        self.tableView.backgroundColor = .lightGray
 
-        self.datasource = CSTableViewDataSource(tableView: tableView, componentProvider: type(of:self), context: Context())
+        let cellConfig = TableViewCellConfiguration.noAnimationConfig
+        cellConfig.cellConfigurationFunction = { cell, _, _ in
+            cell.clipsToBounds = true
+        }
+
+        self.datasource = CSTableViewDataSource(tableView: tableView, componentProvider: type(of:self), context: Context(), cellConfiguration: cellConfig)
         self.tableView.delegate = self
 
         // add a header
         let header = UILabel()
-        header.text = "I'm a tableView header."
+        header.text = "I'm a tableView header\nDemo for animations"
         header.frame = CGRect(x: 0, y: 0, width: 0, height: 100)
         header.textAlignment = .center
-        header.backgroundColor = .lightGray
+        header.backgroundColor = .orange
         header.textColor = .white
         header.layer.cornerRadius = 20
         header.layer.masksToBounds = true
+        header.numberOfLines = 0
         self.tableView.tableHeaderView = header
 
 

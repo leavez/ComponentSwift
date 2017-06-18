@@ -17,6 +17,9 @@ NS_SWIFT_NAME(LayoutDimension)
 - (instancetype)initWithPoint:(CGFloat)p;
 - (instancetype)initWithPercent:(CGFloat)p;
 - (instancetype)initWithFloatLiteral:(double)value; // for adopt ExpressibleByFloatLiteral in swift
+- (instancetype)initWithIntegerLiteral:(NSInteger)value; // for adopt ExpressibleByIntegerLiteral in swift
+
+
 
 @end
 

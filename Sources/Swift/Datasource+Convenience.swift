@@ -95,7 +95,7 @@ extension CSTableViewDataSource {
 extension TableViewCellConfiguration: Builder {}
 extension TableViewCellConfiguration {
 
-    static var noAnimationConfig: TableViewCellConfiguration {
+    public static var noAnimationConfig: TableViewCellConfiguration {
         let config = TableViewCellConfiguration()
         config.animationRowDelete = .none
         config.animationRowInsert = .none
@@ -104,8 +104,7 @@ extension TableViewCellConfiguration {
         config.animationsDisabled = true
         return config
     }
-
-    func animationConfig(style: UITableViewRowAnimation = .automatic) -> TableViewCellConfiguration {
+    public static func animationConfig(style: UITableViewRowAnimation = .automatic) -> TableViewCellConfiguration {
         let config = TableViewCellConfiguration()
         config.animationRowDelete = style
         config.animationRowInsert = style

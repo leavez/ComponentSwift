@@ -86,6 +86,8 @@ func animations(fromPreviousComponent previousComponent: Component?) -> [Compone
 ## Work with Legacy Code
 Wrap CKComponent like this, then it's available to swift.
 
+Since componentSwift not implementing all features of componentKit, it's also a way of being compatible with the missing features.
+
 ```objc
 #import <ComponentSwift/ComponentSwift.h>
 

@@ -11,12 +11,13 @@ import UIKit
 extension InsetComponent {
 }
 
-extension CenterLayoutComponent {
+public class CenterLayoutComponent: __CenterLayoutComponent {
 
-    public convenience init?(centering: CenterLayoutComponentCenteringOptions = .XY,
-                             sizing: CenterLayoutComponentSizingOptions = .minimumXY,
-                             child: Component?, size: LayoutSize? = nil) {
-      self.init(__centeringOptions: centering, sizingOptions: sizing, child: child, size: size)
+    @nonobjc
+    public init?(centering: CenterLayoutComponentCenteringOptions = .XY,
+                 sizing: CenterLayoutComponentSizingOptions = .minimumXY,
+                 child: Component?, size: LayoutSize? = nil) {
+      super.init(__centeringOptions: centering, sizingOptions: sizing, child: child, size: size)
     }
 }
 
@@ -41,57 +42,15 @@ extension TextAttributes {
         self.attributedString = string.map{ NSAttributedString(string: $0, attributes: attrs) }
         self.maximumNumberOfLines = numberOfLines
     }
-    public convenience init(_ string: String?, font: UIFont = UIFont.systemFont(ofSize: 14)) {
+    public convenience init(_ string: String?, font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black) {
         self.init()
-        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSFontAttributeName: font]) }
+        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: color]) }
     }
 }
 
 
 
-extension StackLayoutComponent {
-
-    public convenience init(view: ViewConfiguration? = nil,
-                            size: LayoutSize? = nil,
-                            style: StackLayoutStyle? = nil,
-                            children: [StackLayoutChild?] )
-    {
-        self.init(__view:view, size:size, style:style, children:children.flatMap{ $0 })
-    }
-    public convenience init(view: ViewConfiguration? = nil,
-                            size: LayoutSize? = nil,
-                            style: StackLayoutStyle? = nil,
-                            childrenComponents: [Component?] )
-    {
-        self.init(__view:view, size:size, style:style, children:childrenComponents.flatMap{ ComponentSwift.StackLayoutChild($0) })
-    }
-}
-
-
-extension StackLayoutChild {
-
-    public convenience init?(_ component: Component?,
-                            spacingAfter: CGFloat = 0,
-                            spacingBefore: CGFloat = 0,
-                            flexGrow: CGFloat? = nil,
-                            flexShrink: CGFloat? = nil,
-                            flexBasis: LayoutDimension? = nil,
-                            alignSelf: StackLayoutAlignSelf = .auto) {
-        guard let component = component else {
-            return nil
-        }
-        self.init()
-        self.component = component
-        self.spacingAfter = spacingAfter
-        self.spacingBefore = spacingBefore
-        self.flexGrow = flexGrow ?? 0
-        self.flexShrink = flexShrink ?? 0
-        self.flexBasis = flexBasis
-        self.alignSelf = alignSelf
-    }
-}
-
-extension UIControlState :Hashable {
+extension UIControlState: Hashable {
     public var hashValue: Int {
         return Int(self.rawValue)
     }
@@ -99,44 +58,66 @@ extension UIControlState :Hashable {
 
 extension ButtonComponnet {
 
+    public struct Attribute: Builder {
+        public var titles: [UIControlState: String?]?
+        public var titleColors: [UIControlState: UIColor?] = [.normal:.black]
+        public var images: [UIControlState: UIImage?]?
+        public var backgroundImages:[UIControlState: UIImage?]?
+        public var titleFont: UIFont = .systemFont(ofSize: 15)
+        public var selected: Bool = false
+        public var enabled: Bool = true
+        public var accessibilityLabel: String?
+        public init() {}
+    }
 
-    public convenience init(titles:[UIControlState: String?]? = nil,
-                            titleColors:[UIControlState: UIColor?]? = nil,
-                            images:[UIControlState: UIImage?]? = nil,
-                            backgroundImages:[UIControlState: UIImage?]? = nil,
-                            titleFont: UIFont,
-                            selected: Bool = false,
-                            enabled: Bool = false,
+
+    public convenience init(title: (String, UIColor, UIFont)? = nil,
+                            image: UIImage? = nil,
                             action: Selector?,
-                            size: LayoutSize? = nil,
-                            attributes: ViewAttributeMap? = nil,
+                            size: LayoutSize?,
+                            viewAttributes: ViewAttributeMap? = nil,
                             accessibilityLabel: String? = nil) {
+        let attr = Attribute().build {
+            if let title = title {
+                $0.titles = [.normal : title.0]
+                $0.titleColors = [.normal : title.1]
+                $0.titleFont = title.2
+            }
+            $0.images = [.normal : image]
+            $0.accessibilityLabel = accessibilityLabel
+        }
+        self.init(attributes: attr, action: action, size: size, viewAttributes: viewAttributes)
+    }
 
-        let list: [[UIControlState: Any?]?] = [titles, titleColors, images, backgroundImages]
+    public convenience init(attributes: Attribute,
+                            action: Selector?,
+                            size: LayoutSize?,
+                            viewAttributes: ViewAttributeMap? = nil) {
+
+        let list: [[UIControlState: Any?]?] = [attributes.titles, attributes.titleColors, attributes.images, attributes.backgroundImages]
         let states: [UIControlState] = list.flatMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
-        let buttonAttrs = Set(states).map{ (state) -> ButtonAttributes in
-            let a = ButtonAttributes()
+        let buttonAttrs = Set(states).map{ (state) -> __ButtonAttributes in
+            let a = __ButtonAttributes()
             a.state = state
             return a
         }
 
         for attr in buttonAttrs {
-            if let t = titles?[attr.state] {
+            if let t = attributes.titles?[attr.state] {
                 attr.title = t
             }
-            if let color = titleColors?[attr.state] {
+            if let color = attributes.titleColors[attr.state] {
                 attr.titleColor = color
             }
-            if let image = images?[attr.state] {
+            if let image = attributes.images?[attr.state] {
                 attr.image = image
             }
-            if let image = backgroundImages?[attr.state] {
+            if let image = attributes.backgroundImages?[attr.state] {
                 attr.backgroundImage = image
             }
         }
 
-        self.init(__buttonAttribute: buttonAttrs, titleFont: titleFont, selected: selected, enabled: enabled, action: action, size: size, attributes: attributes, accessibilityLabel: accessibilityLabel)
-
+        self.init(__buttonAttribute: buttonAttrs, titleFont: attributes.titleFont, selected: attributes.selected, enabled: attributes.enabled, action: action, size: size, attributes: viewAttributes, accessibilityLabel: attributes.accessibilityLabel)
     }
 }
 
@@ -162,6 +143,25 @@ extension NetworkImageComponnet {
                             attributes: ViewAttributeMap? = nil) {
         self.init(__url: url, imageDownloader: imageDownloader, size: size, placeholderImage: placeholderImage, cropRect: .zero, attributes: attributes)
     }
+}
+
+
+
+extension StaticLayoutComponent {
+
+    @nonobjc
+    public convenience init(view: ViewConfiguration? = nil, size: LayoutSize? = nil, children: [StaticLayoutChild]) {
+        self.init(__view: view, size: size, children: children)
+    }
+    
+}
+
+extension RatioLayoutComponent {
+    @nonobjc
+    public convenience init(ratio h_w_ratio: CGFloat = 1, size: LayoutSize? = nil, component: Component) {
+        self.init(__ratio: h_w_ratio, size: size, component: component)
+    }
+
 }
 
 

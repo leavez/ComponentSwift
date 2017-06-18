@@ -14,7 +14,7 @@ NS_SWIFT_NAME(RatioLayoutComponent)
 
 - (nonnull instancetype)initWithRatio:(CGFloat)h_w_ratio
                                  size:(nullable CSSize *)size
-                            component:(nonnull CSComponent *)component;
+                            component:(nonnull CSComponent *)component NS_REFINED_FOR_SWIFT;
 
 - (nonnull instancetype)initWithView:(nullable CSViewConfiguration *)view
                                 size:(nullable CSSize *)size NS_UNAVAILABLE;

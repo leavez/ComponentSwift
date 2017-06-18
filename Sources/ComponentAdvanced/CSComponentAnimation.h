@@ -23,8 +23,9 @@ NS_SWIFT_NAME(ComponentAnimation)
 /// `context` in didRemount: The context returned by the willRemount block.
 /// `context` in cleanup: The context returned by the didRemount block.
 - (nonnull instancetype)initWithWillRemount:(id _Nullable(^)())willRemount
-                         didRemount:(id _Nullable(^)(id context))didRemount
-                            cleanup:(void(^)(id _Nullable context))cleanup;
+                         didRemount:(id _Nullable(^)(id _Nullable context))didRemount
+                            cleanup:(void(^)(id _Nullable context))cleanup NS_REFINED_FOR_SWIFT;
+
 @end
 
 NS_ASSUME_NONNULL_END
@@ -35,5 +36,10 @@ NS_SWIFT_NAME(ComponentAnimationProtocol)
 - (nullable NSArray<CSComponentAnimation *> *)animationsOnInitialMount;
 - (nullable NSArray<CSComponentAnimation *> *)animationsFromPreviousComponent:(nullable CSComponent *)previousComponent;
 
+@end
+
+
+@interface CSComponent (animation)
+- (nullable UIView *)viewForAnimation;
 @end
 

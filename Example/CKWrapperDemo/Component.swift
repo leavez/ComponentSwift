@@ -11,41 +11,43 @@ import ComponentSwift
 import WrapExisted
 
 
-class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
+class SwiftComponent: CompositeComponent {
 
-    typealias StateType = Bool
-
-
-    init?(model:Any) {
-
-        let scope = StateScope(with: type(of: self))
-
-        super.init(scope: scope) { (state) -> Component? in
+    init?(model: Int) {
+        super.init(component:
 
             InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
                            component:
 
+                // `init(view: ViewConfiguration? = nil,
+                //       style: StackLayoutStyle?,
+                //       size: LayoutSize? = nil,
+                //       children: StackLayoutChildType?...)`
+                // is the most recommended initializer for stack component
                 HorizontalStackComponnet(
                     style:
                     StackLayoutStyle()
-                        .spacing(15),
+                        .spacing(15)
+                        .alignItems(.center), // this is a convenient method. Or you could use `StackLayoutStyle().build({ ... })` to create a StackLayoutStyle object
 
                     children:
+                    // The children parameter accept a `StackLayoutChildType`. Both `Component` and `StackLayoutChild` conformed to this protocol.
+                    // circle
                     Component(
                         view:
                         ViewConfiguration(
                             attributes:
-                            .set(#selector(setter:UIView.backgroundColor), to: UIColor.orange),
-                            .roundCorner(raidus: 30),
-                            .tapGesture(#selector(didTap))
+                            .set(#selector(setter:UIView.backgroundColor), to: UIColor.orange), // or use `.backgroundColor(.orange),`
+                            .roundCorner(raidus: 30)
                         ),
                         size:.size(60, 60)
                     ),
 
+                    // text
                     TextComponent(
                         TextAttributes().build({
                             $0.attributedString = getText()
-                            $0.maximumNumberOfLines = state ? 0 : 4
+                            $0.maximumNumberOfLines = 3
                             $0.truncationAttributedString = NSAttributedString(string:"...")
                         }),
                         viewAttributes:
@@ -58,18 +60,11 @@ class SwiftComponent: CompositeComponent, ComponentInitialStateProtocol {
                         .flexShrink(1)
                 )
             )
-        }
-
-    }
-
-    static func initialState() -> Bool {
-        return false
+        )
     }
 
     @objc func didTap(sender: Any) {
         print("tapped")
-
-        self.updateState({ !$0 }, asynchronously: true)
     }
 
 }

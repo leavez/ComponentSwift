@@ -61,7 +61,7 @@
         return YES;
     } else if ([other isKindOfClass:CSGestureAttributeValue.class]){
         CSGestureAttributeValue *g = (CSGestureAttributeValue *)other;
-        return self.class == g.class && self.action == g.action;
+        return self.gestureClass == g.gestureClass && self.action == g.action;
     }
     return NO;
 }
@@ -77,5 +77,43 @@
     return c;
 }
 
+@end
+
+
+@implementation CSControlActionAttribute {
+    UIControlEvents _event;
+    SEL _action;
+}
+- (nonnull instancetype)initWithEvent:(UIControlEvents)event action:(nullable SEL)action {
+    self = [super init];
+    if (self) {
+        _event = event;
+        _action = action;
+    }
+    return self;
+}
+
+- (CKComponentViewAttributeValue)convert {
+    return CKComponentActionAttribute(_action, _event);
+}
+
+- (BOOL)isEqual:(id)other {
+    if (other == self) {
+        return YES;
+    } else if ([other isKindOfClass:CSControlActionAttribute.class]){
+        CSControlActionAttribute *g = (CSControlActionAttribute *)other;
+        return g->_action == _action && g->_event == _event;
+    }
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return std::hash<CKViewComponentAttributeValueMap>()({self.convert});
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    CSControlActionAttribute *c = [[self.class alloc] initWithEvent:_event action:_action];
+    return c;
+}
 @end
 

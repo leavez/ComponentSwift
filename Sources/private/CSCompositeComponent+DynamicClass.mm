@@ -12,12 +12,12 @@
 #import "CppHeaders.h"
 #import "CKComponent+Injected.h"
 
-static NSString *const prefix = @"CSDynamicSubclass_";
+static NSString *const suffix = @"_CSDynamicSubclass";
 
 Class createSubclassDynamically(Class nameClass, Class targetSuperClass) {
 
     NSCAssert(nameClass != nil, @"class shouldn't be nil");
-    NSString *subclassName = [prefix stringByAppendingString:NSStringFromClass(nameClass)];
+    NSString *subclassName = [NSStringFromClass(nameClass) stringByAppendingString:suffix];
     Class subclass = NSClassFromString(subclassName);
 
     if (!subclass) {

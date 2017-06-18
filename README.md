@@ -8,7 +8,7 @@
 
 ComponentSwift brings ComponentKit to swift.
 
-[ComponentKit](http://componentkit.org) is a react-inspired native view framework for iOS developed by Facebook. It intruduce a new abstract layer (component) to automatically handle view reuse, meanwhile provide the ability to build smooth list view easily. 
+[ComponentKit](http://componentkit.org) is a react-inspired native view framework for iOS developed by Facebook. It intruduces a new abstract layer (component) to automatically handle view reuse, meanwhile provide the ability to build smooth list view easily. 
 
 ComponentSwift is an objc wrapper of ComponentKit and refined for swift. ComponentSwift is designed to be a subset of ComponentKit, implementing the most commonly used features.
 
@@ -48,8 +48,8 @@ or try real demo with `pod try ComponentSwift`
 
 
 #### Not support:
-- [ ] component controller
-- [ ] StaticLayoutComponent and StatefulViewComponent (not yet)
+- [ ] component controller and StatefulViewComponent 
+- [ ] things about viewContext, mount
 - [ ] `computeLayoutThatFits:` overriding
 - [ ] ...
 

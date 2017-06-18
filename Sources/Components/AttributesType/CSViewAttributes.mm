@@ -62,12 +62,6 @@ struct _CKComponentViewAttribute {
     CKComponentViewAttribute inner;
 };
 
-@implementation CSViewAttributeBase
-- (id)copyWithZone:(NSZone *)zone {
-    NSAssert(NO, @"sub class haven't implement this method!");
-    return nil;
-}
-@end
 
 @implementation CSViewAttribute {
     _CKComponentViewAttribute _inner;

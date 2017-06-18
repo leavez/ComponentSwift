@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z89-3N-ptv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Z89-3N-ptv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Table View Controller-->
         <scene sceneID="q1C-dd-YdZ">
             <objects>
-                <viewController id="sFe-fT-4Ql" customClass="TableViewController" customModule="CKWrapperDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sFe-fT-4Ql" customClass="TableViewController" customModule="ComponentSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HwQ-my-M7U"/>
                         <viewControllerLayoutGuide type="bottom" id="NlY-OH-h7q"/>
@@ -22,16 +22,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="bAe-e7-eBy"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="history" id="bAe-e7-eBy"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ez-h7-qtg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-339" y="371"/>
         </scene>
+        <!--Demo View Controller-->
+        <scene sceneID="eMh-sU-sLQ">
+            <objects>
+                <viewController id="K3m-CS-M1Y" customClass="DemoViewController" customModule="ComponentSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HgD-Xp-6ga"/>
+                        <viewControllerLayoutGuide type="bottom" id="9jV-ho-4Hy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kj9-1V-Bso">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="56r-1F-d9N"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cFd-Ol-vUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-344" y="1034"/>
+        </scene>
         <!--Collection View Controller-->
         <scene sceneID="rme-Ll-wXa">
             <objects>
-                <viewController id="m2g-cP-K9l" customClass="CollectionViewController" customModule="CKWrapperDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="m2g-cP-K9l" customClass="CollectionViewController" customModule="ComponentSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NKM-O2-qGU"/>
                         <viewControllerLayoutGuide type="bottom" id="CNF-3p-iYn"/>
@@ -59,6 +78,7 @@
                     <connections>
                         <segue destination="m2g-cP-K9l" kind="relationship" relationship="viewControllers" id="cGq-sx-XeR"/>
                         <segue destination="sFe-fT-4Ql" kind="relationship" relationship="viewControllers" id="EZN-4V-rKV"/>
+                        <segue destination="K3m-CS-M1Y" kind="relationship" relationship="viewControllers" id="vMH-gu-DFa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eF8-K4-V46" userLabel="First Responder" sceneMemberID="firstResponder"/>

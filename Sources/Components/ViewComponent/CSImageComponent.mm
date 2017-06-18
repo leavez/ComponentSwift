@@ -14,14 +14,27 @@
 @implementation CSImageComponent
 
 - (instancetype)initWithImage:(UIImage *)image {
-    return [self initWithImage:image attributes:nil size:[[CSSize alloc] initWithCGSize:image.size]];
+    return [self initWithImage:image contentMode:UIViewContentModeScaleAspectFill attributes:nil size:[[CSSize alloc] initWithCGSize:image.size]];
 }
 
-- (instancetype)initWithImage:(UIImage *)image attributes:(CSViewAttributeMap *)attributes size:(CSSize *)size {
+- (instancetype)initWithImage:(UIImage *)image contentMode:(UIViewContentMode)mode                            attributes:(nullable CSViewAttributeMap *)attributes size:(CSSize *)size {
+
+    CKViewComponentAttributeValueMap copied = ConvertWithDefault(attributes, CKViewComponentAttributeValueMap());
+    copied.insert({
+        {@selector(setImage:), image},
+        {@selector(setContentMode:) , @(mode)},
+    });
+    var key = @selector(setClipsToBounds:);
+    if (copied[key] == nil) {
+        copied[key] = @YES;
+    }
 
     self = [super init];
     if (self) {
-        self.realComponent = [CKImageComponent newWithImage:image attributes:ConvertWithDefault(attributes, CKViewComponentAttributeValueMap()) size:ConvertWithDefault(size, CKComponentSize())];
+        self.realComponent = [CKComponent newWithView:{
+            [UIImageView class],
+            copied
+        } size:ConvertWithDefault(size, CKComponentSize())];
     }
     return self;
 }

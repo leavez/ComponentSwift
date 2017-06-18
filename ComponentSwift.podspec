@@ -27,4 +27,5 @@ ComponentSwift is an objc wrapper of ComponentKit and refined for swift. Compone
   s.dependency "ComponentKit", " ~> 0.20"
   s.dependency "CKTableViewTransactionalDataSource", " ~> 0.2"
 
+
 end

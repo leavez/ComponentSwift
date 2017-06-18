@@ -23,3 +23,11 @@ NS_SWIFT_NAME(GestureAttributeValue)
 - (nonnull instancetype)initWithLongPressAction:(nonnull SEL)tapAction;
 
 @end
+
+
+NS_SWIFT_NAME(ControlActionAttribute)
+@interface CSControlActionAttribute: CSViewAttributeValue
+- (nonnull instancetype)initWithEvent:(UIControlEvents)event action:(nullable SEL)action;
++ (nonnull instancetype)new NS_UNAVAILABLE;
+- (nonnull instancetype)init NS_UNAVAILABLE;
+@end
