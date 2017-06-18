@@ -64,7 +64,7 @@ extension ViewConfiguration {
 }
 
 
-extension LayoutDimension: ExpressibleByFloatLiteral {
+extension LayoutDimension: ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
 
     public convenience init(_ value: CGFloat) {
         self.init(point: value)
