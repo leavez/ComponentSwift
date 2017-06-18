@@ -11,7 +11,7 @@ import UIKit
 extension InsetComponent {
 }
 
-class CenterLayoutComponent: __CenterLayoutComponent {
+public class CenterLayoutComponent: __CenterLayoutComponent {
 
     @nonobjc
     public init?(centering: CenterLayoutComponentCenteringOptions = .XY,
@@ -42,9 +42,9 @@ extension TextAttributes {
         self.attributedString = string.map{ NSAttributedString(string: $0, attributes: attrs) }
         self.maximumNumberOfLines = numberOfLines
     }
-    public convenience init(_ string: String?, font: UIFont = UIFont.systemFont(ofSize: 14)) {
+    public convenience init(_ string: String?, font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black) {
         self.init()
-        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSFontAttributeName: font]) }
+        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: color]) }
     }
 }
 
@@ -59,15 +59,16 @@ extension UIControlState: Hashable {
 
 extension ButtonComponnet {
 
-    public struct ButtonAttribute: Builder {
-        var titles: [UIControlState: String?]?
-        var titleColors: [UIControlState: UIColor?]?
-        var images: [UIControlState: UIImage?]?
-        var backgroundImages:[UIControlState: UIImage?]?
-        var titleFont: UIFont = .systemFont(ofSize: 15)
-        var selected: Bool = false
-        var enabled: Bool = true
-        var accessibilityLabel: String?
+    public struct Attribute: Builder {
+        public var titles: [UIControlState: String?]?
+        public var titleColors: [UIControlState: UIColor?] = [.normal:.black]
+        public var images: [UIControlState: UIImage?]?
+        public var backgroundImages:[UIControlState: UIImage?]?
+        public var titleFont: UIFont = .systemFont(ofSize: 15)
+        public var selected: Bool = false
+        public var enabled: Bool = true
+        public var accessibilityLabel: String?
+        public init() {}
     }
 
 
@@ -77,7 +78,7 @@ extension ButtonComponnet {
                             size: LayoutSize?,
                             viewAttributes: ViewAttributeMap? = nil,
                             accessibilityLabel: String? = nil) {
-        let attr = ButtonAttribute().build {
+        let attr = Attribute().build {
             if let title = title {
                 $0.titles = [.normal : title.0]
                 $0.titleColors = [.normal : title.1]
@@ -89,15 +90,15 @@ extension ButtonComponnet {
         self.init(attributes: attr, action: action, size: size, viewAttributes: viewAttributes)
     }
 
-    public convenience init(attributes: ButtonAttribute,
+    public convenience init(attributes: Attribute,
                             action: Selector?,
                             size: LayoutSize?,
                             viewAttributes: ViewAttributeMap? = nil) {
 
         let list: [[UIControlState: Any?]?] = [attributes.titles, attributes.titleColors, attributes.images, attributes.backgroundImages]
         let states: [UIControlState] = list.flatMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
-        let buttonAttrs = Set(states).map{ (state) -> ButtonAttributes in
-            let a = ButtonAttributes()
+        let buttonAttrs = Set(states).map{ (state) -> __ButtonAttributes in
+            let a = __ButtonAttributes()
             a.state = state
             return a
         }
@@ -106,7 +107,7 @@ extension ButtonComponnet {
             if let t = attributes.titles?[attr.state] {
                 attr.title = t
             }
-            if let color = attributes.titleColors?[attr.state] {
+            if let color = attributes.titleColors[attr.state] {
                 attr.titleColor = color
             }
             if let image = attributes.images?[attr.state] {

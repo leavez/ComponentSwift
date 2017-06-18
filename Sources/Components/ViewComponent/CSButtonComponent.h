@@ -8,7 +8,7 @@
 
 #import "CSComponent.h"
 
-NS_SWIFT_NAME(ButtonAttributes)
+NS_SWIFT_NAME(__ButtonAttributes)
 @interface CSButtonAttributes : NSObject
 @property (nonatomic) UIControlState state;
 @property (nonatomic, nullable) NSString *title;
