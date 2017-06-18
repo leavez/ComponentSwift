@@ -157,4 +157,12 @@ extension StaticLayoutComponent {
     
 }
 
+extension RatioLayoutComponent {
+    @nonobjc
+    public convenience init(ratio h_w_ratio: CGFloat = 1, size: LayoutSize? = nil, component: Component) {
+        self.init(__ratio: h_w_ratio, size: size, component: component)
+    }
+
+}
+
 
