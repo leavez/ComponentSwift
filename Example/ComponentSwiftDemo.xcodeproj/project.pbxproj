@@ -11,6 +11,12 @@
 		412FD89C1EAC833300220B36 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412FD89B1EAC833300220B36 /* Component.swift */; };
 		41A051EE1ECA2CCF005E3866 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A051ED1ECA2CCF005E3866 /* TableViewController.swift */; };
 		41A051F01ECA2D1D005E3866 /* ComponentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */; };
+		41CED5331EF6724A00F4566F /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CED5321EF6724A00F4566F /* DemoViewController.swift */; };
+		41CED5351EF6727900F4566F /* DemoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CED5341EF6727900F4566F /* DemoComponent.swift */; };
+		41CED5381EF67B0400F4566F /* DemoComponent2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CED5371EF67B0400F4566F /* DemoComponent2.swift */; };
+		41CED53A1EF6826F00F4566F /* DemoComponent3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CED5391EF6826F00F4566F /* DemoComponent3.swift */; };
+		41CED53C1EF6843E00F4566F /* gorilla.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 41CED53B1EF6843E00F4566F /* gorilla.jpg */; };
+		41CED53E1EF688F500F4566F /* DemoComponent4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CED53D1EF688F500F4566F /* DemoComponent4.swift */; };
 		41D7C9501EABA789004B2DE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */; };
 		41D7C9521EABA789004B2DE7 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D7C9511EABA789004B2DE7 /* CollectionViewController.swift */; };
 		41D7C9551EABA789004B2DE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D7C9531EABA789004B2DE7 /* Main.storyboard */; };
@@ -25,6 +31,12 @@
 		412FD89B1EAC833300220B36 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		41A051ED1ECA2CCF005E3866 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentProvider.swift; sourceTree = "<group>"; };
+		41CED5321EF6724A00F4566F /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		41CED5341EF6727900F4566F /* DemoComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoComponent.swift; path = components/DemoComponent.swift; sourceTree = "<group>"; };
+		41CED5371EF67B0400F4566F /* DemoComponent2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoComponent2.swift; path = components/DemoComponent2.swift; sourceTree = "<group>"; };
+		41CED5391EF6826F00F4566F /* DemoComponent3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoComponent3.swift; path = components/DemoComponent3.swift; sourceTree = "<group>"; };
+		41CED53B1EF6843E00F4566F /* gorilla.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gorilla.jpg; sourceTree = "<group>"; };
+		41CED53D1EF688F500F4566F /* DemoComponent4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DemoComponent4.swift; path = components/DemoComponent4.swift; sourceTree = "<group>"; };
 		41D7C94C1EABA789004B2DE7 /* ComponentSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComponentSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41D7C9511EABA789004B2DE7 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
@@ -51,30 +63,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4131254B1EE30504002ECFC9 /* tab 2 */ = {
+		4131254B1EE30504002ECFC9 /* tab 2 animation */ = {
 			isa = PBXGroup;
 			children = (
 				41A051ED1ECA2CCF005E3866 /* TableViewController.swift */,
 				3EACD3B81ECB1C930086F6DD /* AnimatedComponent.swift */,
 			);
-			name = "tab 2";
+			name = "tab 2 animation";
 			sourceTree = "<group>";
 		};
-		4131254C1EE30512002ECFC9 /* tab 1 */ = {
+		4131254C1EE30512002ECFC9 /* tab 1 basic */ = {
 			isa = PBXGroup;
 			children = (
 				41D7C9511EABA789004B2DE7 /* CollectionViewController.swift */,
 				41A051EF1ECA2D1D005E3866 /* ComponentProvider.swift */,
 				412FD89B1EAC833300220B36 /* Component.swift */,
 			);
-			name = "tab 1";
+			name = "tab 1 basic";
 			sourceTree = "<group>";
 		};
 		4131254D1EE3052B002ECFC9 /* tab 3 */ = {
 			isa = PBXGroup;
 			children = (
+				41CED53B1EF6843E00F4566F /* gorilla.jpg */,
+				41CED5321EF6724A00F4566F /* DemoViewController.swift */,
+				41CED5361EF67AE800F4566F /* demo component */,
 			);
 			name = "tab 3";
+			sourceTree = "<group>";
+		};
+		41CED5361EF67AE800F4566F /* demo component */ = {
+			isa = PBXGroup;
+			children = (
+				41CED5341EF6727900F4566F /* DemoComponent.swift */,
+				41CED5371EF67B0400F4566F /* DemoComponent2.swift */,
+				41CED5391EF6826F00F4566F /* DemoComponent3.swift */,
+				41CED53D1EF688F500F4566F /* DemoComponent4.swift */,
+			);
+			name = "demo component";
 			sourceTree = "<group>";
 		};
 		41D7C9431EABA789004B2DE7 = {
@@ -99,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				41D7C94F1EABA789004B2DE7 /* AppDelegate.swift */,
-				4131254C1EE30512002ECFC9 /* tab 1 */,
-				4131254B1EE30504002ECFC9 /* tab 2 */,
+				4131254C1EE30512002ECFC9 /* tab 1 basic */,
+				4131254B1EE30504002ECFC9 /* tab 2 animation */,
 				4131254D1EE3052B002ECFC9 /* tab 3 */,
 				41D7C9531EABA789004B2DE7 /* Main.storyboard */,
 				41D7C9561EABA789004B2DE7 /* Assets.xcassets */,
@@ -194,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41CED53C1EF6843E00F4566F /* gorilla.jpg in Resources */,
 				41D7C95A1EABA789004B2DE7 /* LaunchScreen.storyboard in Resources */,
 				41D7C9571EABA789004B2DE7 /* Assets.xcassets in Resources */,
 				41D7C9551EABA789004B2DE7 /* Main.storyboard in Resources */,
@@ -255,11 +282,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41CED53A1EF6826F00F4566F /* DemoComponent3.swift in Sources */,
+				41CED5381EF67B0400F4566F /* DemoComponent2.swift in Sources */,
 				3EACD3B91ECB1C930086F6DD /* AnimatedComponent.swift in Sources */,
 				41D7C9521EABA789004B2DE7 /* CollectionViewController.swift in Sources */,
 				41A051F01ECA2D1D005E3866 /* ComponentProvider.swift in Sources */,
 				412FD89C1EAC833300220B36 /* Component.swift in Sources */,
+				41CED5331EF6724A00F4566F /* DemoViewController.swift in Sources */,
+				41CED53E1EF688F500F4566F /* DemoComponent4.swift in Sources */,
 				41D7C9501EABA789004B2DE7 /* AppDelegate.swift in Sources */,
+				41CED5351EF6727900F4566F /* DemoComponent.swift in Sources */,
 				41A051EE1ECA2CCF005E3866 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

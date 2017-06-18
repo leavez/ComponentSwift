@@ -12,6 +12,10 @@ import ComponentSwift
 class Provider: NSObject, ComponentProviderProtocol {
     static func csComponent(forModel model: Any, context: Any?) -> Component? {
 
+        guard let model = model as? Int else {
+            return nil
+        }
+
         return CompositeComponent(
             view:
             ViewConfiguration(
