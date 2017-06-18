@@ -11,12 +11,13 @@ import UIKit
 extension InsetComponent {
 }
 
-extension CenterLayoutComponent {
+class CenterLayoutComponent: __CenterLayoutComponent {
 
-    public convenience init?(centering: CenterLayoutComponentCenteringOptions = .XY,
-                             sizing: CenterLayoutComponentSizingOptions = .minimumXY,
-                             child: Component?, size: LayoutSize? = nil) {
-      self.init(__centeringOptions: centering, sizingOptions: sizing, child: child, size: size)
+    @nonobjc
+    public init?(centering: CenterLayoutComponentCenteringOptions = .XY,
+                 sizing: CenterLayoutComponentSizingOptions = .minimumXY,
+                 child: Component?, size: LayoutSize? = nil) {
+      super.init(__centeringOptions: centering, sizingOptions: sizing, child: child, size: size)
     }
 }
 

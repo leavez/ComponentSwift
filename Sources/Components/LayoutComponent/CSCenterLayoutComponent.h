@@ -32,7 +32,7 @@ typedef NS_OPTIONS(NSUInteger, CSCenterLayoutComponentSizingOptions) {
 } NS_SWIFT_NAME(CenterLayoutComponentSizingOptions);
 
 // for CKCenterLayoutComponent.
-NS_SWIFT_NAME(CenterLayoutComponent)
+NS_SWIFT_NAME(__CenterLayoutComponent)
 @interface CSCenterLayoutComponent : CSComponent
 
 - (nullable instancetype)initWithCenteringOptions:(CSCenterLayoutComponentCenteringOptions)centeringOptions
