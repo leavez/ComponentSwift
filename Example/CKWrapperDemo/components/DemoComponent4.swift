@@ -13,7 +13,7 @@ class DemoComponent4: CompositeComponent {
 
     init?() {
 
-        let button = ButtonComponnet.Attribute().build { (a) in
+        let button = ButtonComponent.Attribute().build { (a) in
             a.titles = [.normal: "Hello, I'm a button !", .highlighted: "You completed me"]
             a.titleColors = [.normal: .black, .highlighted: .lightGray]
             a.titleFont = UIFont.boldSystemFont(ofSize: 20)
@@ -22,7 +22,7 @@ class DemoComponent4: CompositeComponent {
         super.init(component:
             CenterLayoutComponent(
                 child:
-                ButtonComponnet(attributes: button, action: #selector(didTapButton), size: nil),
+                ButtonComponent(attributes: button, action: #selector(didTapButton), size: nil),
                 size: LayoutSize().build({
                     $0.minHeight = 60
                 })

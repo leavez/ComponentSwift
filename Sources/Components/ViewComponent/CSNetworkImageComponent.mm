@@ -1,17 +1,17 @@
 //
-//  CSNetworkImageComponnet.m
+//  CSNetworkImageComponent.m
 //  Pods
 //
 //  Created by Gao on 06/05/2017.
 //
 //
 
-#import "CSNetworkImageComponnet.h"
+#import "CSNetworkImageComponent.h"
 #import <ComponentKit/ComponentKit.h>
 #import "CppHeaders.h"
 #import "macro.h"
 
-@implementation CSNetworkImageComponnet
+@implementation CSNetworkImageComponent
 
 - (instancetype)initWithURL:(NSURL *)url imageDownloader:(id<CSNetworkImageDownloading>)imageDownloader scenePath:(id)scenePath size:(CSSize *)size placeholderImage:(UIImage *)placeholderImage cropRect:(CGRect)cropRect attributes:(CSViewAttributeMap *)attributes
 {

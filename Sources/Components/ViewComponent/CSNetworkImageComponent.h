@@ -1,5 +1,5 @@
 //
-//  CSNetworkImageComponnet.h
+//  CSNetworkImageComponent.h
 //  Pods
 //
 //  Created by Gao on 06/05/2017.
@@ -12,8 +12,8 @@ NS_SWIFT_NAME(NetworkImageDownloading)
 
 
 /// for CKNetworkImageComponent
-NS_SWIFT_NAME(NetworkImageComponnet)
-@interface CSNetworkImageComponnet : CSComponent
+NS_SWIFT_NAME(NetworkImageComponent)
+@interface CSNetworkImageComponent : CSComponent
 
 // @param cropRect Optional rectangle (in the unit coordinate space) that specifies the portion of contents that the receiver should draw.
 - (nonnull instancetype)initWithURL:(nullable NSURL *)url

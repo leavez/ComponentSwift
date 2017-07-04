@@ -24,7 +24,7 @@ class SwiftComponent: CompositeComponent {
                 //       size: LayoutSize? = nil,
                 //       children: StackLayoutChildType?...)`
                 // is the most recommended initializer for stack component
-                HorizontalStackComponnet(
+                HorizontalStackComponent(
                     style:
                     StackLayoutStyle()
                         .spacing(15)

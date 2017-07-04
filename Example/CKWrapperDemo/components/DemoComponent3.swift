@@ -13,14 +13,14 @@ class DemoComponent3: CompositeComponent {
 
     init?() {
         super.init(component:
-            VerticalStackComponnet(
+            VerticalStackComponent(
                 RatioLayoutComponent(
                     ratio: 0.8,
                     size: LayoutSize().build({
                         $0.maxWidth = .p(200)
                     }),
                     component:
-                    ImageComponnet(image: UIImage(named: "gorilla.jpg"))
+                    ImageComponent(image: UIImage(named: "gorilla.jpg"))
                 ).stackLayoutChild.alignSelf(.end)
             )
         )

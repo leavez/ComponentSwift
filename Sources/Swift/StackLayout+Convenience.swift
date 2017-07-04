@@ -32,13 +32,13 @@ extension StackLayoutComponent : StackComponentInitialierProtocol {
 }
 
 /// subclass of StackLayoutComponent, with preset layoutDirction
-public class VerticalStackComponnet: StackLayoutComponent {
+public class VerticalStackComponent: StackLayoutComponent {
     public override class func modifyStyle(_ v: StackLayoutStyle) {
         v.direction = .vertical
     }
 }
 /// subclass of StackLayoutComponent, with preset layoutDirction
-public class HorizontalStackComponnet: StackLayoutComponent {
+public class HorizontalStackComponent: StackLayoutComponent {
     public override class func modifyStyle(_ v: StackLayoutStyle) {
         v.direction = .horizontal
     }

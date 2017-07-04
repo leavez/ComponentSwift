@@ -1,5 +1,5 @@
 //
-//  CKComponnet+Injected.m
+//  CKComponent+Injected.m
 //  Pods
 //
 //  Created by Gao on 22/04/2017.

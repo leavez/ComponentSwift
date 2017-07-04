@@ -14,13 +14,13 @@
 /**
  Reference the real ckcomponent.
 
- When a CSComponent(wrapper) is created, it will create an ckComponnet(inner component)
+ When a CSComponent(wrapper) is created, it will create an ckComponent(inner component)
  and retain it. 
  
      wrapper --> inner component
  
  Once `realComponent` is accessed, it will pass the ownership to inner component -- inner
- componnet retain the wrapper, wrapper weak reference the inner component
+ component retain the wrapper, wrapper weak reference the inner component
  
      wrapper <-- inner component
  

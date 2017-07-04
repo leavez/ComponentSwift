@@ -31,7 +31,7 @@
 #import "CSStaticLayoutComponent.h"
 #import "CSButtonComponent.h"
 #import "CSImageComponent.h"
-#import "CSNetworkImageComponnet.h"
+#import "CSNetworkImageComponent.h"
 #import "CSTextComponent.h"
 #import "CSChangeSet.h"
 #import "CSCollectionViewTransactionalDataSource.h"

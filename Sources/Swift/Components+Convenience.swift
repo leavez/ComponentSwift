@@ -57,7 +57,7 @@ extension UIControlState: Hashable {
     }
 }
 
-extension ButtonComponnet {
+extension ButtonComponent {
 
     public struct Attribute: Builder {
         public var titles: [UIControlState: String?]?
@@ -123,10 +123,10 @@ extension ButtonComponnet {
 }
 
 
-extension ImageComponnet {
+extension ImageComponent {
 }
 
-extension NetworkImageComponnet {
+extension NetworkImageComponent {
     
     public convenience init(url: URL?,
                             imageDownloader: NetworkImageDownloading,
