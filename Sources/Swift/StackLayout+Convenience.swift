@@ -26,10 +26,12 @@ extension StackLayoutChild: StackLayoutChildType {
 
 
 // MARK:- convenient initialier for stack layout component
-
-extension StackLayoutComponent : StackComponentInitialierProtocol {
-    public class func modifyStyle(_ v: StackLayoutStyle) { }
+public class StackLayoutComponent: __StackLayoutComponent, StackComponentInitialierProtocol {
+    public class func modifyStyle(_ v: StackLayoutStyle) {
+        // do nothing
+    }
 }
+
 
 /// subclass of StackLayoutComponent, with preset layoutDirction
 public class VerticalStackComponent: StackLayoutComponent {
@@ -47,6 +49,7 @@ public class HorizontalStackComponent: StackLayoutComponent {
 public protocol StackComponentInitialierProtocol: class {
     static func modifyStyle(_ v: StackLayoutStyle)
 }
+
 extension StackComponentInitialierProtocol where Self: StackLayoutComponent {
 
     public init(_ children:StackLayoutChildType?...) {

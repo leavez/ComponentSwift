@@ -94,7 +94,7 @@ NS_SWIFT_NAME(StackLayoutChild)
 
 
 /// for CKStackLayoutComponent
-NS_SWIFT_NAME(StackLayoutComponent)
+NS_SWIFT_NAME(__StackLayoutComponent)
 @interface CSStackLayoutComponent : CSComponent
 
 
