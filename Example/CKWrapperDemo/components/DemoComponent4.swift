@@ -30,7 +30,7 @@ class DemoComponent4: CompositeComponent {
         )
     }
 
-    func didTapButton() {
+    @objc func didTapButton() {
         print("tap button")
     }
 }

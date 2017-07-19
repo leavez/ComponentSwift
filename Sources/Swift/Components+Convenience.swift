@@ -37,14 +37,14 @@ extension TextAttributes {
         self.init()
         self.attributedString = attributedString
     }
-    public convenience init(_ string: String?, attrs: [String : Any], numberOfLines:Int = 0) {
+    public convenience init(_ string: String?, attrs: [NSAttributedStringKey : Any], numberOfLines:Int = 0) {
         self.init()
         self.attributedString = string.map{ NSAttributedString(string: $0, attributes: attrs) }
         self.maximumNumberOfLines = numberOfLines
     }
     public convenience init(_ string: String?, font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black) {
         self.init()
-        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: color]) }
+        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [.font: font, .foregroundColor: color]) }
     }
 }
 
