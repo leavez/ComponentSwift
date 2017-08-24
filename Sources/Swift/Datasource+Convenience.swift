@@ -9,14 +9,14 @@
 import Foundation
 
 public enum SizeFlexibility {
-    case none(CGFloat, CGFloat) // parameter is the fixed width, height
-    case flexibleWidth(CGFloat)  // parameter is the fixed height
-    case flexibleHeight(CGFloat) // parameter is the fixed width
+    case fixed(CGFloat, CGFloat) // parameter is the fixed width, height
+    case flexibleWidth(height: CGFloat)  // parameter is the fixed height
+    case flexibleHeight(width: CGFloat) // parameter is the fixed width
     case flexibleWidthAndHeight
 
     fileprivate func sizeRange() -> CGSizeRange {
         switch self {
-        case .none(let w, let h):
+        case .fixed(let w, let h):
             let size = CGSize(width: w, height: h)
             return CGSizeRange(min: size, max: size)
         case .flexibleWidth(let h):
@@ -35,13 +35,17 @@ extension CSCollectionViewDataSource {
     /// - Note:
     ///    componentProvider must be subclass of NSObject
     ///
+    /// - Parameters:
+    ///   - componentProvider: where you provide components for models
+    ///   - context: the context passed to componentProvider protocol
+    ///   - componentSizeFlexibility: the flexibility of component provided by componentProvider. `.flexibleHeight(width:)` means component could have different height, but width is fixed.
     public convenience init(collectionView: UICollectionView,
                 supplementaryViewDataSource: SupplementaryViewDataSource? = nil,
                 componentProvider: ComponentProviderProtocol.Type,
                 context: Any?,
-                sizeFlexibility: SizeFlexibility? = nil ) {
+                componentSizeFlexibility: SizeFlexibility? = nil ) {
 
-        let sizes = (sizeFlexibility ?? SizeFlexibility.flexibleHeight(screenWidth(collectionView)) ).sizeRange()
+        let sizes = (componentSizeFlexibility ?? SizeFlexibility.flexibleHeight(width: screenWidth()) ).sizeRange()
         let configuration = DataSourceConfiguration(componentProvider: componentProvider, context: context, sizeRange: sizes)
 
         self.init(collectionView: collectionView, supplementaryViewDataSource: supplementaryViewDataSource, configuration: configuration)
@@ -64,15 +68,19 @@ extension CSTableViewDataSource {
     /// - Note:
     ///    componentProvider must be subclass of NSObject
     ///
+    /// - Parameters:
+    ///   - componentProvider: where you provide components for models
+    ///   - context: the context passed to componentProvider protocol
+    ///   - tableWidth: the table view's width when table is visible. Nil means using the window width (support split view mode on iPad)
     public convenience init(tableView: UITableView,
                 componentProvider: ComponentProviderProtocol.Type,
                 context: Any?,
-                sizeFlexibility: SizeFlexibility? = nil,
+                tableWidth: CGFloat? = nil,
                 supplementaryViewDataSource: TableViewSupplementaryDataSource? = nil,
                 cellConfiguration: TableViewCellConfiguration = .noAnimationConfig )
     {
 
-        let sizes = (sizeFlexibility ?? SizeFlexibility.flexibleHeight(screenWidth(tableView)) ).sizeRange()
+        let sizes = SizeFlexibility.flexibleHeight(width: tableWidth ?? screenWidth()).sizeRange()
         let configuration = DataSourceConfiguration(componentProvider: componentProvider, context: context, sizeRange: sizes)
 
         self.init(tableView: tableView, configuration: configuration, supplementaryViewDataSource:supplementaryViewDataSource, cellConfiguration: cellConfiguration)
@@ -85,8 +93,8 @@ extension CSTableViewDataSource {
         self.__applyChangeset(changeset, asynchronously: asynchronously, cellConfiguration: cellConfiguration)
     }
 
-    public func update(sizeFlexibility: SizeFlexibility, asynchronously: Bool) {
-        let sizes = sizeFlexibility.sizeRange()
+    public func update(width:CGFloat, asynchronously: Bool) {
+        let sizes = SizeFlexibility.flexibleHeight(width: width).sizeRange()
         self.__update(sizes, asynchronously: asynchronously)
     }
     
@@ -115,6 +123,6 @@ extension TableViewCellConfiguration {
     }
 }
 
-private func screenWidth(_ view: UIView) -> CGFloat {
-    return UIApplication.shared.delegate?.window??.bounds.width ?? view.bounds.width
+private func screenWidth() -> CGFloat {
+    return UIApplication.shared.statusBarFrame.width
 }
