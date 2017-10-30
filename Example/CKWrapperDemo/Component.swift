@@ -76,7 +76,7 @@ func getText() -> NSAttributedString {
     let text = "I/O Extended events include a variety of options for developers—from live streaming sessions to local demos, hackathons, codelabs, and more. These events are hosted in your neighborhood by local developer communities."
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.hyphenationFactor = 1
-    let attributeString = NSAttributedString(string: text, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14), NSParagraphStyleAttributeName: paragraphStyle])
+    let attributeString = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), .paragraphStyle: paragraphStyle])
     return attributeString
 }
 

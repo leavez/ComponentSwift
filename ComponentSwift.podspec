@@ -23,7 +23,10 @@ ComponentSwift is an objc wrapper of ComponentKit and refined for swift. Compone
   s.source_files = 'Sources/**/*.{swift,h,m,mm}'
   s.private_header_files = 'Sources/private/**/*.{h}'
   s.module_map = 'Sources/SupportFiles/ComponentSwift.modulemap'
-  s.pod_target_xcconfig = { 'CLANG_WARN_DOCUMENTATION_COMMENTS' => 'NO' }
+  s.pod_target_xcconfig = {
+    'SWIFT_VERSION' => "4.0" ,
+    'CLANG_WARN_DOCUMENTATION_COMMENTS' => 'NO'
+  }
 
   s.dependency "ComponentKit", "~>0.15.0"
   s.dependency "CKTableViewTransactionalDataSource", " ~> 0.1.0"
