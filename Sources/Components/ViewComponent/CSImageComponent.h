@@ -9,7 +9,7 @@
 #import "CSComponent.h"
 
 /// for CKImageComponent.
-NS_SWIFT_NAME(ImageComponnet)
+NS_SWIFT_NAME(ImageComponent)
 @interface CSImageComponent : CSComponent
 
 /**

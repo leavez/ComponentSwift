@@ -27,7 +27,7 @@ class DemoComponent: CompositeComponent, ComponentInitialStateProtocol {
             InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
                            component:
 
-                VerticalStackComponnet(
+                VerticalStackComponent(
                     style:
                     StackLayoutStyle()
                         .spacing(10),

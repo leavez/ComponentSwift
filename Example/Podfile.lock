@@ -37,9 +37,9 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   CKTableViewTransactionalDataSource: a7ea39dd8a9630a64f1352e5b09f46078434d0ec
   ComponentKit: 54a9e19e4072c4a11dae762e1846cc1e7496cf48
-  ComponentSwift: bc1771d3f20d0c0c9e7c475fd09a9c4d303864f7
-  WrapExisted: 314e296d1445a284c31d6d75aabdb7b4c62c41bd
+  ComponentSwift: 6b27914b7ac8f5fbcd66f45ba6b3dc77728f2884
+  WrapExisted: 3b9af64c8a2cd1193ae90349117bccfcc3eb4b85
 
 PODFILE CHECKSUM: c75b14aee523a3f1323596faa8d8809d171cf4bd
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.0.beta.1

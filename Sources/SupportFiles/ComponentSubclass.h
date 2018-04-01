@@ -6,7 +6,7 @@
 //
 //
 
-/// This header will be include when to wrap an existed CKComponnet to CSComponent.
+/// This header will be include when to wrap an existed CKComponent to CSComponent.
 /// You should subclass `CSCompositeComponent` and use `initWithCKComponent` in its
 /// implementation.
 

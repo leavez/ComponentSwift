@@ -78,7 +78,7 @@ extension LayoutDimension: ExpressibleByFloatLiteral, ExpressibleByIntegerLitera
 }
 
 
-extension LayoutSize: Builder {}
+extension LayoutSize: ObjectBuilder {}
 extension LayoutSize {
 
     public convenience init(size: CGSize) {

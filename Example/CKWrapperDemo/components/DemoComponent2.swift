@@ -13,7 +13,7 @@ class DemoComponent2: CompositeComponent {
 
     init?() {
         super.init(component:
-            HorizontalStackComponnet(
+            HorizontalStackComponent(
                 Component(view: nil, size: .width(20)),
                 cuteRobot()
                 )

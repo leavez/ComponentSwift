@@ -9,9 +9,19 @@
 import Foundation
 
 
+public protocol ObjectBuilder {}
 public protocol Builder {}
 
-extension Builder {
+
+extension ObjectBuilder where Self: AnyObject {
+
+    public func build(_ block: (Self) -> Void) -> Self {
+        block(self)
+        return self
+    }
+}
+
+extension Builder where Self: Any {
 
     public func build(_ block: (inout Self) -> Void) -> Self {
         var copy = self
@@ -19,6 +29,5 @@ extension Builder {
         return copy
     }
 }
-
 
 extension OptionBase : Builder {}

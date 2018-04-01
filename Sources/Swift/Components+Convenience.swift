@@ -37,14 +37,14 @@ extension TextAttributes {
         self.init()
         self.attributedString = attributedString
     }
-    public convenience init(_ string: String?, attrs: [String : Any], numberOfLines:Int = 0) {
+    public convenience init(_ string: String?, attrs: [NSAttributedStringKey : Any], numberOfLines:Int = 0) {
         self.init()
         self.attributedString = string.map{ NSAttributedString(string: $0, attributes: attrs) }
         self.maximumNumberOfLines = numberOfLines
     }
     public convenience init(_ string: String?, font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black) {
         self.init()
-        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: color]) }
+        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSAttributedStringKey.font: font, .foregroundColor: color]) }
     }
 }
 
@@ -56,7 +56,7 @@ extension UIControlState: Hashable {
     }
 }
 
-extension ButtonComponnet {
+extension ButtonComponent {
 
     public struct Attribute: Builder {
         public var titles: [UIControlState: String?]?
@@ -95,7 +95,7 @@ extension ButtonComponnet {
                             viewAttributes: ViewAttributeMap? = nil) {
 
         let list: [[UIControlState: Any?]?] = [attributes.titles, attributes.titleColors, attributes.images, attributes.backgroundImages]
-        let states: [UIControlState] = list.flatMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
+        let states: [UIControlState] = list.compactMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
         let buttonAttrs = Set(states).map{ (state) -> __ButtonAttributes in
             let a = __ButtonAttributes()
             a.state = state
@@ -122,10 +122,10 @@ extension ButtonComponnet {
 }
 
 
-extension ImageComponnet {
+extension ImageComponent {
 }
 
-extension NetworkImageComponnet {
+extension NetworkImageComponent {
     
     public convenience init(url: URL?,
                             imageDownloader: NetworkImageDownloading,

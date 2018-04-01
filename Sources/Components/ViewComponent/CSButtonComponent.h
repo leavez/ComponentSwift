@@ -25,7 +25,7 @@ NS_SWIFT_NAME(__ButtonAttributes)
  
  for CKButtonComponent
  */
-NS_SWIFT_NAME(ButtonComponnet)
+NS_SWIFT_NAME(ButtonComponent)
 @interface CSButtonComponent : CSComponent
 
 - (nonnull instancetype)initWithButtonAttribute:(nonnull NSArray<CSButtonAttributes *> *)buttonAttributes
