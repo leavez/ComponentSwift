@@ -96,7 +96,7 @@ extension ButtonComponent {
                             viewAttributes: ViewAttributeMap? = nil) {
 
         let list: [[UIControlState: Any?]?] = [attributes.titles, attributes.titleColors, attributes.images, attributes.backgroundImages]
-        let states: [UIControlState] = list.flatMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
+        let states: [UIControlState] = list.compactMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
         let buttonAttrs = Set(states).map{ (state) -> __ButtonAttributes in
             let a = __ButtonAttributes()
             a.state = state
