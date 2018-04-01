@@ -2,7 +2,7 @@
 <p align="center"><img src="/etc/logo.png" width="512"></p>
 
 [![Platform](https://img.shields.io/cocoapods/p/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
-[![Swift](https://img.shields.io/badge/swift-4-orange.svg?style=flat)](#)
+[![Swift](https://img.shields.io/badge/swift-4.1-orange.svg?style=flat)](#)
 [![Build Status](https://travis-ci.org/leavez/ComponentSwift.svg?branch=master)](https://travis-ci.org/leavez/ComponentSwift)
 
 

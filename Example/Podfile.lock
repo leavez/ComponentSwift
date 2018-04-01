@@ -13,18 +13,23 @@ DEPENDENCIES:
   - ComponentSwift (from `../`)
   - WrapExisted (from `./WrapExisted`)
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - CKTableViewTransactionalDataSource
+    - ComponentKit
+
 EXTERNAL SOURCES:
   ComponentSwift:
-    :path: ../
+    :path: "../"
   WrapExisted:
-    :path: ./WrapExisted
+    :path: "./WrapExisted"
 
 SPEC CHECKSUMS:
   CKTableViewTransactionalDataSource: 8ed793a62a7602e9be76c5a0ab1597f27bb435ab
   ComponentKit: beef88630f344efb8344fe40fc6fc7c1732b68c8
-  ComponentSwift: ebd44405ac0c9b9bb51280d433f17c5d98e44474
-  WrapExisted: 314e296d1445a284c31d6d75aabdb7b4c62c41bd
+  ComponentSwift: a3080c586fdb207aafd025f8cd71885c4ef41762
+  WrapExisted: 3b9af64c8a2cd1193ae90349117bccfcc3eb4b85
 
 PODFILE CHECKSUM: 00b1b9bb8109730b3adc9f47a6cf90c92fd44213
 
-COCOAPODS: 1.4.0.beta.2
+COCOAPODS: 1.5.0.beta.1

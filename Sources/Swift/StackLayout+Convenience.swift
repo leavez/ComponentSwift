@@ -26,48 +26,57 @@ extension StackLayoutChild: StackLayoutChildType {
 
 
 // MARK:- convenient initialier for stack layout component
-public class StackLayoutComponent: __StackLayoutComponent, StackComponentInitialierProtocol {
-    public class func modifyStyle(_ v: StackLayoutStyle) {
+public class StackLayoutComponent: __StackLayoutComponent {
+
+    public init(view: ViewConfiguration? = nil,
+                style: StackLayoutStyle?,
+                size:LayoutSize? = nil,
+                children:[StackLayoutChildType?])
+    {
+        let s = style ?? StackLayoutStyle()
+        type(of:self).modifyStyle(s)
+        super.init(
+            __view:view, size:size, style:s,
+            children: children.compactMap{ $0?.toChild }
+        )
+    }
+    
+    public convenience init(_ children:StackLayoutChildType?...) {
+        self.init(style: nil, children: children)
+    }
+    
+    public convenience init(view: ViewConfiguration? = nil,
+                            style: StackLayoutStyle?,
+                            size:LayoutSize? = nil,
+                            children:StackLayoutChildType?...)
+    {
+        self.init(view: view, style: style, size: size, children: children)
+    }
+    
+    
+    // MARK:- private
+    
+    class func modifyStyle(_ v: StackLayoutStyle) {
         // do nothing
     }
+    
 }
 
 
 /// subclass of StackLayoutComponent, with preset layoutDirction
 public class VerticalStackComponent: StackLayoutComponent {
-    public override class func modifyStyle(_ v: StackLayoutStyle) {
+    override class func modifyStyle(_ v: StackLayoutStyle) {
         v.direction = .vertical
     }
 }
 /// subclass of StackLayoutComponent, with preset layoutDirction
 public class HorizontalStackComponent: StackLayoutComponent {
-    public override class func modifyStyle(_ v: StackLayoutStyle) {
+    override class func modifyStyle(_ v: StackLayoutStyle) {
         v.direction = .horizontal
     }
 }
 
-public protocol StackComponentInitialierProtocol: class {
-    static func modifyStyle(_ v: StackLayoutStyle)
-}
 
-extension StackComponentInitialierProtocol where Self: StackLayoutComponent {
-
-    public init(_ children:StackLayoutChildType?...) {
-        self.init(style: nil, children: children)
-    }
-    public init(view: ViewConfiguration? = nil, style: StackLayoutStyle?, size:LayoutSize? = nil, children:StackLayoutChildType?...) {
-        self.init(view: view, style: style, size: size, children: children)
-    }
-    public init(view: ViewConfiguration? = nil, style: StackLayoutStyle?, size:LayoutSize? = nil, children:[StackLayoutChildType?]) {
-
-        let s = style ?? StackLayoutStyle()
-        Self.modifyStyle(s)
-        self.init(
-            __view:view, size:size, style:s,
-            children: children.flatMap{ $0?.toChild }
-        )
-    }
-}
 
 
 
