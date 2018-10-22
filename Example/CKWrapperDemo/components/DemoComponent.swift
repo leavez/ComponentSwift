@@ -24,7 +24,7 @@ class DemoComponent: CompositeComponent, ComponentInitialStateProtocol {
 
         super.init(scope: scope) { (state) -> Component? in
 
-            InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
+            InsetComponent(insets: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20),
                            component:
 
                 VerticalStackComponent(

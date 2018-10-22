@@ -37,21 +37,21 @@ extension TextAttributes {
         self.init()
         self.attributedString = attributedString
     }
-    public convenience init(_ string: String?, attrs: [NSAttributedStringKey : Any], numberOfLines:Int = 0) {
+    public convenience init(_ string: String?, attrs: [NSAttributedString.Key : Any], numberOfLines:Int = 0) {
         self.init()
         self.attributedString = string.map{ NSAttributedString(string: $0, attributes: attrs) }
         self.maximumNumberOfLines = numberOfLines
     }
     public convenience init(_ string: String?, font: UIFont = UIFont.systemFont(ofSize: 14), color: UIColor = .black) {
         self.init()
-        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [NSAttributedStringKey.font: font, .foregroundColor: color]) }
+        self.attributedString = string.map{ NSAttributedString(string: $0, attributes: [.font: font, .foregroundColor: color]) }
     }
 }
 
 
 
 
-extension UIControlState: Hashable {
+extension UIControl.State: Hashable {
     public var hashValue: Int {
         return Int(self.rawValue)
     }
@@ -60,10 +60,10 @@ extension UIControlState: Hashable {
 extension ButtonComponent {
 
     public struct Attribute: Builder {
-        public var titles: [UIControlState: String?]?
-        public var titleColors: [UIControlState: UIColor?] = [.normal:.black]
-        public var images: [UIControlState: UIImage?]?
-        public var backgroundImages:[UIControlState: UIImage?]?
+        public var titles: [UIControl.State: String?]?
+        public var titleColors: [UIControl.State: UIColor?] = [.normal:.black]
+        public var images: [UIControl.State: UIImage?]?
+        public var backgroundImages:[UIControl.State: UIImage?]?
         public var titleFont: UIFont = .systemFont(ofSize: 15)
         public var selected: Bool = false
         public var enabled: Bool = true
@@ -95,8 +95,8 @@ extension ButtonComponent {
                             size: LayoutSize?,
                             viewAttributes: ViewAttributeMap? = nil) {
 
-        let list: [[UIControlState: Any?]?] = [attributes.titles, attributes.titleColors, attributes.images, attributes.backgroundImages]
-        let states: [UIControlState] = list.compactMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
+        let list: [[UIControl.State: Any?]?] = [attributes.titles, attributes.titleColors, attributes.images, attributes.backgroundImages]
+        let states: [UIControl.State] = list.compactMap{ $0 }.map{ Array($0.keys) }.reduce([], { $0 + $1 })
         let buttonAttrs = Set(states).map{ (state) -> __ButtonAttributes in
             let a = __ButtonAttributes()
             a.state = state

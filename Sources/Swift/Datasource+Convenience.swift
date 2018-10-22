@@ -113,7 +113,7 @@ extension TableViewCellConfiguration {
         return config
     }
 
-    public static func animationConfig(style: UITableViewRowAnimation = .automatic) -> TableViewCellConfiguration {
+    public static func animationConfig(style: UITableView.RowAnimation = .automatic) -> TableViewCellConfiguration {
         let config = TableViewCellConfiguration()
         config.animationRowDelete = style
         config.animationRowInsert = style

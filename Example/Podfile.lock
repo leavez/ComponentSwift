@@ -2,7 +2,7 @@ PODS:
   - CKTableViewTransactionalDataSource (0.1.1):
     - ComponentKit (~> 0.2)
   - ComponentKit (0.15.1)
-  - ComponentSwift (0.3):
+  - ComponentSwift (0.4.1):
     - CKTableViewTransactionalDataSource (~> 0.1.0)
     - ComponentKit (~> 0.15.0)
   - WrapExisted (0.0.1):
@@ -14,7 +14,7 @@ DEPENDENCIES:
   - WrapExisted (from `./WrapExisted`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - CKTableViewTransactionalDataSource
     - ComponentKit
 
@@ -27,9 +27,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CKTableViewTransactionalDataSource: 8ed793a62a7602e9be76c5a0ab1597f27bb435ab
   ComponentKit: beef88630f344efb8344fe40fc6fc7c1732b68c8
-  ComponentSwift: a3080c586fdb207aafd025f8cd71885c4ef41762
+  ComponentSwift: 58b5f5027af7501bd34e2e351519b371314c5dcf
   WrapExisted: 3b9af64c8a2cd1193ae90349117bccfcc3eb4b85
 
 PODFILE CHECKSUM: 00b1b9bb8109730b3adc9f47a6cf90c92fd44213
 
-COCOAPODS: 1.5.0.beta.1
+COCOAPODS: 1.5.3

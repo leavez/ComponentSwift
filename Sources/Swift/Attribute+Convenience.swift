@@ -52,7 +52,7 @@ extension Attribute {
         return .keyAndValue(GestureAttributeValue(tapAction: selector))
     }
 
-    public static func controlAction(event:UIControlEvents, action: Selector) -> Attribute {
+    public static func controlAction(event:UIControl.Event, action: Selector) -> Attribute {
         return .keyAndValue(ControlActionAttribute(event: event, action: action))
     }
 
@@ -98,13 +98,13 @@ extension Attribute {
     public static func isHidden(_ v: Bool) -> Attribute {
         return .set(#selector(setter: UIView.isHidden), to: v)
     }
-    public static func contentMode(_ v: UIViewContentMode) -> Attribute {
+    public static func contentMode(_ v: UIView.ContentMode) -> Attribute {
         return .set(#selector(setter: UIView.contentMode), to: v)
     }
     public static func tintColor(_ v: UIColor?) -> Attribute {
         return .set(#selector(setter: UIView.tintColor), to: v)
     }
-    public static func tintAdjustmentMode(_ v: UIViewTintAdjustmentMode) -> Attribute {
+    public static func tintAdjustmentMode(_ v: UIView.TintAdjustmentMode) -> Attribute {
         return .set(#selector(setter: UIView.tintAdjustmentMode), to: v)
     }
     public static func isUserInteractionEnabled(_ v: Bool) -> Attribute {
@@ -113,7 +113,7 @@ extension Attribute {
     public static func isExclusiveTouch(_ v: Bool) -> Attribute {
         return .set(#selector(setter: UIView.isExclusiveTouch), to: v)
     }
-    public static func autoresizingMask(_ v: UIViewAutoresizing) -> Attribute {
+    public static func autoresizingMask(_ v: UIView.AutoresizingMask) -> Attribute {
         return .set(#selector(setter: UIView.autoresizingMask), to: v)
     }
     public static func transform(_ v: CGAffineTransform) -> Attribute {

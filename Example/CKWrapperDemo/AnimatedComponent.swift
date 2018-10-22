@@ -36,7 +36,7 @@ class AnimatedComponent: CompositeComponent, ComponentStateProtocol, ComponentAn
                 )
             )
 
-            return InsetComponent(insets: UIEdgeInsetsMake(20, 100, 20, 20),
+            return InsetComponent(insets: UIEdgeInsets(top: 20, left: 100, bottom: 20, right: 20),
                                   component:text)
         }
 
@@ -57,13 +57,13 @@ class AnimatedComponent: CompositeComponent, ComponentStateProtocol, ComponentAn
     func animationsOnInitialMount() -> [ComponentAnimation]? {
 
         let scale = CABasicAnimation(keyPath: "transform.scale")
-        scale.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        scale.timingFunction = CAMediaTimingFunction(name: .default)
         scale.duration = 1
         scale.fromValue = 0.01
         scale.toValue = 1
 
         let fade = CABasicAnimation(keyPath: "opacity")
-        fade.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault)
+        fade.timingFunction = CAMediaTimingFunction(name: .default)
         fade.duration = 1
         fade.fromValue = 0
         fade.toValue = 1

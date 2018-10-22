@@ -16,7 +16,7 @@ class SwiftComponent: CompositeComponent {
     init?(model: Int) {
         super.init(component:
 
-            InsetComponent(insets: UIEdgeInsetsMake(20, 20, 20, 20),
+            InsetComponent(insets: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20),
                            component:
 
                 // `init(view: ViewConfiguration? = nil,
@@ -76,7 +76,7 @@ func getText() -> NSAttributedString {
     let text = "I/O Extended events include a variety of options for developers—from live streaming sessions to local demos, hackathons, codelabs, and more. These events are hosted in your neighborhood by local developer communities."
     let paragraphStyle = NSMutableParagraphStyle()
     paragraphStyle.hyphenationFactor = 1
-    let attributeString = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), .paragraphStyle: paragraphStyle])
+    let attributeString = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 14), .paragraphStyle: paragraphStyle])
     return attributeString
 }
 
