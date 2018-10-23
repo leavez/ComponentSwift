@@ -42,6 +42,25 @@ public enum Attribute {
 public typealias A = Attribute
 
 
+extension Attribute {
+    
+    /// Convenient method to declear setting a value
+    public static func keyPath<U,T>(_ kp: ReferenceWritableKeyPath<U,T>, value:T) -> Attribute {
+        assert(kp._kvcKeyPathString != nil)
+        let key = ViewAttribute(identifier: "keyPath:" + kp._kvcKeyPathString!, applicator: { (view, value) in
+            if let view = view as? U, let v = value as? T {
+                view[keyPath:kp] = v
+            }
+        }, unapplicator: nil, updater: nil)
+        return Attribute.keyAndValue(
+            ViewAttributeValue().build({
+                $0.key = key;
+                $0.value = value
+            })
+        )
+    }
+}
+
 // MARK:- Selector doesn't work well with code completion in swift, so we preset
 // many methods.
 
