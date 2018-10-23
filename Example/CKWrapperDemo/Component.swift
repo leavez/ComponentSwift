@@ -40,8 +40,7 @@ class SwiftComponent: CompositeComponent {
                             .keyPath(\UIView.backgroundColor, value: .orange),
                             // or use `.set(#selector(setter:UIView.backgroundColor), to: UIColor.orange),`
                             // or use `.backgroundColor(.orange),`
-                            A.keyPath(\UIView.layer.cornerRadius, value: 50)
-//                            .roundCorner(raidus: 30)
+                            .roundCorner(raidus: 30)
                         ),
                         size:.size(60, 60)
                     ),
