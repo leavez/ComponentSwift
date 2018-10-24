@@ -2,7 +2,7 @@
 <p align="center"><img src="/etc/logo.png" width="512"></p>
 
 [![Platform](https://img.shields.io/cocoapods/p/ComponentSwift.svg?style=flat)](http://cocoapods.org/pods/ComponentSwift)
-[![Swift](https://img.shields.io/badge/swift-4.1-orange.svg?style=flat)](#)
+[![Swift](https://img.shields.io/badge/swift-4.2-orange.svg?style=flat)](#)
 [![Build Status](https://travis-ci.org/leavez/ComponentSwift.svg?branch=master)](https://travis-ci.org/leavez/ComponentSwift)
 
 
@@ -76,7 +76,11 @@ It refined the bridged interface for swift, including notating nullability, addi
 pod "ComponentSwift"
 ```
 
-The lib is released with ComponentKit v0.15.1, whose latest version drop support of cocoapods. For version 0.20, go to branch `0.20`.
+Swift version:
+
+- swift 4.2: v0.5
+- swift 4.1: v0.4.1 
+- swift 3: v0.3
 
 ## License
 
